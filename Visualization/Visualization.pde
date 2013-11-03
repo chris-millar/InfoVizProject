@@ -42,10 +42,11 @@ void loadData() {
     for (int j=1; j < lines.length; j++) {
       String[] lineVals = split(lines[j], ',');  //splits apart the jth line (1-10, major data entry)
       
-      MajorEntry entry = new MajorEntry(lineVals[0], lineVals[12], lineVals[1], lineVals[2],
-                                        lineVals[3], lineVals[4],  lineVals[5], lineVals[6],
-                                        lineVals[7], lineVals[8],  lineVals[9], lineVals[10],
-                                        lineVals[11]);
+      MajorEntry entry = new MajorEntry(lineVals[0], 
+                                        Integer.parseInt(lineVals[12]), Integer.parseInt(lineVals[1]), Integer.parseInt(lineVals[2]),
+                                        Integer.parseInt(lineVals[3]), Integer.parseInt(lineVals[4]), Integer.parseInt(lineVals[5]), 
+                                        Integer.parseInt(lineVals[6]), Integer.parseInt(lineVals[7]), Integer.parseInt(lineVals[8]),
+                                        Integer.parseInt(lineVals[9]), Integer.parseInt(lineVals[10]), Integer.parseInt(lineVals[11]));
       iTopTen.Add(entry);
     }
     
