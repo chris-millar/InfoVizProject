@@ -36,7 +36,7 @@ void draw() {
 void loadData() {
   int iYear = 1999;
   for (int i=0; i < NumYears; i++) {
-    lines = loadStrings("4460_" + iYear + ".csv"); //splits the ith year file into its 11 lines (as String arrays)
+    lines = loadStrings("data/4460_" + iYear + ".csv"); //splits the ith year file into its 11 lines (as String arrays)
     
     ArrayList<MajorEntry> iTopTen = new ArrayList<MajorEntry>(); //holds the top ten major-entries in the ith year
     for (int j=1; j < lines.length; j++) {
