@@ -1,3 +1,4 @@
+
 public class College 
 {
   private String name;
@@ -5,7 +6,7 @@ public class College
   private color collegeColor; //I'm not sure what we're taking in for color (rgb or hex);
   private int percentSize;
   private int xPos, yPos;
-  private int height, width;
+  private int theHeight, theWidth;
   private ArrayList top3Majors;
   private int whiteMale, whiteFemale, asianMale, asianFemale, 
               blackMale, blackFemale, hispanicMale, hispanicFemale;
@@ -17,13 +18,13 @@ public class College
   }
   
   //parameters can be changed based on needs later
-  public College(String name, int xPos, int yPos, int width, int height)
+  public College(String name, int xPos, int yPos, int theWidth, int theHeight)
   {
     this.name = name;
     this.xPos = xPos;
     this.yPos = yPos;
-    this.width = width;
-    this.height = height;
+    this.theWidth = theWidth;
+    this.theHeight = theHeight;
   }
   
   /*
@@ -31,11 +32,11 @@ public class College
   * @param mouseX, mouseY - the cursor's value
   * @return - true if the cursor collides with the chunk, else false
   */
-  public boolean isHoveredOver(int mouseX, int mouseY)
+  public boolean isHoveredOver()
   {
-    if( (mouseX > xPos) && (mouseX < (xPos+width)) )
+    if( (mouseX > xPos) && (mouseX < (xPos+theWidth)) )
     {
-      if( (mouseY < yPos) && (mouseY > (yPos+height)) )
+      if( (mouseY < yPos) && (mouseY > (yPos+theHeight)) )
         return true;
     }
     return false;
@@ -47,7 +48,7 @@ public class College
   public void draw()
   {
     fill(collegeColor);
-    rect(xPos, yPos, width, height);
+    rect(xPos, yPos, theWidth, theHeight);
   }
   
   /*
@@ -83,14 +84,14 @@ public class College
     this.yPos = yPos;
   }
   
-  public void setHeight(int height)
+  public void setHeight(int theHeight)
   {
-    this.height = height; 
+    this.theHeight = theHeight; 
   }
   
-  public void setWidth(int width)
+  public void setWidth(int theWidth)
   {
-    this.width = width; 
+    this.theWidth = theWidth; 
   }
   
   public void setTop3Majors(ArrayList list)
@@ -184,12 +185,12 @@ public class College
   
   public int getHeight()
   {
-    return height; 
+    return theHeight; 
   }
   
   public int getWidth()
   {
-    return width; 
+    return theWidth; 
   }
   
   public ArrayList setTop3Majors()
