@@ -1,4 +1,3 @@
-
 public class College 
 {
   private String name;
@@ -47,6 +46,7 @@ public class College
   */
   public void draw()
   {
+    fill(collegeColor);
     rect(xPos, yPos, width, height);
   }
   
