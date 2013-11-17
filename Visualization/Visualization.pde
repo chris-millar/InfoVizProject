@@ -8,7 +8,7 @@
    ...
    ...
    2013 --> {1stMajorEntry_2013, 2ndMajorEntry_2013, 3rdMajorEntry_2013, 4thMajorEntry_2013, ... 10thMajorEntry_2013} */
-ArrayList<ArrayList<MajorEntry>> Years;
+ArrayList<ArrayList<College>> Years;
 final int NumYears = 15;
 //*************** Global Variables *******************//
 
@@ -20,7 +20,7 @@ void setup() {
 }
 
 void initGlobals() {
-  Years = new ArrayList<ArrayList<MajorEntry>>();
+  Years = new ArrayList<ArrayList<College>>();
 }
 
 
