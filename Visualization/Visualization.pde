@@ -148,7 +148,7 @@ public void test_Data() {
    System.out.println("-------------------"); 
    
    for (int j=0; j < Years.get(i).size(); j++) {
-      System.out.println("College: " + Years.get(i).get(j).getName() + "\t" + Years.get(i).get(j).getTotalCollege()); 
+      System.out.println("College: " + Years.get(i).get(j).getNameCollege() + "\t" + Years.get(i).get(j).getTotalCollege()); 
       
       System.out.println("\tMale: \t" + Years.get(i).get(j).getMale());
       System.out.println("\tFemale: \t" + Years.get(i).get(j).getFemale());
@@ -162,12 +162,12 @@ public void test_Data() {
      
      System.out.println("");
     
-     System.out.println("\t1st: " + Years.get(i).get(j).getTop3Majors().get(0).getName() + "\t\t" + Years.get(i).get(j).getTop3Majors().get(0).getEnrollment());
+     System.out.println("\t1st: " + Years.get(i).get(j).getTop3Majors().get(0).getNameMajor() + "\t\t" + Years.get(i).get(j).getTop3Majors().get(0).getEnrollment());
      if (Years.get(i).get(j).getTop3Majors().get(1) != null) {
-       System.out.println("\t2nd: " + Years.get(i).get(j).getTop3Majors().get(1).getName() + "\t\t" + Years.get(i).get(j).getTop3Majors().get(1).getEnrollment());
+       System.out.println("\t2nd: " + Years.get(i).get(j).getTop3Majors().get(1).getNameMajor() + "\t\t" + Years.get(i).get(j).getTop3Majors().get(1).getEnrollment());
      }
      if (Years.get(i).get(j).getTop3Majors().get(2) != null) {
-       System.out.println("\t3rd: " + Years.get(i).get(j).getTop3Majors().get(2).getName() + "\t\t" + Years.get(i).get(j).getTop3Majors().get(2).getEnrollment());
+       System.out.println("\t3rd: " + Years.get(i).get(j).getTop3Majors().get(2).getNameMajor() + "\t\t" + Years.get(i).get(j).getTop3Majors().get(2).getEnrollment());
      }
      
      System.out.println("");

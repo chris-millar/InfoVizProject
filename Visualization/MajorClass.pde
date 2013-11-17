@@ -9,7 +9,7 @@ public class Major
    this.Enrollment = enrollment;
  } 
  
- public String getName() {
+ public String getNameMajor() {
    return Name;
  }
  
