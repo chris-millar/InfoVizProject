@@ -155,7 +155,7 @@ public class College
   /*
   * Getters
   */
-   public String getNameCollege()
+   public String getName()
   {
     return Name;
   }

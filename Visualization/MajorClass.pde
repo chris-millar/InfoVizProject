@@ -1,16 +1,16 @@
 public class Major 
 {
- private String Name;
+ private String NameMajor;
  private int Enrollment;
 
  public Major(String name, int enrollment) 
  {
-   this.Name = name;
+   this.NameMajor = name;
    this.Enrollment = enrollment;
  } 
  
- public String getNameMajor() {
-   return Name;
+ public String getName() {
+   return NameMajor;
  }
  
  public int getEnrollment() {
