@@ -8,4 +8,12 @@ public class Major
    this.Name = name;
    this.Enrollment = enrollment;
  } 
+ 
+ public String getName() {
+   return Name;
+ }
+ 
+ public int getEnrollment() {
+    return Enrollment; 
+ }
 }

@@ -7,9 +7,9 @@ public class College
   private int xPos, yPos;
   private int theHeight, theWidth;
   private ArrayList top3Majors;
-  private int totalWhite, totalBlack, totalHispanic, totalAsian;
-  private int totalMale, totalFemale;
-  private int totalCollege;
+  private int White, Black, Hispanic, Asian;
+  private int Male, Female;
+  private int TotalCollege;
   
   public College()
   {
@@ -35,13 +35,13 @@ public class College
   {
     this.Name = name;
     this.top3Majors = top3Majors;
-    this.totalMale = Male;
-    this.totalFemale = Female;
-    this.totalWhite = White;
-    this.totalBlack = Black;
-    this.totalHispanic = Hispanic;
-    this.totalAsian = Asian;
-    this.totalCollege = TotalCollege;
+    this.Male = Male;
+    this.Female = Female;
+    this.White = White;
+    this.Black = Black;
+    this.Hispanic = Hispanic;
+    this.Asian = Asian;
+    this.TotalCollege = TotalCollege;
   }
   
   /*
@@ -124,32 +124,32 @@ public class College
   
   public void setWhite(int white)
   {
-   this.totalWhite = white;
+   this.White = white;
   } 
   
   public void setBlack(int black)
   {
-   this.totalBlack = black;
+   this.Black = black;
   }
   
   public void setAsian(int asian)
   {
-   this.totalAsian = asian;
+   this.Asian = asian;
   }
   
   public void setHispanic(int hisp)
   {
-   this.totalHispanic = hisp;
+   this.Hispanic = hisp;
   }
   
   public void setTotalMale(int totalMale)
   {
-    this.totalMale = totalMale;
+    this.Male = totalMale;
   }
   
   public void setTotalFemale(int totalFemale)
   {
-    this.totalFemale = totalFemale;
+    this.Female = totalFemale;
   }
   
   /*
@@ -190,43 +190,43 @@ public class College
     return theWidth; 
   }
   
-  public ArrayList setTop3Majors()
+  public ArrayList getTop3Majors()
   {
     return top3Majors;
   }
   
   public int getWhite()
   {
-    return totalWhite;
+    return White;
   }
   
   public int getBlack()
   {
-    return totalBlack;
+    return Black;
   }
   
   public int getAsian()
   {
-    return totalAsian;
+    return Asian;
   }
   
   public int getHispanic()
   {
-    return totalHispanic;
+    return Hispanic;
   }
   
-  public int getTotalMale()
+  public int getMale()
   {
-    return totalMale;
+    return Male;
   }
   
-  public int getTotalFemale()
+  public int getFemale()
   {
-    return totalFemale;
+    return Female;
   }
   
   public int getTotalCollege()
   {
-    return (totalMale + totalFemale);
+    return TotalCollege;
   }
 }

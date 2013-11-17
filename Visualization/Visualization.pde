@@ -148,26 +148,26 @@ public void test_Data() {
    System.out.println("-------------------"); 
    
    for (int j=0; j < Years.get(i).size(); j++) {
-      System.out.println("College: " + Years.get(i).get(j).Name + "\t" + Years.get(i).get(j).TotalCollege); 
+      System.out.println("College: " + Years.get(i).get(j).getName() + "\t" + Years.get(i).get(j).getTotalCollege()); 
       
-      System.out.println("\tMale: \t" + Years.get(i).get(j).Male);
-      System.out.println("\tFemale: \t" + Years.get(i).get(j).Female);
+      System.out.println("\tMale: \t" + Years.get(i).get(j).getMale());
+      System.out.println("\tFemale: \t" + Years.get(i).get(j).getFemale());
       
       System.out.println("");
       
-      System.out.println("\tWhite: \t" + Years.get(i).get(j).White);
-      System.out.println("\tBlack: \t" + Years.get(i).get(j).Black);
-      System.out.println("\tHispanic: \t" + Years.get(i).get(j).Hispanic);
-      System.out.println("\tAsian: \t" + Years.get(i).get(j).Asian);
+      System.out.println("\tWhite: \t" + Years.get(i).get(j).getWhite());
+      System.out.println("\tBlack: \t" + Years.get(i).get(j).getBlack());
+      System.out.println("\tHispanic: \t" + Years.get(i).get(j).getHispanic());
+      System.out.println("\tAsian: \t" + Years.get(i).get(j).getAsian());
      
      System.out.println("");
     
-     System.out.println("\t1st: " + Years.get(i).get(j).top3Majors.get(0).Name + "\t\t" + Years.get(i).get(j).top3Majors.get(0).Enrollment);
-     if (Years.get(i).get(j).top3Majors.get(1) != null) {
-       System.out.println("\t2nd: " + Years.get(i).get(j).top3Majors.get(1).Name + "\t\t" + Years.get(i).get(j).top3Majors.get(1).Enrollment);
+     System.out.println("\t1st: " + Years.get(i).get(j).getTop3Majors().get(0).getName() + "\t\t" + Years.get(i).get(j).getTop3Majors().get(0).getEnrollment());
+     if (Years.get(i).get(j).getTop3Majors().get(1) != null) {
+       System.out.println("\t2nd: " + Years.get(i).get(j).getTop3Majors().get(1).getName() + "\t\t" + Years.get(i).get(j).getTop3Majors().get(1).getEnrollment());
      }
-     if (Years.get(i).get(j).top3Majors.get(2) != null) {
-       System.out.println("\t3rd: " + Years.get(i).get(j).top3Majors.get(2).Name + "\t\t" + Years.get(i).get(j).top3Majors.get(2).Enrollment);
+     if (Years.get(i).get(j).getTop3Majors().get(2) != null) {
+       System.out.println("\t3rd: " + Years.get(i).get(j).getTop3Majors().get(2).getName() + "\t\t" + Years.get(i).get(j).getTop3Majors().get(2).getEnrollment());
      }
      
      System.out.println("");
