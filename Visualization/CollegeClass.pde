@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 public class College 
+=======
+
+public class College2 
+>>>>>>> Fixed Bugs
 {
   private String name;
   private int year;
@@ -11,13 +16,13 @@ public class College
   private int totalMale, totalFemale;
   private int totalCollege;
   
-  public College()
+  public College2()
   {
     super();
   }
   
   //parameters can be changed based on needs later
-  public College(String name, int xPos, int yPos, int theWidth, int theHeight)
+  public College2(String name, int xPos, int yPos, int theWidth, int theHeight)
   {
     this.name = name;
     this.xPos = xPos;
