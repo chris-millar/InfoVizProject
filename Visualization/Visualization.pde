@@ -36,21 +36,46 @@ void draw() {
 void loadData() {
   int iYear = 1999;
   for (int i=0; i < NumYears; i++) {
-    lines = loadStrings("data/4460_" + iYear + ".csv"); //splits the ith year file into its 11 lines (as String arrays)
+    lines = loadStrings("data/" + iYear + ".csv"); //splits the ith year file into its 11 lines (as String arrays)
     
-    ArrayList<MajorEntry> iTopTen = new ArrayList<MajorEntry>(); //holds the top ten major-entries in the ith year
+    ArrayList<College> collegesInYear = new ArrayList<College>(); //holds the top ten major-entries in the ith year
     for (int j=1; j < lines.length; j++) {
       String[] lineVals = split(lines[j], ',');  //splits apart the jth line (1-10, major data entry)
       
-      MajorEntry entry = new MajorEntry(lineVals[0], 
-                                        Integer.parseInt(lineVals[12]), Integer.parseInt(lineVals[1]), Integer.parseInt(lineVals[2]),
-                                        Integer.parseInt(lineVals[3]), Integer.parseInt(lineVals[4]), Integer.parseInt(lineVals[5]), 
-                                        Integer.parseInt(lineVals[6]), Integer.parseInt(lineVals[7]), Integer.parseInt(lineVals[8]),
-                                        Integer.parseInt(lineVals[9]), Integer.parseInt(lineVals[10]), Integer.parseInt(lineVals[11]));
-      iTopTen.Add(entry);
+      ArrayList<Major> top3Majors = new ArrarList<Major>();
+      
+      Major FirstMajor = new Major(lineVals[1], Integer.parseInt(lineVals[2]));
+      top3Majors.add(FirstMajor);
+      
+      Major SecondMajor;
+      if (lineVals[3] != "null") {
+        SecondMajor = new Major(lineVals[3], Integer.parseInt(lineVals[4]));
+      }
+      else {
+        SecondMajor = null; 
+      }
+      top3Majors.add(SecondMajor);
+      
+      
+      Major ThirdMajor;
+      if (lineVals[5] != "null") {
+        ThirdMajor = new Major(lineVals[5], Integer.parseInt(lineVals[6]));
+      }
+      else {
+        ThirdMajor = null; 
+      }
+      top3Majors.add(ThirdMajor);
+      
+      
+      
+      College entry = new College(lineVals[0], top3Majors,
+                                        Integer.parseInt(lineVals[7]), Integer.parseInt(lineVals[8]), 
+                                        Integer.parseInt(lineVals[9]), Integer.parseInt(lineVals[10]), Integer.parseInt(lineVals[11]),Integer.parseInt(lineVals[12]), 
+                                        Integer.parseInt(lineVals[13]));
+      collegesInYear.Add(entry);
     }
     
-    Years.Add(iTopTen);
+    Years.Add(collegesInYear);
     iYear++;
   }
 }
@@ -59,42 +84,51 @@ void loadData() {
 
 
 /////////////// Class Definitions ////////////////////
-class MajorEntry {
+class College {
   public String name;
-  public int year;
   
-  public int AsianMale;
-  public int AsianFemale;
-  public int BlackMale;
-  public int BlackFemale;
-  public int HispanicMale;
-  public int HispanicFemale;
-  public int WhiteMale;
-  public int WhiteFemale;
+  public ArrayList<Major> top3Majors;
   
-  public int TotalMale;
-  public int TotalFemale;
-  public int TotalMajor;
+  public int Male;
+  public int Female;
   
-  public MajorEntry(String name, int year, int AsianMale, int AsianFemale
-                    int BlackMale, int BlackFemale, int HispanicMale, 
-                    int HispanicFemale, int WhiteMale, int WhiteFemale,
-                    int TotalMale, int TotalFemale, int TotalMajor) {
+  public int White;
+  public int Black;
+  public int Hispanic;
+  public int Asian;
+  
+  public int TotalCollege;
+  
+  public College(String name, ArrayList<Major> top3Majors, 
+                    int Male, int Female, 
+                    int White, int Black, int Hispanic, int Asian, 
+                    int TotalCollege) {
     this.name = name;
-    this.year = year;
-    this.AsianMale = AsianMale;
-    this.AsianFemale = AsianFemale;
-    this.BlackMale = BlackMale;
-    this.BlackFemale = BlackFemale;
-    this.HispanicMale = HispanicMale;
-    this.HispanicFemale = HispanicFemale;
-    this.WhiteMale = WhiteMale;
-    this.WhiteFemale = WhiteFemale;
-    this.TotalMale = TotalMale;
-    this.TotalFemale = TotalFemale;
-    this.TotalMajor = TotalMajor;
+    
+    this.top3Majors = top3Majors;
+    
+    this.Male = Male;
+    this.Female = Female;
+    
+    this.White = White;
+    this.Black = Black;
+    this.Hispanic = Hispanic;
+    this.Asian = Asian;
+    
+    this.TotalCollege = TotalCollege;
   }
   
+}
+
+
+public class Major {
+ public String Name;
+ public int Enrollment;
+
+ public Major(String name, int enrollment) {
+   this.Name = name;
+   this.Enrollment = enrollment;
+ } 
 }
 
 
