@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 public class College 
-=======
-
-public class College2 
->>>>>>> Fixed Bugs
 {
-  private String name;
+  private String Name;
   private int year;
   private color collegeColor; //I'm not sure what we're taking in for color (rgb or hex);
   private int percentSize;
@@ -16,15 +11,15 @@ public class College2
   private int totalMale, totalFemale;
   private int totalCollege;
   
-  public College2()
+  public College()
   {
     super();
   }
   
   //parameters can be changed based on needs later
-  public College2(String name, int xPos, int yPos, int theWidth, int theHeight)
+  public College(String name, int xPos, int yPos, int theWidth, int theHeight)
   {
-    this.name = name;
+    this.Name = name;
     this.xPos = xPos;
     this.yPos = yPos;
     this.theWidth = theWidth;
@@ -38,7 +33,7 @@ public class College2
                  int White, int Black, int Hispanic, int Asian, 
                  int TotalCollege) 
   {
-    this.name = name;
+    this.Name = name;
     this.top3Majors = top3Majors;
     this.totalMale = Male;
     this.totalFemale = Female;
@@ -78,7 +73,7 @@ public class College2
   */
   public void setName(String name)
   {
-    this.name = name;
+    this.Name = name;
   }
   
   public void setYear(int year)
@@ -162,7 +157,7 @@ public class College2
   */
    public String getName()
   {
-    return name;
+    return Name;
   }
   
   public int getYear()
