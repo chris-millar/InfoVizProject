@@ -1,4 +1,3 @@
-
 public class College 
 {
   private String name;
@@ -11,6 +10,7 @@ public class College
   private int whiteMale, whiteFemale, asianMale, asianFemale, 
               blackMale, blackFemale, hispanicMale, hispanicFemale;
   private int totalMale, totalFemale;
+  private int totalCollege;
   
   public College()
   {
@@ -243,8 +243,13 @@ public class College
     return totalMale;
   }
   
-  public int setTotalFemale()
+  public int getTotalFemale()
   {
     return totalFemale;
+  }
+  
+  public int getTotalCollege()
+  {
+    return (totalMale + totalFemale);
   }
 }
