@@ -7,8 +7,7 @@ public class College
   private int xPos, yPos;
   private int theHeight, theWidth;
   private ArrayList top3Majors;
-  private int whiteMale, whiteFemale, asianMale, asianFemale, 
-              blackMale, blackFemale, hispanicMale, hispanicFemale;
+  private int totalWhite, totalBlack, totalHispanic, totalAsian;
   private int totalMale, totalFemale;
   private int totalCollege;
   
@@ -25,6 +24,22 @@ public class College
     this.yPos = yPos;
     this.theWidth = theWidth;
     this.theHeight = theHeight;
+  }
+  
+  public College(String name, ArrayList<Major> top3Majors, 
+                 int Male, int Female, 
+                 int White, int Black, int Hispanic, int Asian, 
+                 int TotalCollege) 
+  {
+    this.name = name;
+    this.top3Majors = top3Majors;
+    this.totalMale = Male;
+    this.totalFemale = Female;
+    this.totalWhite = White;
+    this.totalBlack = Black;
+    this.totalHispanic = Hispanic;
+    this.totalAsian = Asian;
+    this.totalCollege = TotalCollege;
   }
   
   /*
@@ -105,44 +120,24 @@ public class College
     }
   }
   
-  public void setWhiteMale(int whiteMale)
+  public void setWhite(int white)
   {
-    this.whiteMale = whiteMale;
+   this.totalWhite = white;
+  } 
+  
+  public void setBlack(int black)
+  {
+   this.totalBlack = black;
   }
   
-  public void setWhiteFemale(int whiteFemale)
+  public void setAsian(int asian)
   {
-    this.whiteFemale = whiteFemale;
+   this.totalAsian = asian;
   }
   
-  public void setAsianMale(int asianMale)
+  public void setHispanic(int hisp)
   {
-    this.asianMale = asianMale;
-  }
-  
-  public void setAsianFemale(int asianFemale)
-  {
-    this.asianFemale = asianFemale;
-  }
-  
-  public void setBlackMale(int blackMale)
-  {
-    this.blackMale = blackMale;
-  }
-  
-  public void setBlackFemale(int blackFemale)
-  {
-    this.blackFemale = blackFemale;
-  }
-
-  public void setHispanicMale(int hispanicMale)
-  {
-    this.hispanicMale = hispanicMale;
-  }
-  
-  public void setHispanicFemale(int hispanicFemale)
-  {
-    this.hispanicFemale = hispanicFemale;
+   this.totalHispanic = hisp;
   }
   
   public void setTotalMale(int totalMale)
@@ -198,44 +193,24 @@ public class College
     return top3Majors;
   }
   
-  public int getWhiteMale()
+  public int getWhite()
   {
-    return whiteMale;
+    return totalWhite;
   }
   
-  public int getWhiteFemale()
+  public int getBlack()
   {
-    return whiteFemale;
+    return totalBlack;
   }
   
-  public int getAsianMale()
+  public int getAsian()
   {
-    return asianMale;
+    return totalAsian;
   }
   
-  public int getAsianFemale()
+  public int getHispanic()
   {
-    return asianFemale;
-  }
-  
-  public int getBlackMale()
-  {
-    return blackMale;
-  }
-  
-  public int getBlackFemale()
-  {
-    return blackFemale;
-  }
-
-  public int getHispanicMale()
-  {
-    return hispanicMale;
-  }
-  
-  public int getHispanicFemale()
-  {
-    return hispanicFemale;
+    return totalHispanic;
   }
   
   public int getTotalMale()
