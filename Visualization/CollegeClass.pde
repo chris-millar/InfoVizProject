@@ -26,6 +26,8 @@ public class College
     this.theHeight = theHeight;
   }
   
+  
+  //this is college constructor that should be used
   public College(String name, ArrayList<Major> top3Majors, 
                  int Male, int Female, 
                  int White, int Black, int Hispanic, int Asian, 
