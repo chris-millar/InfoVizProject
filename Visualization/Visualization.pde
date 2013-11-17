@@ -84,6 +84,7 @@ void loadData() {
 
 
 /////////////// Class Definitions ////////////////////
+/*
 class College {
   public String name;
   
@@ -130,5 +131,5 @@ public class Major {
    this.Enrollment = enrollment;
  } 
 }
-
+*/
 
