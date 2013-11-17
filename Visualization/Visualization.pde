@@ -13,6 +13,8 @@ final int NumYears = 15;
 //*************** Global Variables *******************//
 
 
+// Lucas Testing.
+
 ////////////// Init Methods //////////////////
 void setup() {
   initGlobals();
