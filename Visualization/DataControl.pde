@@ -52,13 +52,14 @@ public void loadData() {
 // Huy - testing
 public void setupTotalBars()
 {
-  int totalCollege = 0;
   int year = 1999; 
   
   int barX = GRID_1_VERT_X + GRID_1_THICKNESS + BAR_OFFSET;
   
   for(int i=0; i < Years.size(); i++) 
   {
+    int totalCollege = 0; //resetting the running total
+    
     for(int j=0; j < Years.get(i).size(); j++) 
     {
       totalCollege += Years.get(i).get(j).getTotalCollege(); 

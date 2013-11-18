@@ -53,7 +53,7 @@ public class CollegeBar
   {
     if( (mouseX > xPos) && (mouseX < (xPos+theWidth)) )
     {
-      if( (mouseY < yPos) && (mouseY > (yPos+theHeight)) )
+      if( (mouseY > yPos) && (mouseY < (yPos+theHeight)) )
         return true;
     }
     return false;
