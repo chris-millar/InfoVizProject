@@ -53,6 +53,7 @@ public void loadData() {
 public void setupTotalBars()
 {
   int year = 1999; 
+  int normalized = 0;
   
   int barX = GRID_1_VERT_X + GRID_1_THICKNESS + BAR_OFFSET;
   
@@ -63,12 +64,21 @@ public void setupTotalBars()
     for(int j=0; j < Years.get(i).size(); j++) 
     {
       totalCollege += Years.get(i).get(j).getTotalCollege(); 
+      normalized = normalize(totalCollege);
     }
     
-    TotalBar bar = new TotalBar(year, barX, totalCollege);
+    TotalBar bar = new TotalBar(year, barX, normalized, totalCollege);
     totalBarList.add(bar);
     
     year++;
     barX += COLLEGE_BAR_THICKNESS + BAR_OFFSET; 
   }
+}
+
+public int normalize(int number)
+{
+  //A' = (1-alpha)*A + alpha*B
+  number = Math.round( (1-ALPHA_VAL)*number + ALPHA_VAL*NORMALIZE_TO );
+
+  return number;
 }

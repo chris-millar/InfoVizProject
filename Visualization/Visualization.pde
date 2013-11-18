@@ -36,7 +36,8 @@ void mouseMoved()
     if( totalBarList.get(x).isHoveredOver() )
     {
       //change this to fancy detail on demand stuff
-      System.out.println( totalBarList.get(x).getTotal() );
+      System.out.println( totalBarList.get(x).getYear() );
+      System.out.println( totalBarList.get(x).getTotalStudents() );
     }
   }
 }

@@ -41,6 +41,9 @@ final int TOTAL_BAR_COLOR = color(147, 197, 114);
 final int BAR_OFFSET = 25;
 final int COLLEGE_BAR_THICKNESS = 25;
 
+final float ALPHA_VAL = 0.999;
+final int NORMALIZE_TO = 300;
+
 int totViz_X;
 int totViz_Y;
 int totViz_width;
