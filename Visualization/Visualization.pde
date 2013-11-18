@@ -27,7 +27,6 @@ public void initScreen()
 ///////////////// Processing Drawing /////////////////////
 void draw() 
 {
-
 }
 
 void mouseMoved() 

@@ -28,7 +28,7 @@ final int WHITE = 255 , BLACK = 0, GREY = 153;
 final int SCREEN_WIDTH = 1350;
 final int SCREEN_HEIGHT = 650;
 
-final int GRID_1_THICKNESS = 5;
+final int GRID_1_THICKNESS = 5; //line thicknessS
 final int GRID_1_VERT_HEIGHT = 325;
 final int GRID_1_HOR_WIDTH = 750;
 final int GRID_1_VERT_X = 100;
@@ -37,7 +37,7 @@ final int GRID_1_HOR_X = GRID_1_VERT_X + GRID_1_THICKNESS;
 final int GRID_1_HOR_Y = GRID_1_VERT_Y + GRID_1_VERT_HEIGHT - GRID_1_THICKNESS;
 final int GRID_COLOR = GREY;
 
-final int TOTAL_BAR_COLOR = BLACK;
+final int TOTAL_BAR_COLOR = color(147, 197, 114);
 final int BAR_OFFSET = 25;
 final int COLLEGE_BAR_THICKNESS = 25;
 
