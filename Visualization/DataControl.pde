@@ -48,3 +48,26 @@ public void loadData() {
     iYear++;
   }
 }
+
+// Huy - testing
+public void setupTotalBars()
+{
+  int totalCollege = 0;
+  int year = 1999; 
+  
+  int barX = GRID_1_VERT_X + GRID_1_THICKNESS + BAR_OFFSET;
+  
+  for(int i=0; i < Years.size(); i++) 
+  {
+    for(int j=0; j < Years.get(i).size(); j++) 
+    {
+      totalCollege += Years.get(i).get(j).getTotalCollege(); 
+    }
+    
+    TotalBar bar = new TotalBar(year, barX, totalCollege);
+    totalBarList.add(bar);
+    
+    year++;
+    barX += COLLEGE_BAR_THICKNESS + BAR_OFFSET; 
+  }
+}

@@ -9,17 +9,23 @@
 public void setup() {
   initGlobals();
   loadData();
-  test_Data();
+  //test_Data();
   initScreen();
+  Grid GridOne = new Grid(GRID_1_VERT_X, GRID_1_VERT_Y, GRID_1_THICKNESS, GRID_1_VERT_HEIGHT, 
+                          GRID_1_HOR_X, GRID_1_HOR_Y, GRID_1_HOR_WIDTH, GRID_1_THICKNESS);
+  setupTotalBars(); //work in progress
 }
 
-public void initScreen() {
-  size(SCREEN_WIDTH, SCREEN_HEIGHT);
+public void initScreen() 
+{
+  background(WHITE); 
+  size(SCREEN_WIDTH, SCREEN_HEIGHT); 
   frameRate(30);
 }
 
 ///////////////// Processing Drawing /////////////////////
-void draw() {
+void draw() 
+{
 
 }
 
