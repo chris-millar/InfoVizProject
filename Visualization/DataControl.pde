@@ -2,7 +2,7 @@
 
 public void loadData() {
   int iYear = 1999;
-  for (int i=0; i < NumYears; i++) {
+  for (int i=0; i < NUM_YEARS; i++) {
     String[] lines = loadStrings("data/" + iYear + ".csv"); //splits the ith year file into its 11 lines (as String arrays)
     
     ArrayList<College> collegesInYear = new ArrayList<College>(); //holds the top ten major-entries in the ith year

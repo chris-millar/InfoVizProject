@@ -1,15 +1,21 @@
 public class CollegeBar 
 {
   private String Name;
-  private int year;
-  private color collegeColor; //I'm not sure what we're taking in for color (rgb or hex);
+  private int Year;
+  
   private int percentSize;
+  
   private int xPos, yPos;
-  private int theHeight, theWidth;
-  private ArrayList top3Majors;
+  private int bar_width, bar_height;
+  
+  private ArrayList<Major> top3Majors;
   private int White, Black, Hispanic, Asian;
   private int Male, Female;
   private int TotalCollege;
+  
+  private color barColor_Unselected;
+  private color barColor_Selected;
+  private color barColor_HoveredOn;
   
   public CollegeBar()
   {
@@ -22,8 +28,8 @@ public class CollegeBar
     this.Name = name;
     this.xPos = xPos;
     this.yPos = yPos;
-    this.theWidth = theWidth;
-    this.theHeight = theHeight;
+    this.bar_width = theWidth;
+    this.bar_height = theHeight;
   }
   
   
@@ -51,9 +57,9 @@ public class CollegeBar
   */
   public boolean isHoveredOver()
   {
-    if( (mouseX > xPos) && (mouseX < (xPos+theWidth)) )
+    if( (mouseX > xPos) && (mouseX < (xPos + bar_width)) )
     {
-      if( (mouseY < yPos) && (mouseY > (yPos+theHeight)) )
+      if( (mouseY < yPos) && (mouseY > (yPos + bar_height)) )
         return true;
     }
     return false;
@@ -64,8 +70,9 @@ public class CollegeBar
   */
   public void draw()
   {
-    fill(collegeColor);
-    rect(xPos, yPos, theWidth, theHeight);
+    fill(barColor_Unselected);
+    noStroke();
+    rect(xPos, yPos, bar_width, bar_height);
   }
   
   /*
@@ -78,12 +85,16 @@ public class CollegeBar
   
   public void setYear(int year)
   {
-    this.year = year;
+    this.Year = year;
   }
   
   public void setColor(int r, int g, int b)
   {
-    collegeColor = color(r, g, b);
+    barColor_Unselected = color(r, g, b);
+  }
+  
+  public void setColor(color Color) {
+     barColor_Unselected = Color;
   }
   
   public void setPercentSize(int percentSize)
@@ -103,22 +114,22 @@ public class CollegeBar
   
   public void setHeight(int theHeight)
   {
-    this.theHeight = theHeight; 
+    this.bar_height = theHeight; 
   }
   
   public void setWidth(int theWidth)
   {
-    this.theWidth = theWidth; 
+    this.bar_width = theWidth; 
   }
   
-  public void setTop3Majors(ArrayList list)
+  public void setTop3Majors(ArrayList<Major> list)
   {
     if(list.size() > 3 || list.isEmpty())
       return;
     for(int x=0; x<3; x++)
     {
       list.remove(x);
-      top3Majors.add(x);
+      top3Majors.add(list.get(x));
     }
   }
   
@@ -162,7 +173,7 @@ public class CollegeBar
   
   public int getYear()
   {
-    return year;
+    return Year;
   }
   
   public int getPercentSize()
@@ -182,12 +193,12 @@ public class CollegeBar
   
   public int getHeight()
   {
-    return theHeight; 
+    return bar_height; 
   }
   
   public int getWidth()
   {
-    return theWidth; 
+    return bar_width; 
   }
   
   public ArrayList getTop3Majors()

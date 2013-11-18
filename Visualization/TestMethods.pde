@@ -41,3 +41,48 @@ public void test_Data() {
 
  
 }
+
+
+public void test_Positions() {
+  fill(COLOR_MALE);
+  rect(vizOne_X, vizOne_Y, vizOne_width, vizOne_height);
+  
+  fill(COLOR_FEMALE);
+  rect(vizTwo_X, vizTwo_Y, vizTwo_width, vizTwo_height);
+  
+  //fill(150);
+  //line(vizOne_yAxis_x1, vizOne_yAxis_y1, vizOne_yAxis_x2, vizOne_yAxis_y2);
+  //line(vizOne_xAxis_x1, vizOne_xAxis_y1, vizOne_xAxis_x2, vizOne_xAxis_y2);
+  
+  
+  
+  int baseY = 150;
+  
+  int currX = 30 + 25;
+  
+  int yearBarSpacing = 20; //27
+  int innerBarSpacing = 11; // 9 + 2
+  
+  int collegeWidth = 40; // 36 + 4
+  int collegeHeight = 100;
+  
+  int yearWidth = collegeWidth + 2*innerBarSpacing;
+  int yearHeight = 109;
+  
+  for (int i = 0; i < 15; i++) {
+     currX += yearBarSpacing;
+     
+     //draw Year-Bar
+     fill(149);
+     rect(currX, baseY, yearWidth, yearHeight);
+     
+     currX += innerBarSpacing;
+     
+     //draw College-Bar
+     fill(COLOR_COMPUTING);
+     rect(currX, baseY, collegeWidth, collegeHeight);
+     
+     currX = currX + collegeWidth + innerBarSpacing;
+     
+  }
+}
