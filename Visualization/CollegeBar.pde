@@ -1,4 +1,4 @@
-public class College 
+public class CollegeBar 
 {
   private String Name;
   private int year;
@@ -11,13 +11,13 @@ public class College
   private int Male, Female;
   private int TotalCollege;
   
-  public College()
+  public CollegeBar()
   {
     super();
   }
   
   //parameters can be changed based on needs later
-  public College(String name, int xPos, int yPos, int theWidth, int theHeight)
+  public CollegeBar(String name, int xPos, int yPos, int theWidth, int theHeight)
   {
     this.Name = name;
     this.xPos = xPos;
@@ -28,7 +28,7 @@ public class College
   
   
   //this is college constructor that should be used
-  public College(String name, ArrayList<Major> top3Majors, 
+  public CollegeBar(String name, ArrayList<Major> top3Majors, 
                  int Male, int Female, 
                  int White, int Black, int Hispanic, int Asian, 
                  int TotalCollege) 
@@ -155,7 +155,7 @@ public class College
   /*
   * Getters
   */
-   public String getName()
+  public String getName()
   {
     return Name;
   }

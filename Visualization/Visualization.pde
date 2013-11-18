@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Authors: Nina Flaherty, Chris Millar, Lucas Pessoa, Huy Tran
 // CS4460 Information Visualization
 // Info Viz Project
@@ -60,11 +61,15 @@ final int COLOR_ARCHITECTURE = color(200, 0, 0), // red
     COLOR_ENGINEERING3 = color(255, 200, 0), 
     COLOR_ENGINEERING4 = color(179, 140, 0);
 
+=======
+>>>>>>> Reorganization Update
 ////////////// Init Methods //////////////////
-void setup() {
+
+public void setup() {
   initGlobals();
   loadData();
   test_Data();
+<<<<<<< HEAD
   
   size(1180, 580);
   frameRate(30);
@@ -81,157 +86,28 @@ void initGlobals() {
 ///////////////// Processing Drawing /////////////////////
 void draw() {
   
+=======
+  initScreen();
+>>>>>>> Reorganization Update
+}
+
+
+public void initScreen() {
+  size(1350, 650);
 }
 
 
 
-////////////////// Data Manipulation ///////////////////
-void loadData() {
-  int iYear = 1999;
-  for (int i=0; i < NumYears; i++) {
-    String[] lines = loadStrings("data/" + iYear + ".csv"); //splits the ith year file into its 11 lines (as String arrays)
-    
-    ArrayList<College> collegesInYear = new ArrayList<College>(); //holds the top ten major-entries in the ith year
-    for (int j=1; j < lines.length; j++) {
-      String[] lineVals = split(lines[j], ',');  //splits apart the jth line (1-10, major data entry)
-      
-      ArrayList<Major> top3Majors = new ArrayList<Major>();
-      
-      //System.out.println("DEBUG: YEAR: " + i + "\t\t" + "ON-LINE: " + j);
-      
-      Major FirstMajor = new Major(lineVals[1], Integer.parseInt(lineVals[2]));
-      top3Majors.add(FirstMajor);
-      
-      Major SecondMajor;
-      if (!lineVals[3].equals("null")) {
-        SecondMajor = new Major(lineVals[3], Integer.parseInt(lineVals[4]));
-      }
-      else {
-        SecondMajor = null; 
-      }
-      top3Majors.add(SecondMajor);
-      
-      
-      Major ThirdMajor;
-      if (!lineVals[5].equals("null")) {
-        ThirdMajor = new Major(lineVals[5], Integer.parseInt(lineVals[6]));
-      }
-      else {
-        ThirdMajor = null; 
-      }
-      top3Majors.add(ThirdMajor);
-      
-      
-      
-      College entry = new College(lineVals[0], top3Majors,
-                                        Integer.parseInt(lineVals[7]), Integer.parseInt(lineVals[8]), 
-                                        Integer.parseInt(lineVals[9]), Integer.parseInt(lineVals[10]), Integer.parseInt(lineVals[11]),Integer.parseInt(lineVals[12]), 
-                                        Integer.parseInt(lineVals[13]));
-      collegesInYear.add(entry);
-    }
-    
-    Years.add(collegesInYear);
-    iYear++;
-  }
+///////////////// Processing Drawing /////////////////////
+public void draw() {
+  
 }
 
 
 
 
-/////////////// Class Definitions ////////////////////
-/*
-class College {
-  public String Name;
-  
-  public ArrayList<Major> top3Majors;
-  
-  public int Male;
-  public int Female;
-  
-  public int White;
-  public int Black;
-  public int Hispanic;
-  public int Asian;
-  
-  public int TotalCollege;
-  
-  public College(String name, ArrayList<Major> top3Majors, 
-                    int Male, int Female, 
-                    int White, int Black, int Hispanic, int Asian, 
-                    int TotalCollege) {
-    this.Name = name;
-    
-    this.top3Majors = top3Majors;
-    
-    this.Male = Male;
-    this.Female = Female;
-    
-    this.White = White;
-    this.Black = Black;
-    this.Hispanic = Hispanic;
-    this.Asian = Asian;
-    
-    this.TotalCollege = TotalCollege;
-  }
-  
-}
 
 
-public class Major {
- public String Name;
- public int Enrollment;
 
- public Major(String name, int enrollment) {
-   this.Name = name;
-   this.Enrollment = enrollment;
- } 
-}
-*/
-
-
-//------------------------------ TEST METHODS ----------------------------------//
-
-
-public void test_Data() {
- System.out.println("TESTING DATA INPUT");
- 
- int yearNum = 1999;
- 
- for (int i=0; i < Years.size(); i++) {
-   System.out.println("Year: " + yearNum);
-   System.out.println("-------------------"); 
-   
-   for (int j=0; j < Years.get(i).size(); j++) {
-      System.out.println("College: " + Years.get(i).get(j).getName() + "\t" + Years.get(i).get(j).getTotalCollege()); 
-      
-      System.out.println("\tMale: \t" + Years.get(i).get(j).getMale());
-      System.out.println("\tFemale: \t" + Years.get(i).get(j).getFemale());
-      
-      System.out.println("");
-      
-      System.out.println("\tWhite: \t" + Years.get(i).get(j).getWhite());
-      System.out.println("\tBlack: \t" + Years.get(i).get(j).getBlack());
-      System.out.println("\tHispanic: \t" + Years.get(i).get(j).getHispanic());
-      System.out.println("\tAsian: \t" + Years.get(i).get(j).getAsian());
-     
-     System.out.println("");
-    
-     System.out.println("\t1st: " + ((Major)Years.get(i).get(j).getTop3Majors().get(0)).getName() + "\t\t" + ((Major)Years.get(i).get(j).getTop3Majors().get(0)).getEnrollment());  
-     if (Years.get(i).get(j).getTop3Majors().get(1) != null) {
-       System.out.println("\t2nd: " + ((Major)Years.get(i).get(j).getTop3Majors().get(1)).getName() + "\t\t" + ((Major)Years.get(i).get(j).getTop3Majors().get(1)).getEnrollment());
-     }
-     if (Years.get(i).get(j).getTop3Majors().get(2) != null) {
-       System.out.println("\t3rd: " + ((Major)Years.get(i).get(j).getTop3Majors().get(2)).getName() + "\t\t" + ((Major)Years.get(i).get(j).getTop3Majors().get(2)).getEnrollment());
-     }
-     
-     System.out.println("");
-   }
-   
-   yearNum++;
-   System.out.println("\n\n\n");
- }
-
- 
-}
 
 
