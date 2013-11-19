@@ -36,9 +36,15 @@ void draw() {
 }
 
 
+
+void checkVisualizationOne() {
+  
+}
+
+
 void buildVisualizationOne() {
-   vizOne_yAxis = new Axis(1, "yAxis", vizOne_yAxis_x1, vizOne_yAxis_y1, vizOne_yAxis_x2, vizOne_yAxis_y2, color(0));
-   vizOne_xAxis = new Axis(1, "xAxis", vizOne_xAxis_x1, vizOne_xAxis_y1, vizOne_xAxis_x2, vizOne_xAxis_y2, color(0));
+   vizOne_yAxis = new Axis(1, "yAxis", vizOne_yAxis_x1, vizOne_yAxis_y1, vizOne_yAxis_x2, vizOne_yAxis_y2, Color_AXIS);
+   vizOne_xAxis = new Axis(1, "xAxis", vizOne_xAxis_x1, vizOne_xAxis_y1, vizOne_xAxis_x2, vizOne_xAxis_y2, Color_AXIS);
    
    yearBars.clear();
    YearBar currYearBar;
@@ -48,9 +54,6 @@ void buildVisualizationOne() {
    }
 }
 
-void checkVisualizationOne() {
-  
-}
 
 void drawVisualizationOne() {
    vizOne_yAxis.draw();
@@ -77,8 +80,8 @@ public YearBar buildYearBar(int yearIndex) {
   }
   
   int xPos = vizOne_yAxis.x1 + ((1 + yearIndex) * YearBar_SPACING) + (yearIndex * YearBar_WIDTH);
-  int yPos = vizOne_yAxis.y1 + (vizOne_yAxis.getHeight() - (totalEnrollment / STUDENTS_PER_PIXEL));
-  int barHeight = vizOne_xAxis.y1 - yPos;
+  int yPos = vizOne_yAxis.y1 + (vizOne_yAxis.getHeight() - (totalEnrollment / STUDENTS_PER_PIXEL)) - InnerBarSpacing;
+  int barHeight = vizOne_xAxis.y1 - yPos + InnerBarSpacing;
   
   int relative_xPos = xPos + InnerBarSpacing;
   int relative_yPos = yPos + InnerBarSpacing;
@@ -99,12 +102,14 @@ public YearBar buildYearBar(int yearIndex) {
   return yearBar; 
 }
 
+
 public CollegeBar buildCollegeBar(College college, int totalEnrollmentForYear, int xPos, int yPos, int yearBarHeight) {
   CollegeBar collegeBar;
   
   //int barHeight = (yearBarHeight - (2 * InnerBarSpacing)) - (college.getTotalCollege() / STUDENTS_PER_PIXEL);
+  //float barHeight = ((float)college.getTotalCollege() / totalEnrollmentForYear) * (yearBarHeight - (2 * InnerBarSpacing));
   
-  float barHeight = ((float)college.getTotalCollege() / totalEnrollmentForYear) * (yearBarHeight - (2 * InnerBarSpacing));
+  float barHeight = round(((float)college.getTotalCollege() / totalEnrollmentForYear) * (yearBarHeight - (2 * InnerBarSpacing)));
   collegeBar = new CollegeBar(college.getName(), xPos, yPos, CollegeBar_WIDTH, (int) barHeight);
   
   color barColor = determineCollegeBarColorFromName(college.getName());
@@ -112,6 +117,7 @@ public CollegeBar buildCollegeBar(College college, int totalEnrollmentForYear, i
   
   return collegeBar; 
 }
+
 
 public color determineCollegeBarColorFromName(String name) {
  if (name.equals("Architecture")) {
@@ -138,43 +144,7 @@ public color determineCollegeBarColorFromName(String name) {
 }
 
 
-class Axis {
-  int VizBelongsTo;
-  String Name;
-  
-  int x1;
-  int y1;
-  int x2;
-  int y2; 
-  
-  color Color;
-  
-  
-  public Axis(int belongsTo, String Name, int x1, int y1, int x2, int y2, color Color) {
-    this.VizBelongsTo = belongsTo;
-    this.Name = Name; 
-    
-    this.x1 = x1;
-    this.y1 = y1;
-    this.x2 = x2;
-    this.y2 = y2;
-    
-    this.Color = Color;
-  }
-  
-  public int getHeight() {
-    return (y2 - y1);
-  }
-  
-  public int getWidth() {
-    return (x2 - x1);
-  }
-  
-  public void draw() {
-    stroke(Color);
-    line(x1, y1, x2, y2); 
-  }
-}
+
 
 
 
