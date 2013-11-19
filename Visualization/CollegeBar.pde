@@ -3,6 +3,8 @@ public class CollegeBar
   private String Name;
   private int Year;
   
+  private int TotalCollege;
+  private int TotalUniversity;
   private int percentSize;
   
   private int xPos, yPos;
@@ -11,7 +13,6 @@ public class CollegeBar
   private ArrayList<Major> top3Majors;
   private int White, Black, Hispanic, Asian;
   private int Male, Female;
-  private int TotalCollege;
   
   private color barColor_Unselected;
   //private color barColor_Selected;
@@ -89,6 +90,39 @@ public class CollegeBar
       noStroke();
       rect(xPos, yPos, bar_width, bar_height);
     }
+  }
+  
+  private void buildPopupBubble() {
+    String[] content = new String[12];
+    content[0] = "College of";
+    content[1] = Name;
+    content[2] = "-";
+    content[3] = "";
+    content[4] = "College Enrollment";
+    content[5] = new Integer(Year).toString();
+    content[6] = "";
+    content[7] = "-";
+    content[8] = "";
+    content[9] = "Percent of";
+    content[10] = "University Enrollment";
+    content[11] = new Integer(percentSize).toString() + " %";
+    
+    int[] contentSize = new int[12];
+    contentSize[0] = textWidth(content[0]);
+    contentSize[1] = textWidth(content[1]);
+    
+    contentSize[3] = 0;
+    
+    contentSize[2] = maxSize - 2;
+  }
+  
+  public void setCollegeEnrollment(int enrollment) {
+     this.TotalCollege = enrollment;
+  }
+  
+  public void setUniversityEnrollment(int enrollment) {
+    this.TotalUniversity = enrollment;
+    this.percentSize = round(((float)TotalCollege / TotalUniversity) * 100);
   }
   
   /*

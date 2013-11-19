@@ -164,6 +164,8 @@ public CollegeBar buildCollegeBar(College college, int totalEnrollmentForYear, i
   
   float barHeight = round(((float)college.getTotalCollege() / totalEnrollmentForYear) * (yearBarHeight - InnerBarSpacing));
   collegeBar = new CollegeBar(college.getName(), xPos, yPos, CollegeBar_WIDTH, (int) barHeight);
+  collegeBar.setCollegeEnrollment(college.getTotalCollege());
+  collegeBar.setUniversityEnrollment(totalEnrollmentForYear);
   
   color barColor = determineCollegeBarColorFromName(college.getName());
   collegeBar.setColor_Unselected(barColor);
