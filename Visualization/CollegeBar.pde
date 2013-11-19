@@ -86,6 +86,9 @@ public class CollegeBar
       noStroke();
       //stroke(barColor_HoveredOn, opacity_Unselected);
       rect(xPos, yPos, bar_width, bar_height);
+      
+      buildPopupBubble();
+      popup.draw();
     }
     else {
       fill(barColor_Unselected, opacity_Unselected);
@@ -141,7 +144,10 @@ public class CollegeBar
     
     ///////////////////////////////////////////
     
-    popup = new PopupBubble(0, 0, xBub, yBub, width, height, 
+    int bubWidth = (int)maxSize + 4;
+    int bubHeight = 100;
+    
+    popup = new PopupBubble(0, 0, mouseX, mouseY, bubWidth, bubHeight, COLOR_PopupBubble);
     
   }
   
