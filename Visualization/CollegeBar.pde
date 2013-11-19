@@ -14,8 +14,13 @@ public class CollegeBar
   private int TotalCollege;
   
   private color barColor_Unselected;
-  private color barColor_Selected;
+  //private color barColor_Selected;
   private color barColor_HoveredOn;
+  
+  private boolean hoveredOn;
+  
+  private final int opacity_HoveredOn = 255;
+  private final int opacity_Unselected = 150;
   
   public CollegeBar()
   {
@@ -30,6 +35,8 @@ public class CollegeBar
     this.yPos = yPos;
     this.bar_width = theWidth;
     this.bar_height = theHeight;
+    
+    this.hoveredOn = false;
   }
   
   
@@ -55,14 +62,15 @@ public class CollegeBar
   * @param mouseX, mouseY - the cursor's value
   * @return - true if the cursor collides with the chunk, else false
   */
-  public boolean isHoveredOver()
+  public void isHoveredOver()
   {
-    if( (mouseX > xPos) && (mouseX < (xPos + bar_width)) )
-    {
-      if( (mouseY < yPos) && (mouseY > (yPos + bar_height)) )
-        return true;
+    if ( ((mouseX > xPos) && (mouseX < (xPos + bar_width)) ) && ((mouseY > yPos) && (mouseY < (yPos + bar_height))) ) {
+      hoveredOn = true;
     }
-    return false;
+    else {
+      hoveredOn = false;
+    }
+
   }
   
   /*
@@ -70,9 +78,17 @@ public class CollegeBar
   */
   public void draw()
   {
-    fill(barColor_Unselected);
-    noStroke();
-    rect(xPos, yPos, bar_width, bar_height);
+    if (hoveredOn) {
+      fill(barColor_HoveredOn, opacity_HoveredOn);
+      noStroke();
+      //stroke(barColor_HoveredOn, opacity_Unselected);
+      rect(xPos, yPos, bar_width, bar_height);
+    }
+    else {
+      fill(barColor_Unselected, opacity_Unselected);
+      noStroke();
+      rect(xPos, yPos, bar_width, bar_height);
+    }
   }
   
   /*
@@ -93,8 +109,9 @@ public class CollegeBar
     barColor_Unselected = color(r, g, b);
   }
   
-  public void setColor(color Color) {
+  public void setColor_Unselected(color Color) {
      barColor_Unselected = Color;
+     barColor_HoveredOn = Color;
   }
   
   public void setPercentSize(int percentSize)

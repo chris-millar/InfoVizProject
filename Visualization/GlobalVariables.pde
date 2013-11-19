@@ -20,6 +20,10 @@ public final int BASE_YEAR = 1999;
 //*** Control P5 Stuff ***//
 ControlP5 cP5;
 
+//*** Event & Interaction Tracers ***//
+public int CurrSelectedYear;
+public boolean Event_SelectedYearChange;
+
 
 //*** Visualization 1 Visual Elements ***//
 Axis vizOne_yAxis;
@@ -67,8 +71,16 @@ int vizOne_xAxis_y2;
 
 int YearBar_WIDTH;
 int YearBar_SPACING;
+int YearBarLabelBar_HEIGHT;
+int YearBarLabel_WIDTH;
+int YearBarLabel_HEIGHT;
 int InnerBarSpacing;
 int CollegeBar_WIDTH;
+
+int label_xPading;
+int label_yPading;
+
+
 
 //*** Color Values ***//
 /*
@@ -79,7 +91,7 @@ final color COLOR_ARCHITECTURE = color(200, 0, 0), // red
             COLOR_MANAGEMENT =  color(0, 255, 255), // cyan
             COLOR_ENGINEERING = color(255, 135, 0); // orange
 */            
-final color COLOR_ARCHITECTURE = color(153, 173, 145),
+final color COLOR_ARCHITECTURE = color(153, 173, 145),  //#99AD91
             COLOR_COMPUTING =    color(63, 112, 102),
             COLOR_ENGINEERING =  color(38, 38, 41), 
             COLOR_IVANALLEN =    color(107, 70, 50),
@@ -87,12 +99,12 @@ final color COLOR_ARCHITECTURE = color(153, 173, 145),
             COLOR_SCIENCES =     color(133, 126, 132);
 
 /*
-final color COLOR_ARCHITECTURE = color(77, 165, 212),                                //color(200, 0, 0), // red
-            COLOR_IVANALLEN =    color(13, 136, 204),                                //color(0, 0, 235), // blue
-            COLOR_COMPUTING =    color(10, 102, 153),                               //color(0, 255, 0), // green
-            COLOR_SCIENCES =     color(28, 59, 76),                                //color(255, 0, 200), // purple
-            COLOR_MANAGEMENT =   color(5, 51, 76),                              //color(0, 255, 255), // cyan
-            COLOR_ENGINEERING =  color(3, 36, 55);                               //color(255, 135, 0); // orange  
+final color COLOR_ARCHITECTURE = color(77, 165, 212),
+            COLOR_IVANALLEN =    color(13, 136, 204),
+            COLOR_COMPUTING =    color(10, 102, 153),
+            COLOR_SCIENCES =     color(28, 59, 76), 
+            COLOR_MANAGEMENT =   color(5, 51, 76),
+            COLOR_ENGINEERING =  color(3, 36, 55);
 */
     
 final color COLOR_MALE = color(102, 178, 255), // sky blue
@@ -129,7 +141,12 @@ final color COLOR_ENGINEERING1 = COLOR_ENGINEERING,
             COLOR_ENGINEERING4 = color(179, 140, 0);
 
 final color Color_AXIS = color(209);
-final color YearBar_COLOR = color(243,229,190);
+
+final color COLOR_YearBar_Unselected = color(243,229,190); //#F3E5BE
+final color COLOR_YearBar_HoveredOn = color(231, 221, 142);  //E7DD8E
+//final color COLOR_YearBar_ClickSelected = color(235, 221, 107);  //EBDD6B
+final color COLOR_YearBar_ClickSelected = color(153, 121, 35);  //997923
+final color COLOR_YearBarLabel = color(158, 115, 62);
 
 //-------------------- GLOBAL VARIABLE METHODS ------------------------------//
 
@@ -137,6 +154,7 @@ public void initGlobals() {
   initGlobalDataAndVizElements();
   initGlobalPositions();
   initControlP5();
+  initEventInteractionTracers_defautValues();
 }
 
 void initGlobalDataAndVizElements() {
@@ -150,6 +168,11 @@ void initGlobalDataAndVizElements() {
 
 void initControlP5() {
   cP5 = new ControlP5(this);
+}
+
+void initEventInteractionTracers_defautValues() {
+  CurrSelectedYear = BASE_YEAR;
+  Event_SelectedYearChange = false; 
 }
 
 
@@ -188,9 +211,16 @@ void initGlobalPositions() {
   vizOne_xAxis_x2 = vizOne_width - vizOne_InnerPaddingX;
   vizOne_xAxis_y2 = vizOne_xAxis_y1;
   
-  YearBar_WIDTH = 62;
   YearBar_SPACING = 20;
-  InnerBarSpacing = 11; // 9 + 2
-  CollegeBar_WIDTH = 40; // 36 + 4
+  InnerBarSpacing = 7; // 9 + 2
+  CollegeBar_WIDTH = 40; // 36 + 4 = 40
+  YearBar_WIDTH = (2 * InnerBarSpacing) + CollegeBar_WIDTH;
+  YearBarLabelBar_HEIGHT = 3 * InnerBarSpacing;
+  YearBarLabel_WIDTH = CollegeBar_WIDTH;
+  YearBarLabel_HEIGHT = YearBarLabelBar_HEIGHT;
+  
+  label_xPading = 3;
+  label_yPading = 3;
+  
   
 }

@@ -3,7 +3,7 @@
 // Info Viz Project
 // December-03-2013
 
-boolean debug = true;
+boolean debug = false;
 ////////////// Init Methods //////////////////
 
 public void setup() {
@@ -15,6 +15,7 @@ public void setup() {
   background(255);
   
   buildVisualizationOne();
+  setInitialEventTracerValuesInsideVisualObjects();
 }
 
 public void initScreen() {
@@ -22,35 +23,63 @@ public void initScreen() {
   //frameRate(30);
 }
 
+public void setInitialEventTracerValuesInsideVisualObjects() {
+  yearBars.get(0).setClickSelected(true);  // tells the 1999 YearBar that it is currently selected, at viz startup 
+}
+
 ///////////////// Processing Drawing /////////////////////
+void mouseClicked() {
+   for (YearBar yearBar : yearBars) {
+     boolean wasClicked = yearBar.isMouseInsideBounds();
+     if (wasClicked) {
+       int yearClicked = yearBar.getYear();
+       if (yearClicked != CurrSelectedYear) {
+         int oldYearIndex = CurrSelectedYear - BASE_YEAR;
+         
+         yearBar.setClickSelected(true);
+         yearBars.get(oldYearIndex).setClickSelected(false);
+         
+         println("CurrSelectedYear: \t" + CurrSelectedYear + "\t--->\t" + yearClicked);
+         
+         CurrSelectedYear = yearClicked;
+         Event_SelectedYearChange = true;
+       } 
+       else {
+         // Do nothing becuase this YearBar was clicked but is already the Currently-Selected-Year
+       } 
+     }
+     else {
+       //Do nothing because this YearBar was not clicked
+     }
+     
+   }   
+}
+
+
 void draw() {
   if (false) { test_Positions(); }
   
-   //fill(255);
-   //rect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
   background(255);
   
+  //buildVisualizationOne();
+  
+  if (Event_SelectedYearChange) {
+    println("EVENT -- SelectedYearChange -- recieved\n");
+    Event_SelectedYearChange = false;
+  }
+  
   checkVisualizationOne();
-  buildVisualizationOne();
   drawVisualizationOne();
 }
 
 
 
 void checkVisualizationOne() {
-  
-}
-
-
-void buildVisualizationOne() {
-   vizOne_yAxis = new Axis(1, "yAxis", vizOne_yAxis_x1, vizOne_yAxis_y1, vizOne_yAxis_x2, vizOne_yAxis_y2, Color_AXIS);
-   vizOne_xAxis = new Axis(1, "xAxis", vizOne_xAxis_x1, vizOne_xAxis_y1, vizOne_xAxis_x2, vizOne_xAxis_y2, Color_AXIS);
-   
-   yearBars.clear();
-   YearBar currYearBar;
-   for (int i=0; i < NUM_YEARS; i++) {
-     currYearBar = buildYearBar(i);
-     yearBars.add(currYearBar);
+   for (YearBar yearBar : yearBars) {
+     yearBar.isHoveredOver();
+     for (CollegeBar collegeBar : yearBar.getCollegeBars()) {
+       collegeBar.isHoveredOver();
+     } 
    }
 }
 
@@ -68,6 +97,19 @@ void drawVisualizationOne() {
 }
 
 
+void buildVisualizationOne() {
+   vizOne_yAxis = new Axis(1, "yAxis", vizOne_yAxis_x1, vizOne_yAxis_y1, vizOne_yAxis_x2, vizOne_yAxis_y2, Color_AXIS);
+   vizOne_xAxis = new Axis(1, "xAxis", vizOne_xAxis_x1, vizOne_xAxis_y1, vizOne_xAxis_x2, vizOne_xAxis_y2, Color_AXIS);
+   
+   yearBars.clear();
+   YearBar currYearBar;
+   for (int i=0; i < NUM_YEARS; i++) {
+     currYearBar = buildYearBar(i);
+     yearBars.add(currYearBar);
+   }
+}
+
+
 public YearBar buildYearBar(int yearIndex) {
   YearBar yearBar;
   
@@ -81,7 +123,8 @@ public YearBar buildYearBar(int yearIndex) {
   
   int xPos = vizOne_yAxis.x1 + ((1 + yearIndex) * YearBar_SPACING) + (yearIndex * YearBar_WIDTH);
   int yPos = vizOne_yAxis.y1 + (vizOne_yAxis.getHeight() - (totalEnrollment / STUDENTS_PER_PIXEL)) - InnerBarSpacing;
-  int barHeight = vizOne_xAxis.y1 - yPos + InnerBarSpacing;
+  int barHeight = vizOne_xAxis.y1 - yPos;
+  //int barHeight = vizOne_xAxis.y1 - yPos + InnerBarSpacing;
   
   int relative_xPos = xPos + InnerBarSpacing;
   int relative_yPos = yPos + InnerBarSpacing;
@@ -96,8 +139,11 @@ public YearBar buildYearBar(int yearIndex) {
   }
   
   
-  yearBar = new YearBar(BASE_YEAR + yearIndex, totalEnrollment, xPos, yPos, YearBar_WIDTH, barHeight, collegeBars);
-  yearBar.setColor(YearBar_COLOR);
+  yearBar = new YearBar(BASE_YEAR + yearIndex, totalEnrollment, xPos, yPos, YearBar_WIDTH, barHeight, collegeBars, YearBarLabelBar_HEIGHT, relative_xPos + label_xPading, vizOne_xAxis.y1 + label_yPading, YearBarLabel_WIDTH, YearBarLabel_WIDTH);
+  yearBar.setBarColor_Unselected(COLOR_YearBar_Unselected);
+  yearBar.setBarColor_HoveredOn(COLOR_YearBar_HoveredOn);
+  yearBar.setBarColor_ClickSelected(COLOR_YearBar_ClickSelected);
+  //yearBar.setLabelColor(COLOR_YearBarLabel);
   
   return yearBar; 
 }
@@ -108,12 +154,13 @@ public CollegeBar buildCollegeBar(College college, int totalEnrollmentForYear, i
   
   //int barHeight = (yearBarHeight - (2 * InnerBarSpacing)) - (college.getTotalCollege() / STUDENTS_PER_PIXEL);
   //float barHeight = ((float)college.getTotalCollege() / totalEnrollmentForYear) * (yearBarHeight - (2 * InnerBarSpacing));
+  //float barHeight = round(((float)college.getTotalCollege() / totalEnrollmentForYear) * (yearBarHeight - (2 * InnerBarSpacing)));
   
-  float barHeight = round(((float)college.getTotalCollege() / totalEnrollmentForYear) * (yearBarHeight - (2 * InnerBarSpacing)));
+  float barHeight = round(((float)college.getTotalCollege() / totalEnrollmentForYear) * (yearBarHeight - InnerBarSpacing));
   collegeBar = new CollegeBar(college.getName(), xPos, yPos, CollegeBar_WIDTH, (int) barHeight);
   
   color barColor = determineCollegeBarColorFromName(college.getName());
-  collegeBar.setColor(barColor);
+  collegeBar.setColor_Unselected(barColor);
   
   return collegeBar; 
 }
