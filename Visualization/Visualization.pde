@@ -78,7 +78,7 @@ class MajorEntry {
   public int TotalFemale;
   public int TotalMajor;
   
-  public MajorEntry(String name, int year, int AsianMale, int AsianFemale
+  public MajorEntry(String name, int year, int AsianMale, int AsianFemale,
                     int BlackMale, int BlackFemale, int HispanicMale, 
                     int HispanicFemale, int WhiteMale, int WhiteFemale,
                     int TotalMale, int TotalFemale, int TotalMajor) {
