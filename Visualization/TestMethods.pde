@@ -85,4 +85,13 @@ public void test_Positions() {
      currX = currX + collegeWidth + innerBarSpacing;
      
   }
+  
+}
+
+
+public PopupBubble test_popupBubble() {
+  PopupBubble bubble = new PopupBubble(0, 0, 400, 400, 40, 40);
+  bubble.setBackgroundColor(COLOR_MALE);
+  return bubble;
+  
 }

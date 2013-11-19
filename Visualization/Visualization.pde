@@ -6,6 +6,8 @@
 boolean debug = false;
 ////////////// Init Methods //////////////////
 
+PopupBubble bubble;
+
 public void setup() {
   initGlobals();
   loadData();
@@ -13,6 +15,8 @@ public void setup() {
   initScreen();
   
   background(255);
+  
+  bubble = test_popupBubble();
   
   buildVisualizationOne();
   setInitialEventTracerValuesInsideVisualObjects();
@@ -62,6 +66,8 @@ void draw() {
   background(255);
   
   //buildVisualizationOne();
+  
+  bubble.draw();
   
   if (Event_SelectedYearChange) {
     println("EVENT -- SelectedYearChange -- recieved\n");
