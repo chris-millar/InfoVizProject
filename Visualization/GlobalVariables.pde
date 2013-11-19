@@ -129,7 +129,7 @@ final color COLOR_ENGINEERING1 = COLOR_ENGINEERING,
             COLOR_ENGINEERING4 = color(179, 140, 0);
 
 
-final color YearBar_COLOR = color(243,229,190 );
+final color YearBar_COLOR = color(243,229,190);
 
 //-------------------- GLOBAL VARIABLE METHODS ------------------------------//
 

@@ -19,14 +19,16 @@ public void setup() {
 
 public void initScreen() {
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
-  frameRate(30);
+  //frameRate(30);
 }
 
 ///////////////// Processing Drawing /////////////////////
 void draw() {
   if (false) { test_Positions(); }
   
-  
+   //fill(255);
+   //rect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
+  background(255);
   
   checkVisualizationOne();
   buildVisualizationOne();
@@ -51,9 +53,6 @@ void checkVisualizationOne() {
 }
 
 void drawVisualizationOne() {
-   fill(255);
-   rect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
-  
    vizOne_yAxis.draw();
    vizOne_xAxis.draw();
    
@@ -172,7 +171,7 @@ class Axis {
   }
   
   public void draw() {
-    fill(Color);
+    stroke(Color);
     line(x1, y1, x2, y2); 
   }
 }

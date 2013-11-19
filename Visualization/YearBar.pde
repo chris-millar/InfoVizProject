@@ -34,7 +34,8 @@ public class YearBar {
   }
   
   public void draw() {
-    fill(barColor_Unselected, 5);
+    fill(barColor_Unselected, 100);
+    //stroke(#9E843E);
     noStroke();
     rect(xPos, yPos, bar_width, bar_height, radius); 
   }
