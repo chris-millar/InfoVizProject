@@ -20,6 +20,8 @@ public class CollegeBar
   
   private boolean hoveredOn;
   
+  private PopupBubble popup;
+  
   private final int opacity_HoveredOn = 255;
   private final int opacity_Unselected = 150;
   
@@ -107,13 +109,40 @@ public class CollegeBar
     content[10] = "University Enrollment";
     content[11] = new Integer(percentSize).toString() + " %";
     
-    int[] contentSize = new int[12];
+    float[] contentSize = new float[12];
     contentSize[0] = textWidth(content[0]);
     contentSize[1] = textWidth(content[1]);
     
+    contentSize[2] = 0; //maxSize - 2;
+    
     contentSize[3] = 0;
+    contentSize[4] = textWidth(content[4]);
+    contentSize[5] = textWidth(content[5]);
+    contentSize[6] = 0;
+    
+    contentSize[7] = 0; //maxSize - 2;
+    
+    contentSize[8] = 0;
+    contentSize[9] = textWidth(content[9]);
+    contentSize[10] = textWidth(content[10]);
+    contentSize[11] = textWidth(content[11]);
+    
+    float maxSize = 1;
+    for (int i=0; i < 12; i++) {
+       float currSize = contentSize[i];
+       if (currSize > maxSize) {
+         maxSize = currSize; 
+       }
+    }
     
     contentSize[2] = maxSize - 2;
+    contentSize[7] = maxSize - 2;
+    
+    
+    ///////////////////////////////////////////
+    
+    popup = new PopupBubble(0, 0, xBub, yBub, width, height, 
+    
   }
   
   public void setCollegeEnrollment(int enrollment) {

@@ -14,13 +14,15 @@ public class PopupBubble {
   private final int radius = 7;
   
   
-  public PopupBubble(int side, int align, int x, int y, int rWidth, int rHeight) {
+  public PopupBubble(int side, int align, int x, int y, int rWidth, int rHeight, color Color) {
     this.side = side;
     this.align = align;
     this.xPos = x;
     this.yPos = y;
     this.rWidth = rWidth;
     this.rHeight = rHeight;
+    
+    this.backgroundColor = Color;
     
     calculateOtherValues();
   } 
