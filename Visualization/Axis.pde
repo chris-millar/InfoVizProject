@@ -32,6 +32,9 @@ public class Axis {
   
   public void draw() {
     stroke(Color);
-    line(x1, y1, x2, y2); 
+    strokeWeight(3);
+    line(x1, y1, x2, y2);
+    
+    strokeWeight(1); 
   }
 }

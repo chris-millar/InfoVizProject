@@ -87,8 +87,8 @@ public class CollegeBar
       //stroke(barColor_HoveredOn, opacity_Unselected);
       rect(xPos, yPos, bar_width, bar_height);
       
-      buildPopupBubble();
-      popup.draw();
+      //buildPopupBubble();
+      //popup.draw();
     }
     else {
       fill(barColor_Unselected, opacity_Unselected);
@@ -101,16 +101,17 @@ public class CollegeBar
     String[] content = new String[12];
     content[0] = "College of";
     content[1] = Name;
-    content[2] = "-";
+    content[2] = "--";
     content[3] = "";
     content[4] = "College Enrollment";
-    content[5] = new Integer(Year).toString();
+    content[5] = new Integer(TotalCollege).toString();
     content[6] = "";
     content[7] = "-";
     content[8] = "";
     content[9] = "Percent of";
     content[10] = "University Enrollment";
     content[11] = new Integer(percentSize).toString() + " %";
+    
     
     float[] contentSize = new float[12];
     contentSize[0] = textWidth(content[0]);
@@ -144,11 +145,19 @@ public class CollegeBar
     
     ///////////////////////////////////////////
     
-    int bubWidth = (int)maxSize + 4;
-    int bubHeight = 100;
+    int bubWidth = ceil(maxSize) + 2 * POPUP_EDGE_PADDING;
+    int bubHeight = content.length * POPUP_VERTICAL_SPACING + 2 * POPUP_EDGE_PADDING;
     
     popup = new PopupBubble(0, 0, mouseX, mouseY, bubWidth, bubHeight, COLOR_PopupBubble);
+    popup.setContent(content);
     
+  }
+  
+  public void drawDetailsOnDemandIfNeeded() {
+    if (hoveredOn) {
+      buildPopupBubble();
+      popup.draw(1);
+    }  
   }
   
   public void setCollegeEnrollment(int enrollment) {

@@ -11,7 +11,11 @@ public class PopupBubble {
   
   private color backgroundColor;
   
+  private String[] content;
+  
   private final int radius = 7;
+  private final int padding = POPUP_EDGE_PADDING;
+  private final int textHeight = POPUP_VERTICAL_SPACING;
   
   
   public PopupBubble(int side, int align, int x, int y, int rWidth, int rHeight, color Color) {
@@ -23,6 +27,9 @@ public class PopupBubble {
     this.rHeight = rHeight;
     
     this.backgroundColor = Color;
+    
+    content = new String[1];
+    content[0] = null;
     
     calculateOtherValues();
   } 
@@ -72,11 +79,79 @@ public class PopupBubble {
     this.backgroundColor = Color; 
   }
   
-  public void draw() {
-    fill(backgroundColor);
-    noStroke();
-    triangle(tX1, tY1, tX2, tY2, tX3, tY3);
-    rect(rX, rY, rWidth, rHeight, radius);
+  public void setContent(String[] newContent) {
+    this.content = new String[newContent.length];
+    
+    for (int i=0; i < newContent.length; i++) {
+      content[i] = newContent[i];
+    } 
+    
+  }
+  
+  public void draw(int vizId) {
+    if (vizId == 1) {
+      fill(backgroundColor);
+      noStroke();
+      triangle(tX1, tY1, tX2, tY2, tX3, tY3);
+      rect(rX, rY, rWidth, rHeight, radius);
+      
+      if ((content.length >= 1) && (content[0] != null)) {
+        drawContents();
+      }
+
+    }
+    else if (vizId == 2) {
+      fill(backgroundColor);
+      noStroke();
+      triangle(tX1, tY1, tX2, tY2, tX3, tY3);
+      rect(rX, rY, rWidth, rHeight, radius);         
+    }
+    else {
+      //do nothing
+    }
+  }
+  
+  private void drawContents() {
+      int baseY = rY + padding;
+      int baseX = rX;
+      
+      int currY = baseY;
+      int currX = baseX;
+      
+      for (int i=0; i < content.length; i++) {
+        if (content[i].equals("")) {
+          fill(COLOR_DoDText);
+          textAlign(TOP);
+          textSize(textHeight);
+          text(" ", baseX, currY);
+          currY += textHeight;
+        }
+        else if (content[i].equals("--")) {
+          stroke(COLOR_DoDText);
+          line(baseX + padding, currY + (textHeight / 2), baseX + (rWidth - 2 * padding), currY + (textHeight / 2));
+          currY += textHeight;           
+        }
+        else if (content[i].equals("-")) {
+          stroke(COLOR_DoDText);
+          line(baseX + padding, currY + (textHeight / 2), baseX + (rWidth - 2 * padding), currY + (textHeight / 2));
+          currY += textHeight;
+        }
+        else {
+          fill(COLOR_DoDText);
+          textAlign(CENTER, TOP);
+          textSize(textHeight);
+          //textFont(Aharoni_Bold);
+          
+          //int wordWidth = ceil(textWidth(content[i]));
+          //int wordPadding = ceil((float)((rWidth - wordWidth) - (2 * padding)) / 2);
+          //int centeringX = baseX + wordPadding + padding;
+          
+          int centeringX = baseX + ceil((float)rWidth / 2);
+          
+          text(content[i], centeringX, currY);
+          currY += textHeight;
+        }
+      }
   }
   
 }

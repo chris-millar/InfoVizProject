@@ -2,14 +2,12 @@ import controlP5.*;
 
 //*************** Global Variables *******************//
 /* 2D ArrayList. Top outerlist holds 15 arraylist each representing a single year.
-   innerlist holds 10 MajorEntry objects, each holding the data from 1 line (out of 10)
-   from a year file (each line represents one of the top-ten majors for that year and its
-   associated data). */
-/* 1999 --> {1stMajorEntry_1999, 2ndMajorEntry_1999, 3rdMajorEntry_1999, 4thMajorEntry_1999, ... 10thMajorEntry_1999}
-   2000 --> {1stMajorEntry_2000, 2ndMajorEntry_2000, 3rdMajorEntry_2000, 4thMajorEntry_2000, ... }
+   innerlist holds 6 College objects */
+/* 1999 --> {College_Architecture_1999, College_Computing_1999, College_Engineering_1999, College_IvanAllen_1999, ... College_Science_1999}
+   2000 --> {College_Architecture_2000, College_Computing_2000, College_Engineering_2000, College_IvanAllen_2000, ... }
    ...
    ...
-   2013 --> {1stMajorEntry_2013, 2ndMajorEntry_2013, 3rdMajorEntry_2013, 4thMajorEntry_2013, ... 10thMajorEntry_2013} */
+   2013 --> {College_Architecture_2013, College_Computing_2013, College_Engineering_2013, College_IvanAllen_2013, ... College_Science_2013} */
 //*************** Global Variables *******************//
 
 //*** Data Variables ***//
@@ -20,9 +18,17 @@ public final int BASE_YEAR = 1999;
 //*** Control P5 Stuff ***//
 ControlP5 cP5;
 
+
+//*** Fonts ***//
+PFont calibri;
+PFont Aharoni_Bold;
+
 //*** Event & Interaction Tracers ***//
 public int CurrSelectedYear;
 public boolean Event_SelectedYearChange;
+
+public int CurrVizTwoDisplayMode;   // Determines VizTwo Display Mode {0 = Top3Majors, 1 = Gender, 2 = Ethnicity}
+public boolean Event_VizTwoDisplayModeChange;
 
 
 //*** Visualization 1 Visual Elements ***//
@@ -37,6 +43,8 @@ final int SCREEN_HEIGHT = 650;
 
 final int STUDENTS_PER_PIXEL = 60; //265 px, each worth 60 students  --> for Viz 1 Y-Axis ONLY
 
+final int POPUP_EDGE_PADDING = 7;
+final int POPUP_VERTICAL_SPACING = 12;
 
 int totViz_X;
 int totViz_Y;
@@ -149,6 +157,9 @@ final color COLOR_YearBar_ClickSelected = color(153, 121, 35);  //997923
 final color COLOR_YearBarLabel = color(158, 115, 62);
 
 final color COLOR_PopupBubble = color(209);
+final color COLOR_DoDText = color(0);
+
+
 
 //-------------------- GLOBAL VARIABLE METHODS ------------------------------//
 
@@ -157,6 +168,7 @@ public void initGlobals() {
   initGlobalPositions();
   initControlP5();
   initEventInteractionTracers_defautValues();
+  initFonts();
 }
 
 void initGlobalDataAndVizElements() {
@@ -168,13 +180,21 @@ void initGlobalDataAndVizElements() {
   
 }
 
+void initFonts() {
+  calibri = loadFont("Calibri-12.vlw");
+  Aharoni_Bold = loadFont("Aharoni-Bold-12.vlw"); 
+}
+
 void initControlP5() {
   cP5 = new ControlP5(this);
 }
 
 void initEventInteractionTracers_defautValues() {
   CurrSelectedYear = BASE_YEAR;
-  Event_SelectedYearChange = false; 
+  Event_SelectedYearChange = false;
+ 
+  CurrVizTwoDisplayMode = 0;
+  Event_VizTwoDisplayModeChange = false;
 }
 
 
@@ -208,10 +228,6 @@ void initGlobalPositions() {
   vizOne_yAxis_x2 = vizOne_yAxis_x1;
   vizOne_yAxis_y2 = vizOne_height - vizOne_InnerPaddingY;
   
-  vizOne_xAxis_x1 = vizOne_yAxis_x2;
-  vizOne_xAxis_y1 = vizOne_yAxis_y2;
-  vizOne_xAxis_x2 = vizOne_width - vizOne_InnerPaddingX;
-  vizOne_xAxis_y2 = vizOne_xAxis_y1;
   
   YearBar_SPACING = 20;
   InnerBarSpacing = 7; // 9 + 2
@@ -224,5 +240,9 @@ void initGlobalPositions() {
   label_xPading = 3;
   label_yPading = 3;
   
+  vizOne_xAxis_x1 = vizOne_yAxis_x2;
+  vizOne_xAxis_y1 = vizOne_yAxis_y2;
+  vizOne_xAxis_x2 = vizOne_xAxis_x1 + ((1 + NUM_YEARS) * YearBar_SPACING) + (NUM_YEARS * YearBar_WIDTH); //vizOne_width - vizOne_InnerPaddingX;
+  vizOne_xAxis_y2 = vizOne_xAxis_y1;
   
 }
