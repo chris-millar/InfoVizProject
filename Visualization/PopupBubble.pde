@@ -128,12 +128,12 @@ public class PopupBubble {
         }
         else if (content[i].equals("--")) {
           stroke(COLOR_DoDText);
-          line(baseX + padding, currY + (textHeight / 2), baseX + (rWidth - 2 * padding), currY + (textHeight / 2));
+          line(baseX + padding, currY + (textHeight / 2), baseX + (rWidth - padding), currY + (textHeight / 2));
           currY += textHeight;           
         }
         else if (content[i].equals("-")) {
           stroke(COLOR_DoDText);
-          line(baseX + padding, currY + (textHeight / 2), baseX + (rWidth - 2 * padding), currY + (textHeight / 2));
+          line(baseX +  2 * padding, currY + (textHeight / 2), baseX + (rWidth - 2 * padding), currY + (textHeight / 2));
           currY += textHeight;
         }
         else {
