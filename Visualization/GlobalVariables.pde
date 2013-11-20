@@ -35,6 +35,8 @@ public boolean Event_VizTwoDisplayModeChange;
 Axis vizOne_yAxis;
 Axis vizOne_xAxis;
 
+Legend legend;
+
 ArrayList<YearBar> yearBars;
 
 //*** Screen Position Variables ***//
@@ -44,7 +46,7 @@ final int SCREEN_HEIGHT = 650;
 final int STUDENTS_PER_PIXEL = 60; //265 px, each worth 60 students  --> for Viz 1 Y-Axis ONLY
 
 final int POPUP_EDGE_PADDING = 7;
-final int POPUP_VERTICAL_SPACING = 12;
+final int POPUP_VERTICAL_SPACING = 10;
 
 int totViz_X;
 int totViz_Y;
@@ -158,6 +160,9 @@ final color COLOR_YearBarLabel = color(158, 115, 62);
 
 final color COLOR_PopupBubble = color(209);
 final color COLOR_DoDText = color(0);
+
+final color COLOR_LegendBackground = color(209);
+final color COLOR_LegendText = color(0);
 
 
 
