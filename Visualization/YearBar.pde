@@ -105,12 +105,15 @@ public class YearBar {
     //SELECTED Version
     if (clickSelected) {
       //Regular Bar Part
-      fill(barColor_ClickSelected, opacity_ClickSelected);
+      //fill(barColor_ClickSelected, opacity_ClickSelected);
+      //fill(barColor_HoveredOn, opacity_HoveredOn);
+      fill(255);
       noStroke();
       rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);
      
       //Label Bar Part
       fill(barColor_ClickSelected, opacity_ClickSelected);
+      //fill(barColor_HoveredOn, opacity_ClickSelected);
       noStroke();
       rect(xPos, yPos + bar_height, bar_width, labelBar_height, 0, 0, radius, radius);
       
@@ -118,13 +121,32 @@ public class YearBar {
       fill(COLOR_YearBarLabelText);
       textAlign(CENTER, TOP);
       text(new Integer(Year).toString(), xlabel, label_yPos);
-        //text(yearText, label_xPos, label_yPos, label_width, label_height);      
+        //text(yearText, label_xPos, label_yPos, label_width, label_height);
+  
+      //yAxis smart grid line
+      strokeWeight(1);
+      stroke(200, 100);
+      line(vizOne_yAxis.x1, yPos + InnerBarSpacing - 1, vizOne_xAxis.x2, yPos + InnerBarSpacing - 1);
+      //line(vizOne_yAxis.x1, yPos + InnerBarSpacing, xPos + bar_width - InnerBarSpacing, yPos + InnerBarSpacing);
+      
+      fill(0);
+      stroke(0);
+      textAlign(RIGHT, CENTER);
+      textSize(12);
+      String enrollment = new Integer(TotalEnrollment).toString();
+      float labelXPos = vizOne_yAxis.x1 - textWidth(enrollment) - 5 ;
+      float labelYPos = yPos + InnerBarSpacing - 1;
+      //println(enrollment + "\t\t xPos: " + labelXPos + "\t\t yPos: " + labelYPos);
+      text(enrollment, vizOne_yAxis.x1 - 5, yPos + InnerBarSpacing - 1);
+      noStroke();
     }
     //HOVERED ON Version
     else if (hoveredOn) {
       //Regular Bar Part
-      fill(barColor_HoveredOn, opacity_HoveredOn);
+      //fill(barColor_HoveredOn, opacity_HoveredOn);
       noStroke();
+      fill(255);
+      //stroke(barColor_HoveredOn);
       rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);
      
       //Label Bar Part
@@ -141,10 +163,10 @@ public class YearBar {
     //NORMAL Version
     else {
       //Regular Bar Part
-      fill(barColor_Unselected, opacity_Unselected);
+      //fill(barColor_Unselected, opacity_Unselected);
         //stroke(#9E843E);
-      noStroke();
-      rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);
+      //noStroke();
+      //rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);
      
       //Label Bar Part
       fill(barColor_Unselected, opacity_Unselected);
