@@ -154,9 +154,9 @@ final color Color_AXIS = color(209);
 
 final color COLOR_YearBar_Unselected = color(243,229,190); //#F3E5BE
 final color COLOR_YearBar_HoveredOn = color(231, 221, 142);  //E7DD8E
-//final color COLOR_YearBar_ClickSelected = color(235, 221, 107);  //EBDD6B
 final color COLOR_YearBar_ClickSelected = color(153, 121, 35);  //997923
-final color COLOR_YearBarLabel = color(158, 115, 62);
+  //final color COLOR_YearBar_ClickSelected = color(235, 221, 107);  //EBDD6B
+final color COLOR_YearBarLabelText = color(0); //color(158, 115, 62);
 
 final color COLOR_PopupBubble = color(209);
 final color COLOR_DoDText = color(0);
@@ -238,6 +238,7 @@ void initGlobalPositions() {
   InnerBarSpacing = 7; // 9 + 2
   CollegeBar_WIDTH = 40; // 36 + 4 = 40
   YearBar_WIDTH = (2 * InnerBarSpacing) + CollegeBar_WIDTH;
+  
   YearBarLabelBar_HEIGHT = 3 * InnerBarSpacing;
   YearBarLabel_WIDTH = CollegeBar_WIDTH;
   YearBarLabel_HEIGHT = YearBarLabelBar_HEIGHT;

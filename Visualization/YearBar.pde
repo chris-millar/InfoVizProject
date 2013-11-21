@@ -22,12 +22,13 @@ public class YearBar {
   private boolean hoveredOn;
   private boolean clickSelected;
   
-  
   private final int radius = 7;
   private final int opacity_Unselected = 125;
   //private final int opacity_hoveredOn = (int) (opacity_normal + ((float) .25 * opacity_normal));
   private final int opacity_HoveredOn = 150;
   private final int opacity_ClickSelected = 175;
+  
+  
   
   public YearBar(int year, int totalEnrollment, int x, int y, int bar_width, int bar_height, ArrayList<CollegeBar> collegeBars, int labelBar_height, int label_xPos, int label_yPos, int label_width, int label_height) {
     this.Year = year;
@@ -100,11 +101,11 @@ public class YearBar {
   
   public void draw() {
     int xlabel = label_xPos + round((float)(bar_width - 2 * InnerBarSpacing) / 2);
+    
     //SELECTED Version
     if (clickSelected) {
       //Regular Bar Part
       fill(barColor_ClickSelected, opacity_ClickSelected);
-      //stroke(#9E843E);
       noStroke();
       rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);
      
@@ -114,20 +115,15 @@ public class YearBar {
       rect(xPos, yPos + bar_height, bar_width, labelBar_height, 0, 0, radius, radius);
       
       //Label Text
-      fill(0);
-      stroke(0);
-      String yearText = new Integer(Year).toString();
-      //textSize(12);
+      fill(COLOR_YearBarLabelText);
       textAlign(CENTER, TOP);
-      
-      text(yearText, xlabel, label_yPos);
-      //text(yearText, label_xPos, label_yPos, label_width, label_height);      
+      text(new Integer(Year).toString(), xlabel, label_yPos);
+        //text(yearText, label_xPos, label_yPos, label_width, label_height);      
     }
     //HOVERED ON Version
     else if (hoveredOn) {
       //Regular Bar Part
       fill(barColor_HoveredOn, opacity_HoveredOn);
-      //stroke(#9E843E);
       noStroke();
       rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);
      
@@ -137,19 +133,16 @@ public class YearBar {
       rect(xPos, yPos + bar_height, bar_width, labelBar_height, 0, 0, radius, radius);
       
       //Label Text
-      fill(0);
-      stroke(0);
-      String yearText = new Integer(Year).toString();
-      //textSize(12);
+      fill(COLOR_YearBarLabelText);
       textAlign(CENTER, TOP);
-      text(yearText, xlabel, label_yPos);
-      //text(yearText, label_xPos, label_yPos, label_width, label_height);
+      text(new Integer(Year).toString(), xlabel, label_yPos);
+        //text(yearText, label_xPos, label_yPos, label_width, label_height);
     }
     //NORMAL Version
     else {
       //Regular Bar Part
       fill(barColor_Unselected, opacity_Unselected);
-      //stroke(#9E843E);
+        //stroke(#9E843E);
       noStroke();
       rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);
      
@@ -159,13 +152,11 @@ public class YearBar {
       rect(xPos, yPos + bar_height, bar_width, labelBar_height, 0, 0, radius, radius);
       
       //Label Text
-      fill(0);
-      stroke(0);
-      String yearText = new Integer(Year).toString();
-      //textSize(12);
+      fill(COLOR_YearBarLabelText);
+        //textSize(12);
       textAlign(CENTER, TOP);
-      text(yearText, xlabel, label_yPos);
-      //text(yearText, label_xPos, label_yPos, label_width, label_height);
+      text(new Integer(Year).toString(), xlabel, label_yPos);
+        //text(yearText, label_xPos, label_yPos, label_width, label_height);
     }
   }
   
