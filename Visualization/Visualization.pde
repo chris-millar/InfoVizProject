@@ -20,6 +20,9 @@ public void setup() {
 
 public void initScreen() {
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
+  if (frame != null) {
+    frame.setResizable(true); 
+  }
   //frameRate(30);
 }
 
@@ -35,6 +38,8 @@ void mouseClicked() {
 
 void draw() {
   background(255);
+  
+  //println(height);
   
   if (Event_SelectedYearChange) {
       //println("EVENT -- SelectedYearChange -- recieved\n");

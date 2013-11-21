@@ -1,5 +1,4 @@
-public class CollegeBar 
-{
+public class CollegeBar {
   private String Name;
   private int Year;
   
@@ -10,9 +9,11 @@ public class CollegeBar
   private int xPos, yPos;
   private int bar_width, bar_height;
   
-  private ArrayList<Major> top3Majors;
-  private int White, Black, Hispanic, Asian;
-  private int Male, Female;
+  private PopupBubble popup;
+  
+  //private ArrayList<Major> top3Majors;
+  //private int White, Black, Hispanic, Asian;
+  //private int Male, Female;
   
   private color barColor_Unselected;
   //private color barColor_Selected;
@@ -20,19 +21,12 @@ public class CollegeBar
   
   private boolean hoveredOn;
   
-  private PopupBubble popup;
-  
   private final int opacity_HoveredOn = 255;
   private final int opacity_Unselected = 150;
   
-  public CollegeBar()
-  {
-    super();
-  }
   
-  //parameters can be changed based on needs later
-  public CollegeBar(String name, int xPos, int yPos, int theWidth, int theHeight)
-  {
+  
+  public CollegeBar(String name, int xPos, int yPos, int theWidth, int theHeight) {
     this.Name = name;
     this.xPos = xPos;
     this.yPos = yPos;
@@ -43,30 +37,8 @@ public class CollegeBar
   }
   
   
-  //this is college constructor that should be used
-  public CollegeBar(String name, ArrayList<Major> top3Majors, 
-                 int Male, int Female, 
-                 int White, int Black, int Hispanic, int Asian, 
-                 int TotalCollege) 
-  {
-    this.Name = name;
-    this.top3Majors = top3Majors;
-    this.Male = Male;
-    this.Female = Female;
-    this.White = White;
-    this.Black = Black;
-    this.Hispanic = Hispanic;
-    this.Asian = Asian;
-    this.TotalCollege = TotalCollege;
-  }
-  
-  /*
-  * Method that checks whether or not the chunk is hovered over
-  * @param mouseX, mouseY - the cursor's value
-  * @return - true if the cursor collides with the chunk, else false
-  */
-  public void isHoveredOver()
-  {
+
+  public void isHoveredOver() {
     if ( ((mouseX > xPos) && (mouseX < (xPos + bar_width)) ) && ((mouseY > yPos) && (mouseY < (yPos + bar_height))) ) {
       hoveredOn = true;
     }
@@ -76,11 +48,8 @@ public class CollegeBar
 
   }
   
-  /*
-  * Method that draws the rectangle; hard egdes for now
-  */
-  public void draw()
-  {
+
+  public void draw() {
     if (hoveredOn) {
       fill(barColor_HoveredOn, opacity_HoveredOn);
       noStroke();
@@ -160,6 +129,8 @@ public class CollegeBar
     }  
   }
   
+  
+  /* Setters */
   public void setCollegeEnrollment(int enrollment) {
      this.TotalCollege = enrollment;
   }
@@ -169,21 +140,15 @@ public class CollegeBar
     this.percentSize = round(((float)TotalCollege / TotalUniversity) * 100);
   }
   
-  /*
-  * Setters
-  */
-  public void setName(String name)
-  {
+  public void setName(String name) {
     this.Name = name;
   }
   
-  public void setYear(int year)
-  {
+  public void setYear(int year) {
     this.Year = year;
   }
   
-  public void setColor(int r, int g, int b)
-  {
+  public void setColor(int r, int g, int b) {
     barColor_Unselected = color(r, g, b);
   }
   
@@ -192,147 +157,125 @@ public class CollegeBar
      barColor_HoveredOn = Color;
   }
   
-  public void setPercentSize(int percentSize)
-  {
+  public void setPercentSize(int percentSize) {
     this.percentSize = percentSize;
   }
   
-  public void setXpos(int xPos)
-  {
+  public void setXpos(int xPos) {
     this.xPos = xPos;
   }
   
-  public void setYpos(int yPos)
-  {
+  public void setYpos(int yPos) {
     this.yPos = yPos;
   }
   
-  public void setHeight(int theHeight)
-  {
+  public void setHeight(int theHeight) {
     this.bar_height = theHeight; 
   }
   
-  public void setWidth(int theWidth)
-  {
+  public void setWidth(int theWidth) {
     this.bar_width = theWidth; 
   }
   
-  public void setTop3Majors(ArrayList<Major> list)
-  {
-    if(list.size() > 3 || list.isEmpty())
+  /*
+  public void setTop3Majors(ArrayList<Major> list) {
+    if(list.size() > 3 || list.isEmpty()) {
       return;
-    for(int x=0; x<3; x++)
-    {
+    }
+    
+    for(int x=0; x<3; x++) {
       list.remove(x);
       top3Majors.add(list.get(x));
     }
   }
   
-  public void setWhite(int white)
-  {
+  public void setWhite(int white) {
    this.White = white;
   } 
   
-  public void setBlack(int black)
-  {
+  public void setBlack(int black) {
    this.Black = black;
   }
   
-  public void setAsian(int asian)
-  {
+  public void setAsian(int asian) {
    this.Asian = asian;
   }
   
-  public void setHispanic(int hisp)
-  {
+  public void setHispanic(int hisp) {
    this.Hispanic = hisp;
   }
   
-  public void setTotalMale(int totalMale)
-  {
+  public void setTotalMale(int totalMale) {
     this.Male = totalMale;
   }
   
-  public void setTotalFemale(int totalFemale)
-  {
+  public void setTotalFemale(int totalFemale) {
     this.Female = totalFemale;
   }
-  
-  /*
-  * Getters
   */
-  public String getName()
-  {
+  
+  
+  
+  /* Getters */
+  public String getName() {
     return Name;
   }
   
-  public int getYear()
-  {
+  public int getYear() {
     return Year;
   }
   
-  public int getPercentSize()
-  {
+  public int getPercentSize() {
     return percentSize;
   }
   
-  public int getXpos()
-  {
+  public int getXpos() {
     return xPos;
   }
   
-  public int getYpos()
-  {
+  public int getYpos() {
     return yPos;
   }
   
-  public int getHeight()
-  {
+  public int getHeight() {
     return bar_height; 
   }
   
-  public int getWidth()
-  {
+  public int getWidth() {
     return bar_width; 
   }
   
-  public ArrayList getTop3Majors()
-  {
+  /*
+  public ArrayList getTop3Majors() {
     return top3Majors;
   }
   
-  public int getWhite()
-  {
+  public int getWhite() {
     return White;
   }
   
-  public int getBlack()
-  {
+  public int getBlack() {
     return Black;
   }
   
-  public int getAsian()
-  {
+  public int getAsian() {
     return Asian;
   }
   
-  public int getHispanic()
-  {
+  public int getHispanic() {
     return Hispanic;
   }
   
-  public int getMale()
-  {
+  public int getMale() {
     return Male;
   }
   
-  public int getFemale()
-  {
+  public int getFemale() {
     return Female;
   }
   
-  public int getTotalCollege()
-  {
+  public int getTotalCollege() {
     return TotalCollege;
   }
+  */
 }
