@@ -16,6 +16,7 @@ public void setup() {
   
   buildVisualizationOne();
   setInitialEventTracerValuesInsideVisualObjects();
+  buildRadioButton();
 }
 
 public void initScreen() {

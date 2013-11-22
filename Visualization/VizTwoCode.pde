@@ -1,6 +1,5 @@
 //------------------------ BUILD METHODS -------------------------//
 void buildVisualizationTwo() {
-  
 }
 
 
@@ -12,5 +11,5 @@ void checkVisualizationTwo() {
 
 //------------------------ DRAW METHODS -------------------------//
 void drawVisualizationTwo() {
-  
+  buildRadioDisplay();
 }

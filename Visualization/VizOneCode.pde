@@ -99,7 +99,7 @@ public color determineCollegeBarColorFromName(String name) {
 
 
 
-//------------------------ CHECK METHODS -------------------------//
+//------------------------  METHODS -------------------------//
 void vizOneCheckMouseClicked() {
   for (YearBar yearBar : yearBars) {
        boolean wasClicked = yearBar.isMouseInsideBounds();
