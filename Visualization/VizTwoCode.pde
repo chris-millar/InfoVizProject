@@ -83,19 +83,19 @@ void drawVisualizationTwo() {
   
   getData();
   
-  barChart bc1 = new barChart(200, 493, "Engineering", 1, engi);
-  barChart bc2 = new barChart(200, 655, "Computing", 1, comp);
+  barChart bc1 = new barChart(185, 493, "Engineering", 1, engi);
+  barChart bc2 = new barChart(185, 655, "Computing", 1, comp);
   
   barChart bc3 = new barChart(540, 493, "Architecture", 1, arch);
   barChart bc4 = new barChart(540, 655, "Ivan Allen", 1, ivan);  
   
-  barChart bc5 = new barChart(880, 493, "Sciences", 1, sci);
-  barChart bc6 = new barChart(880, 655, "Management", 1, manag);  
+  barChart bc5 = new barChart(895, 493, "Sciences", 1, sci);
+  barChart bc6 = new barChart(895, 655, "Management", 1, manag);  
   
   
   fill(175);
   noStroke();
-  rect(1155, 325, 170, 150, 3);
+  rect(1165, 325, 170, 150, 3);
   
   bc1.draw();
   bc2.draw();
@@ -298,7 +298,7 @@ public class barChart{
     //mode = "Major";
 
     
-    sizeX = 100;
+    sizeX = 200;
     sizeY = 140;
     
     
@@ -325,7 +325,7 @@ public class barChart{
     }
 
     noStroke();
-    rect(posX-90, posY-140-30, 330, 150, 6);
+    rect(posX-90, posY-140-30, 345, 150, 6);
   
     fill(80,80,80);
     
@@ -390,8 +390,12 @@ public class barChart{
       
     }
   
+    //for (int i=0; i<bars.size() && !bars.get(i).render(); i++);
+    
     for(barChartBar b : bars){
+      //for (int i=0; i<bars.size() && !b.render(); i++);
      b.draw(); 
+     //b.render();
     }
     
   }
@@ -399,7 +403,7 @@ public class barChart{
 
 public class barChartBar{
   int dataPercent, dataNum;
-  int x, y; 
+  int x, y,n; 
   String name;
   color col;
   int w, h;
@@ -408,6 +412,7 @@ public class barChartBar{
   color Color;
   College college;
   String abrevName;
+  AniSequence s;
   
   barChartBar(int dataPercent, int dataNum, int x, int y, String name, College college, int opacity){
     
@@ -419,6 +424,8 @@ public class barChartBar{
     this.name = name;
     this.opacity = opacity;
     
+    n=0;
+    
     
     if(name.equals("Archtecture")){
       this.name = "Architecture";
@@ -428,32 +435,44 @@ public class barChartBar{
     w = 22;
     initData();
     setColor();
+    
+    
+    
   }
   
   void initData(){
     
     if(dataMode == 0){
-      h = dataPercent;
+      h = int(dataPercent*2.3);
     }
     else if (dataMode == 1){
-     h = floor(float(dataNum)/20);
+     h = floor(float(dataNum)/25);
+     
+     if(h == 0)
+       h = 1;
     }
       
     
   }
+  
   
   void draw(){
     
     
     fill(Color, opacity);
     noStroke();
-    //rect(x+5,y-h,w,h);
-    rect(x-20,y-125,h,w);
+    
+    if(name.equals("Female") || name.equals("Male"))
+       rect(x-45,y-125,h,w);
+    else
+      rect(x-20,y-125,h,w);
     
     fill(10);
     textSize(8);
     textAlign(LEFT, BOTTOM);
     
+    
+
     if(name.equals("Science. Technology and Society") || name.equals("Science Technology and Culture")){
       name = "Science, Technology and Culture";
       abrevName = "STC";
@@ -464,7 +483,8 @@ public class barChartBar{
      abrevName = "HTS";
      text(abrevName, x-80, y-205, 60, 100);
     }
-    else if(name.equals("International Affairs and Modern Languages")){
+    else if(name.equals("International Affairs and Modern Languages")||name.equals("International Affair and Modern Languages")){
+      name="International Affairs and Modern Languages";
      abrevName = "INTA and ML";
      text(abrevName, x-80, y-205, 60, 100);
     }
@@ -482,11 +502,17 @@ public class barChartBar{
     if(dataMode == 0){
       String dp = String.valueOf(dataPercent);
       dp=dp.concat("%");
-      text(dp, x+h+30, y-110);
+      if(name.equals("Female") || name.equals("Male"))
+        text(dp, x+h-40, y-110);
+      else
+        text(dp, x+h-15, y-110);
     }
     else if(dataMode==1){
       String dn = String.valueOf(dataNum);
-      text(dn, x+h+30, y-110);
+      if(name.equals("Female") || name.equals("Male"))
+        text(dn, x+h-40, y-110);
+      else
+        text(dn, x+h-15, y-110);
     }
     
   }

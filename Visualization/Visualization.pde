@@ -1,3 +1,6 @@
+import de.looksgood.ani.*;
+import de.looksgood.ani.easing.*;
+
 import controlP5.*;
 
 // Authors: Nina Flaherty, Chris Millar, Lucas Pessoa, Huy Tran
