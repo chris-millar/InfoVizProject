@@ -144,7 +144,8 @@ public class YearBar {
     //HOVERED ON Version
     else if (hoveredOn) {
       //Regular Bar Part
-      fill(barColor_HoveredOn, opacity_HoveredOn);
+      fill(250);
+      //fill(barColor_HoveredOn, opacity_HoveredOn);
       //stroke(#9E843E);
       noStroke();
       rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);

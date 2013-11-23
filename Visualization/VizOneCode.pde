@@ -48,7 +48,7 @@ public YearBar buildYearBar(int yearIndex) {
   yearBar = new YearBar(BASE_YEAR + yearIndex, totalEnrollment, xPos, yPos, YearBar_WIDTH, barHeight, collegeBars, YearBarLabelBar_HEIGHT, relative_xPos + label_xPading, vizOne_xAxis.y1 + label_yPading, YearBarLabel_WIDTH, YearBarLabel_WIDTH);
   yearBar.setBarColor_Unselected(COLOR_YearBar_Unselected);
   yearBar.setBarColor_HoveredOn(COLOR_YearBar_HoveredOn);
-  yearBar.setBarColor_ClickSelected(COLOR_YearBar_ClickSelected);
+  yearBar.setBarColor_ClickSelected(COLOR_YearBar_HoveredOn);
   //yearBar.setLabelColor(COLOR_YearBarLabel);
   
   return yearBar; 
