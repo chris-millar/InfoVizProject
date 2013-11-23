@@ -1,5 +1,5 @@
-import de.looksgood.ani.*;
-import de.looksgood.ani.easing.*;
+//import de.looksgood.ani.*;
+//import de.looksgood.ani.easing.*;
 
 import controlP5.*;
 
@@ -25,6 +25,9 @@ public void setup() {
 
 public void initScreen() {
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
+  if (frame != null) {
+    frame.setResizable(true); 
+  }
   //frameRate(30);
 }
 

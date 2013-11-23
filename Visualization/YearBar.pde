@@ -122,7 +122,24 @@ public class YearBar {
       textAlign(CENTER, TOP);
       
       text(yearText, xlabel, label_yPos);
-      //text(yearText, label_xPos, label_yPos, label_width, label_height);      
+      //text(yearText, label_xPos, label_yPos, label_width, label_height);     
+     
+      //yAxis smart grid line
+      strokeWeight(1);
+      stroke(150, 50);
+      line(vizOne_yAxis.x1, yPos + InnerBarSpacing - 1, vizOne_xAxis.x2, yPos + InnerBarSpacing - 1);
+      //line(vizOne_yAxis.x1, yPos + InnerBarSpacing, xPos + bar_width - InnerBarSpacing, yPos + InnerBarSpacing);
+      
+      fill(0);
+      stroke(0);
+      textAlign(RIGHT, CENTER);
+      textSize(12);
+      String enrollment = new Integer(TotalEnrollment).toString();
+      float labelXPos = vizOne_yAxis.x1 - textWidth(enrollment) - 5 ;
+      float labelYPos = yPos + InnerBarSpacing - 1;
+      //println(enrollment + "\t\t xPos: " + labelXPos + "\t\t yPos: " + labelYPos);
+      text(enrollment, vizOne_yAxis.x1 - 5, yPos + InnerBarSpacing - 1);
+      noStroke();    
     }
     //HOVERED ON Version
     else if (hoveredOn) {

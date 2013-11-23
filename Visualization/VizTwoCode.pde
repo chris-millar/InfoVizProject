@@ -412,7 +412,7 @@ public class barChartBar{
   color Color;
   College college;
   String abrevName;
-  AniSequence s;
+  //AniSequence s;
   
   barChartBar(int dataPercent, int dataNum, int x, int y, String name, College college, int opacity){
     

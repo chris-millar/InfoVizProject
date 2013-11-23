@@ -33,14 +33,17 @@ public class Legend {
     
     
   
-  public Legend(int bottomLeftX, int bottomLeftY) {
-    this.bottomLeftX = bottomLeftX;
+  public Legend(int leftX, int rightX, int bottomLeftY) {
+    //this.bottomLeftX = bottomLeftX;
     this.bottomLeftY = bottomLeftY;
     
-    buildLegend();
-  }  
+    buildLegend(leftX, rightX);
+  }
+
+  //int bottomLeftX, int bottomLeftY
+
   
-  private void buildLegend() {
+  private void buildLegend(int leftX, int rightX) {
     colorBoxHeight = Legend_TEXTSIZE;
     colorBoxWidth = ceil(1.5 * colorBoxHeight);
     
@@ -49,9 +52,21 @@ public class Legend {
     rWidth = (2 * Legend_PADDING) + colorBoxWidth + Legend_PADDING + maxStringWidth;
     rHeight = (2 * Legend_PADDING) + (6 * Legend_TEXTSIZE) + (5 * Legend_PADDING);
     
-    rX = bottomLeftX;
+    int availSpace = rightX - leftX;
+    
+    if (rWidth < availSpace) {
+      int availPadTotal = availSpace - rWidth;
+      int dynamicPad = floor((float) availPadTotal / 2);
+      rX = leftX + dynamicPad;
+    }
+    else {
+      rX = leftX + 5;
+    }
+    //rX = bottomLeftX;
     rY = bottomLeftY - rHeight; 
-    //rY = bottomLeftY;
+    
+    
+      //rY = bottomLeftY;
    
    
    //start here

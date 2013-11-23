@@ -72,6 +72,8 @@ int vizTwo_height;
 int vizOne_InnerPaddingX;
 int vizOne_InnerPaddingY;
 
+int vizOne_LegendPadding;
+
 int vizOne_yAxis_x1;
 int vizOne_yAxis_y1;
 int vizOne_yAxis_x2;
@@ -241,8 +243,10 @@ void initGlobalPositions() {
   vizTwo_height = totViz_height / 2;
   
   
-  vizOne_InnerPaddingX = 30; //px
+  vizOne_InnerPaddingX = 45; //px
   vizOne_InnerPaddingY = 30; //px
+  
+  vizOne_LegendPadding = vizOne_InnerPaddingX - 15;
   
   vizOne_yAxis_x1 = vizOne_X + vizOne_InnerPaddingX;
   vizOne_yAxis_y1 = vizOne_Y + vizOne_InnerPaddingY;
