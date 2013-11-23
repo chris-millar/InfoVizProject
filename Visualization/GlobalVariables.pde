@@ -225,7 +225,7 @@ void initGlobalPositions() {
   vizTwo_height = totViz_height / 2;
   
   
-  vizOne_InnerPaddingX = 30; //px
+  vizOne_InnerPaddingX = 45; //px   //30
   vizOne_InnerPaddingY = 30; //px
   
   vizOne_yAxis_x1 = vizOne_X + vizOne_InnerPaddingX;

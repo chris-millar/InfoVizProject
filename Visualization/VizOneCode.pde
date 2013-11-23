@@ -140,7 +140,7 @@ void checkVisualizationOne() {
 
 //------------------------ DRAW METHODS -------------------------//
 void drawVisualizationOne() {
-   //vizOne_yAxis.draw();
+   vizOne_yAxis.draw();
    vizOne_xAxis.draw();
    
    legend.draw();
