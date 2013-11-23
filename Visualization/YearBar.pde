@@ -103,8 +103,9 @@ public class YearBar {
     //SELECTED Version
     if (clickSelected) {
       //Regular Bar Part
-      fill(barColor_ClickSelected, opacity_ClickSelected);
+      //fill(barColor_ClickSelected, opacity_ClickSelected);
       //stroke(#9E843E);
+      fill(barColor_HoveredOn, opacity_HoveredOn);
       noStroke();
       rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);
      

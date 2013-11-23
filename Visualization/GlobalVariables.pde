@@ -1,4 +1,4 @@
-import controlP5.*;
+
 
 //*************** Global Variables *******************//
 /* 2D ArrayList. Top outerlist holds 15 arraylist each representing a single year.
@@ -16,7 +16,7 @@ public final int NUM_YEARS = 15;
 public final int BASE_YEAR = 1999;
 
 //*** Control P5 Stuff ***//
-ControlP5 cP5;
+ControlP5 cp5;
 
 
 //*** Fonts ***//
@@ -26,6 +26,9 @@ PFont Aharoni_Bold;
 //*** Event & Interaction Tracers ***//
 public int CurrSelectedYear;
 public boolean Event_SelectedYearChange;
+
+public String CurrSelectedCollege;
+public boolean Event_SelectedCollegeChange;
 
 public int CurrVizTwoDisplayMode;   // Determines VizTwo Display Mode {0 = Top3Majors, 1 = Gender, 2 = Ethnicity}
 public boolean Event_VizTwoDisplayModeChange;
@@ -101,12 +104,22 @@ final color COLOR_ARCHITECTURE = color(200, 0, 0), // red
             COLOR_MANAGEMENT =  color(0, 255, 255), // cyan
             COLOR_ENGINEERING = color(255, 135, 0); // orange
 */            
-final color COLOR_ARCHITECTURE = color(153, 173, 145),  //#99AD91
-            COLOR_COMPUTING =    color(63, 112, 102),
-            COLOR_ENGINEERING =  color(38, 38, 41), 
-            COLOR_IVANALLEN =    color(107, 70, 50),
-            COLOR_MANAGEMENT =   color(194, 94, 6),
-            COLOR_SCIENCES =     color(133, 126, 132);
+final color COLOR_ARCHITECTURE = color(219,125,51), // 
+            COLOR_COMPUTING = color(53,125,174), //
+            COLOR_ENGINEERING = color(122,40,32),
+            COLOR_IVANALLEN = color(93,71,118), //
+           COLOR_MANAGEMENT =  color(113,137,63),
+            COLOR_SCIENCES = color(57,94,139);
+            
+
+
+
+//            COLOR_ARCHITECTURE = color(153, 173, 145),  //#99AD91
+//            COLOR_COMPUTING =    color(63, 112, 102),
+//            COLOR_ENGINEERING =  color(38, 38, 41), 
+//            COLOR_IVANALLEN =    color(107, 70, 50),
+//            COLOR_MANAGEMENT =   color(194, 94, 6),
+//            COLOR_SCIENCES =     color(133, 126, 132);
 
 /*
 final color COLOR_ARCHITECTURE = color(77, 165, 212),
@@ -117,8 +130,8 @@ final color COLOR_ARCHITECTURE = color(77, 165, 212),
             COLOR_ENGINEERING =  color(3, 36, 55);
 */
     
-final color COLOR_MALE = color(102, 178, 255), // sky blue
-            COLOR_FEMALE = color(255, 102, 178); // pink
+final color COLOR_MALE = color(92,119,180), // sky blue
+            COLOR_FEMALE = color(214,101,145); // pink
     
 final color COLOR_ARCHITECTURE1 = COLOR_ARCHITECTURE, 
             COLOR_ARCHITECTURE2 = color(122, 0, 0), 
@@ -152,7 +165,7 @@ final color COLOR_ENGINEERING1 = COLOR_ENGINEERING,
 
 final color Color_AXIS = color(209);
 
-final color COLOR_YearBar_Unselected = color(243,229,190); //#F3E5BE
+final color COLOR_YearBar_Unselected = color(250); //#F3E5BE
 final color COLOR_YearBar_HoveredOn = color(231, 221, 142);  //E7DD8E
 //final color COLOR_YearBar_ClickSelected = color(235, 221, 107);  //EBDD6B
 final color COLOR_YearBar_ClickSelected = color(153, 121, 35);  //997923
@@ -191,7 +204,7 @@ void initFonts() {
 }
 
 void initControlP5() {
-  cP5 = new ControlP5(this);
+  cp5 = new ControlP5(this);
 }
 
 void initEventInteractionTracers_defautValues() {
@@ -200,6 +213,9 @@ void initEventInteractionTracers_defautValues() {
  
   CurrVizTwoDisplayMode = 0;
   Event_VizTwoDisplayModeChange = false;
+  
+  CurrSelectedCollege = null;
+  
 }
 
 
@@ -215,7 +231,7 @@ void initGlobalPositions() {
   vizOne_X = totViz_X;
   vizOne_Y = totViz_Y;
   vizOne_width = totViz_width;
-  vizOne_height = totViz_height / 2;
+  vizOne_height = int(totViz_height / 2.3);
   
   
   //-- 2nd Viz --//

@@ -23,7 +23,7 @@ public class CollegeBar
   private PopupBubble popup;
   
   private final int opacity_HoveredOn = 255;
-  private final int opacity_Unselected = 150;
+  private final int opacity_Unselected = 170;
   
   public CollegeBar()
   {
@@ -69,8 +69,12 @@ public class CollegeBar
   {
     if ( ((mouseX > xPos) && (mouseX < (xPos + bar_width)) ) && ((mouseY > yPos) && (mouseY < (yPos + bar_height))) ) {
       hoveredOn = true;
+      CurrSelectedCollege = Name;
     }
     else {
+      if (hoveredOn == true && CurrSelectedCollege != null && CurrSelectedCollege.equals(Name)) {
+        CurrSelectedCollege = null; 
+      }
       hoveredOn = false;
     }
 
@@ -83,7 +87,8 @@ public class CollegeBar
   {
     if (hoveredOn) {
       fill(barColor_HoveredOn, opacity_HoveredOn);
-      noStroke();
+      //noStroke();
+      stroke(255);
       //stroke(barColor_HoveredOn, opacity_Unselected);
       rect(xPos, yPos, bar_width, bar_height);
       
@@ -92,7 +97,9 @@ public class CollegeBar
     }
     else {
       fill(barColor_Unselected, opacity_Unselected);
-      noStroke();
+      //noStroke();
+      stroke(255);
+      strokeWeight(1.2);
       rect(xPos, yPos, bar_width, bar_height);
     }
   }

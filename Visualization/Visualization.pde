@@ -1,3 +1,5 @@
+import controlP5.*;
+
 // Authors: Nina Flaherty, Chris Millar, Lucas Pessoa, Huy Tran
 // CS4460 Information Visualization
 // Info Viz Project
@@ -24,7 +26,9 @@ public void initScreen() {
 }
 
 public void setInitialEventTracerValuesInsideVisualObjects() {
-  yearBars.get(0).setClickSelected(true);  // tells the 1999 YearBar that it is currently selected, at viz startup 
+  yearBars.get(0).setClickSelected(true);  // tells the 1999 YearBar that it is currently selected, at viz startup
+ 
+  Event_SelectedYearChange = true;
 }
 
 ///////////////// Processing Drawing /////////////////////
@@ -35,6 +39,11 @@ void mouseClicked() {
 
 void draw() {
   background(255);
+  
+//  Axis br = new Axis(0, "horizontalLine", 0, 285, 1350, 285, color(0));
+//  br.setWeight(1);
+//  br.setColor(color(210));
+//  br.draw();
   
   if (Event_SelectedYearChange) {
       //println("EVENT -- SelectedYearChange -- recieved\n");
