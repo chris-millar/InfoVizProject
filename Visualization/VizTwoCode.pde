@@ -5,17 +5,17 @@ ChartDataSet ds1;
 College engi, comp, manag, sci, ivan, arch;
 int year;
 RadioButton r, rOther;
-int mode;
-int dataMode;
+static int mode = 0;
+static int dataMode = 0;
 
 
 void buildVisualizationTwo() {
   
-  dataMode = 0;
+  dataMode = this.dataMode;
   year = 1999;
   getData();
   drawCP5();
-  mode = 0;
+  mode = this.mode;
 }
 
 
@@ -39,7 +39,7 @@ void drawCP5(){
           .addItem("Percent",0)
           .addItem("Number", 1)
           .setNoneSelectedAllowed(false)
-          .activate(0);
+          .activate(dataMode);
           
   rOther = cp5.addRadioButton("otherButton")
               .setPosition(1180,400)
@@ -53,7 +53,7 @@ void drawCP5(){
               .addItem("Ethnicity", 1)
               .addItem("Gender", 2)
               .setNoneSelectedAllowed(false)
-              .activate(0);
+              .activate(mode);
 //          
 //    cp5.addToggle("toggle")
 //     .setPosition(40,250)
@@ -391,9 +391,7 @@ public class barChart{
       opacity = 200;
     }
     else if(mode==1){   /// 1 == ETHNICITY
-      
-      
-      
+
       barChartBar bA = new barChartBar(getPercent(college.getAsian(), college.TotalCollege),college.getAsian(), barX, barY-10, "Asian", college, opacity);
       barChartBar bB = new barChartBar(getPercent(college.getBlack(), college.TotalCollege),college.getBlack(), barX, barY+15, "Black", college, opacity);
       barChartBar bH = new barChartBar(getPercent(college.getHispanic(), college.TotalCollege),college.getHispanic(), barX, barY+40, "Hispanic", college, opacity);
