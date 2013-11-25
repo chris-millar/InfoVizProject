@@ -12,6 +12,8 @@ boolean debug = false;
 ////////////// Init Methods //////////////////
 
 public void setup() {
+  
+  //frameRate(4);
   initGlobals();
   loadData();
   if (debug) { test_Data(); }

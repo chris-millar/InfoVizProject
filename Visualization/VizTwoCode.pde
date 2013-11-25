@@ -7,6 +7,7 @@ int year;
 RadioButton r, rOther;
 int mode;
 int dataMode;
+barChart bc1,bc2,bc3,bc4,bc5,bc6;
 
 
 
@@ -26,7 +27,7 @@ void checkVisualizationTwo() {
 }
 
 
-/////c///////// Percent, num radio buttons
+/////// Percent, num radio buttons
 
 void drawCP5(){
   r = cp5.addRadioButton("viewButton")
@@ -53,25 +54,19 @@ void drawCP5(){
               .addItem("Ethnicity", 1)
               .addItem("Gender", 2)
               .activate(0);
-//          
-//    cp5.addToggle("toggle")
-//     .setPosition(40,250)
-//     .setSize(50,20)
-//     .setValue(true)
-//     .setMode(ControlP5.SWITCH)
-//     ;
+
 }
 
 void controlEvent(ControlEvent theEvent) {
   if(theEvent.isFrom(r)) {
     dataMode = int(r.getValue());
-    getData();
+    //getData();
     drawVisualizationTwo();
   }
   
   if(theEvent.isFrom(rOther)) {
     mode = int(rOther.getValue());
-    getData();
+    //getData();
     drawVisualizationTwo();
   }
   
@@ -79,23 +74,50 @@ void controlEvent(ControlEvent theEvent) {
 
 
 //------------------------ DRAW METHODS -------------------------//
-void drawVisualizationTwo() {
+void initCharts(){
   
   getData();
   
-  barChart bc1 = new barChart(185, 493, "Engineering", 1, engi);
-  barChart bc2 = new barChart(185, 655, "Computing", 1, comp);
+  bc1 = new barChart(185, 493, "Engineering", 1, engi);
+  bc2 = new barChart(185, 655, "Computing", 1, comp);
   
-  barChart bc3 = new barChart(540, 493, "Architecture", 1, arch);
-  barChart bc4 = new barChart(540, 655, "Ivan Allen", 1, ivan);  
+  bc3 = new barChart(540, 493, "Architecture", 1, arch);
+  bc4 = new barChart(540, 655, "Ivan Allen", 1, ivan);  
   
-  barChart bc5 = new barChart(895, 493, "Sciences", 1, sci);
-  barChart bc6 = new barChart(895, 655, "Management", 1, manag);  
+  bc5 = new barChart(895, 493, "Sciences", 1, sci);
+  bc6 = new barChart(895, 655, "Management", 1, manag);
+}
+
+void drawVisualizationTwo() {
+  
+  
+  initCharts();
+  
+//  getData();
+//  
+//  bc1 = new barChart(185, 493, "Engineering", 1, engi);
+//  bc2 = new barChart(185, 655, "Computing", 1, comp);
+//  
+//  bc3 = new barChart(540, 493, "Architecture", 1, arch);
+//  bc4 = new barChart(540, 655, "Ivan Allen", 1, ivan);  
+//  
+//  bc5 = new barChart(895, 493, "Sciences", 1, sci);
+//  bc6 = new barChart(895, 655, "Management", 1, manag);
+  
+//  barChart bc1 = new barChart(185, 493, "Engineering", 1, engi);
+//  barChart bc2 = new barChart(185, 655, "Computing", 1, comp);
+//  
+//  barChart bc3 = new barChart(540, 493, "Architecture", 1, arch);
+//  barChart bc4 = new barChart(540, 655, "Ivan Allen", 1, ivan);  
+//  
+//  barChart bc5 = new barChart(895, 493, "Sciences", 1, sci);
+//  barChart bc6 = new barChart(895, 655, "Management", 1, manag);  
   
   
   fill(175);
   noStroke();
   rect(1165, 325, 170, 150, 3);
+  
   
   bc1.draw();
   bc2.draw();
@@ -104,7 +126,9 @@ void drawVisualizationTwo() {
   bc5.draw();
   bc6.draw();
   
+  
   cp5.draw();
+  
   
   
 }
