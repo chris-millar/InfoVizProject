@@ -9,7 +9,6 @@ int mode;
 int dataMode;
 
 
-
 void buildVisualizationTwo() {
   
   dataMode = 0;
@@ -39,6 +38,7 @@ void drawCP5(){
           .setSpacingColumn(50)
           .addItem("Percent",0)
           .addItem("Number", 1)
+          .setNoneSelectedAllowed(false)
           .activate(0);
           
   rOther = cp5.addRadioButton("otherButton")
@@ -52,6 +52,7 @@ void drawCP5(){
               .addItem("Major",0)
               .addItem("Ethnicity", 1)
               .addItem("Gender", 2)
+              .setNoneSelectedAllowed(false)
               .activate(0);
 //          
 //    cp5.addToggle("toggle")
@@ -92,10 +93,10 @@ void drawVisualizationTwo() {
   barChart bc5 = new barChart(895, 493, "Sciences", 1, sci);
   barChart bc6 = new barChart(895, 655, "Management", 1, manag);  
   
-  
-  fill(175);
+  //Background for viz 2 legend
+  fill(COLOR_LegendBackground);
   noStroke();
-  rect(1165, 325, 170, 150, 3);
+  rect(1165, 325, 170, 150, ROUNDED_CORNER_VALUE);
   
   bc1.draw();
   bc2.draw();
