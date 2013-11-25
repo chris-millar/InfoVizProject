@@ -308,24 +308,47 @@ public class barChart{
     Y.setWeight(1);
   } //end constructor
   
-  
+  public void getBrushing()
+  {
+    int xpos = 0;
+    int ypos = 0;
+    int thisHeight = 0;
+    int thisWidth = 0;
 
+    for(YearBar yearBar : yearBars)
+    {
+      if(yearBar.getYear() == CurrSelectedYear)
+      {
+        xpos = yearBar.getXPos();
+        ypos = yearBar.getYPos();
+        thisHeight = yearBar.getHeight();
+        thisWidth = yearBar.getWidth();
+        break;
+      } 
+    } 
+
+    if (CurrSelectedCollege == null || !CurrSelectedCollege.equals(college.Name)) {
+      fill(150,20); 
+    }
+    else //CurrSelectedCollege.equals(college.Name)
+    {
+      if( (mouseX > xpos && mouseX < xpos+thisWidth) && (mouseY > ypos && mouseY < ypos+thisHeight))
+        fill(150,100);  
+      else
+        fill(150,20); 
+    }
+  }
   
-  public void draw(){
-    
+  
+  public void draw()
+  {  
     getData();
     
-   // X.draw();
-   // Y.draw();
-    if (CurrSelectedCollege == null || !CurrSelectedCollege.equals(college.Name)) {
-      fill(150,20);
-    }
-    else { //(CurrSelectedCollege.equals(college.Name)) {
-      fill(150,100);  
-    }
+    getBrushing();
 
+    //border around each graph
     noStroke();
-    rect(posX-90, posY-140-30, 345, 150, 6);
+    rect(posX-90, posY-140-30, 330, 150, 6);
   
     fill(80,80,80);
     
@@ -333,9 +356,11 @@ public class barChart{
     float y = 150;
     textAlign(CENTER,BOTTOM); 
  
+   //paint college name
     textSize(16);
     text(name,posX+50,posY-143);
 
+    //paint "by percentage/by number"
     textSize(9);
      if(dataMode == 0)
       dMode = "by Percentage";
@@ -343,8 +368,7 @@ public class barChart{
       dMode = "by Number";
     text(dMode, posX+135,posY-145);
     
-    drawBars();
-    
+    drawBars(); 
   }
   
   
