@@ -8,6 +8,9 @@ RadioButton r, rOther;
 static int mode = 0;
 static int dataMode = 0;
 
+private final int IMG_WIDTH = 15, IMG_HEIGHT = 15;
+PImage selected = loadImage("C:\\Users\\ht7672\\Desktop\\selected.jpg");
+PImage unselected = loadImage("C:\\Users\\ht7672\\Desktop\\unselected.jpg");
 
 void buildVisualizationTwo() {
   
@@ -16,6 +19,8 @@ void buildVisualizationTwo() {
   getData();
   drawCP5();
   mode = this.mode;
+  selected.resize(IMG_WIDTH, IMG_HEIGHT);
+  unselected.resize(IMG_WIDTH, IMG_HEIGHT);
 }
 
 
@@ -24,10 +29,9 @@ void checkVisualizationTwo() {
   
 }
 
-
 /////c///////// Percent, num radio buttons
 
-void drawCP5(){
+void drawCP5(){ 
   r = cp5.addRadioButton("viewButton")
           .setPosition(1180,350)
           .setSize(2,2)
@@ -49,10 +53,15 @@ void drawCP5(){
               .setItemWidth(15)
               .setItemsPerRow(1)
               .setSpacingColumn(50)
-              .addItem("Major",0)
-              .addItem("Ethnicity", 1)
-              .addItem("Gender", 2)
+              .setSpacingRow(IMG_HEIGHT/2)
+              //.addItem("Major", 0)
+              .addItem("", 0)
+              //.addItem("Ethnicity", 1)
+              .addItem(" ", 1)
+              //.addItem("Gender", 2)
+              .addItem("  ", 2)
               .setNoneSelectedAllowed(false)
+              .setImages(unselected, unselected, selected) //default, theOverImage, activeImage
               .activate(mode);
 //          
 //    cp5.addToggle("toggle")
@@ -97,6 +106,16 @@ void drawVisualizationTwo() {
   fill(COLOR_LegendBackground);
   noStroke();
   rect(1165, 325, 170, 150, ROUNDED_CORNER_VALUE);
+  
+  //paint Major/Ethnicity/Gender
+  //hardcoding location for now
+  fill(0);
+  textSize(9);
+  textAlign(CENTER,BOTTOM);
+  int textYPos = 412; 
+  text("MAJOR",1213,textYPos);
+  text("ETHNICITY",1222, textYPos + IMG_HEIGHT + 2);
+  text("GENDER",1215, textYPos + 2*IMG_HEIGHT + 5);
   
   bc1.draw();
   bc2.draw();

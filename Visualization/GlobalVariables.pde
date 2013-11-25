@@ -111,9 +111,11 @@ final color COLOR_ARCHITECTURE = color(200, 0, 0), // red
 final color COLOR_ARCHITECTURE = color(219,125,51), // 
             COLOR_COMPUTING = color(53,125,174), //
             COLOR_ENGINEERING = color(122,40,32),
+            //COLOR_ENGINEERING = color(147, 39, 36),
             COLOR_IVANALLEN = color(93,71,118), //
-           COLOR_MANAGEMENT =  color(113,137,63),
+            COLOR_MANAGEMENT =  color(113,137,63),
             COLOR_SCIENCES = color(57,94,139);
+            //COLOR_SCIENCES = color(209, 0, 86);
             
 
 
