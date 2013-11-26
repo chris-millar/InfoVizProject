@@ -43,6 +43,8 @@ void mouseClicked() {
 
 
 void draw() {
+ 
+  
   background(255);
   
 //  Axis br = new Axis(0, "horizontalLine", 0, 285, 1350, 285, color(0));
@@ -52,8 +54,10 @@ void draw() {
   
   if (Event_SelectedYearChange) {
       //println("EVENT -- SelectedYearChange -- recieved\n");
+     
     
     buildVisualizationTwo();
+    
     
     Event_SelectedYearChange = false;
     

@@ -10,6 +10,8 @@
    2013 --> {College_Architecture_2013, College_Computing_2013, College_Engineering_2013, College_IvanAllen_2013, ... College_Science_2013} */
 //*************** Global Variables *******************//
 
+boolean firstDraw = true;
+
 //*** Data Variables ***//
 public ArrayList<ArrayList<College>> Years;
 public final int NUM_YEARS = 15;

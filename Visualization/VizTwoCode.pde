@@ -178,7 +178,7 @@ void drawVisualizationTwo() {
   String y = Integer.toString(CurrSelectedYear);
   y = y.concat(" Breakdown");
   textSize(25);
-  text(y,500,310);
+  text(y,500,323);
   
   
   
@@ -483,7 +483,7 @@ public class barChart{
 
 public class barChartBar{
   int dataPercent, dataNum;
-  int x, y,n; 
+  int x, y,n, nBack; 
   String name;
   color col;
   int w, h;
@@ -506,6 +506,7 @@ public class barChartBar{
     this.opacity = opacity;
     
     n=0;
+    nBack = h;
     
     
     if(name.equals("Archtecture")){
@@ -612,9 +613,28 @@ boolean render() {
       n+=3;
     }
     noStroke();
-    fill(Color);
+    fill(Color, opacity);
     rect(drawX, drawY, n, w);
     return( n<h );
+  }
+
+///////////////////
+
+  ////////////////
+
+boolean renderBack() {
+    if ( nBack>=0 ) {
+      nBack-=3;
+    }
+    noStroke();
+    fill(255);
+    rect(drawX, drawY, nBack, w);
+    
+    
+    noStroke();
+    fill(Color, opacity);
+    rect(drawX, drawY, nBack, w);
+    return( nBack>=0 );
   }
 
 ///////////////////
