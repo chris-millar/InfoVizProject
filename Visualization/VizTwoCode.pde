@@ -623,7 +623,7 @@ public class barChartBar{
 
 boolean render() {
     if ( n<h ) {
-      n++;
+      n+=2;
     }
     noStroke();
     fill(Color);
