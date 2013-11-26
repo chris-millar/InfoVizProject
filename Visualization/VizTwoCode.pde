@@ -160,27 +160,6 @@ void drawVisualizationTwo() {
   
   initCharts();
   
-//  getData();
-//  
-//  bc1 = new barChart(185, 493, "Engineering", 1, engi);
-//  bc2 = new barChart(185, 655, "Computing", 1, comp);
-//  
-//  bc3 = new barChart(540, 493, "Architecture", 1, arch);
-//  bc4 = new barChart(540, 655, "Ivan Allen", 1, ivan);  
-//  
-//  bc5 = new barChart(895, 493, "Sciences", 1, sci);
-//  bc6 = new barChart(895, 655, "Management", 1, manag);
-  
-//  barChart bc1 = new barChart(185, 493, "Engineering", 1, engi);
-//  barChart bc2 = new barChart(185, 655, "Computing", 1, comp);
-//  
-//  barChart bc3 = new barChart(540, 493, "Architecture", 1, arch);
-//  barChart bc4 = new barChart(540, 655, "Ivan Allen", 1, ivan);  
-//  
-//  barChart bc5 = new barChart(895, 493, "Sciences", 1, sci);
-//  barChart bc6 = new barChart(895, 655, "Management", 1, manag);  
-  
-  
   fill(175);
   noStroke();
   rect(1165, 325, 170, 150, 3);
@@ -195,6 +174,13 @@ void drawVisualizationTwo() {
   
   
   cp5.draw();
+  
+  String y = Integer.toString(CurrSelectedYear);
+  y = y.concat(" Breakdown");
+  textSize(25);
+  text(y,500,310);
+  
+  
   
   
   
@@ -429,10 +415,10 @@ public class barChart{
 
     textSize(9);
      if(dataMode == 0)
-      dMode = "by Percentage";
+      dMode = "by Percentage of Students";
     else if (dataMode ==1)
-      dMode = "by Number";
-    text(dMode, posX+135,posY-145);
+      dMode = "by Number of Students";
+    text(dMode, posX+160,posY-145);
     
     drawBars();
     
