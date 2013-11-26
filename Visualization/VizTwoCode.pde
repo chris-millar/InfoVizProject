@@ -8,16 +8,22 @@ RadioButton r, rOther;
 int mode;
 int dataMode;
 barChart bc1,bc2,bc3,bc4,bc5,bc6;
+ArrayList<ArrayList<barChartBar>> collegeBars;
 
 
 
 void buildVisualizationTwo() {
   
+  //bars = new ArrayList<barChartBar>();
   dataMode = 0;
   year = 1999;
   getData();
   drawCP5();
   mode = 0;
+  collegeBars = new ArrayList<ArrayList<barChartBar>>();
+  initCharts();
+  //vizTwoAnimate();
+  
 }
 
 
@@ -59,12 +65,14 @@ void drawCP5(){
 
 void controlEvent(ControlEvent theEvent) {
   if(theEvent.isFrom(r)) {
+    collegeBars = new ArrayList<ArrayList<barChartBar>>();
     dataMode = int(r.getValue());
     //getData();
     drawVisualizationTwo();
   }
   
   if(theEvent.isFrom(rOther)) {
+    collegeBars = new ArrayList<ArrayList<barChartBar>>();
     mode = int(rOther.getValue());
     //getData();
     drawVisualizationTwo();
@@ -74,11 +82,67 @@ void controlEvent(ControlEvent theEvent) {
 
 
 //------------------------ DRAW METHODS -------------------------//
+
+
+
+void vizTwoAnimate(){
+  
+//  for(ArrayList<barChartBar> bars : collegeBars){
+//    if(bars.size() == 4){
+//      int tempX = 1;
+//      
+//        fill(bars.get(0).Color, bars.get(0).opacity);
+//        noStroke();
+//        rect(bars.get(0).drawX, bars.get(0).drawY, bars.get
+//      
+//    }
+//    else if (bars.size() == 3){
+//      
+//    }
+//    else if (bars.size() == 2){
+//      
+//    }
+//    else if (bars.size() == 1){
+//      
+//    }
+//    
+//  }
+
+  //print(collegeBars);
+    
+   for(ArrayList<barChartBar> bars : collegeBars){
+     //print("test");
+      for(barChartBar b : bars){
+        //print("test");
+      fill(b.Color, b.opacity);
+      noStroke();
+      int tempH = 1;
+      while(tempH < b.h){
+        rect(b.drawX, b.drawY, tempH, b.w);
+        tempH++;
+      }
+    } 
+  }
+}
+
+//void viz2DrawAni(){
+//  
+//  for (int i=0; i<bars.size && !bars[i].render(); i++);
+//  
+//}
+
+
+
 void initCharts(){
+  
+  //bars = new ArrayList<barChartBar>();
+  //collegeBars = new ArrayList<ArrayList<barChartBar>>();
+  //print(collegeBars);
   
   getData();
   
   bc1 = new barChart(185, 493, "Engineering", 1, engi);
+  //print(collegeBars);
   bc2 = new barChart(185, 655, "Computing", 1, comp);
   
   bc3 = new barChart(540, 493, "Architecture", 1, arch);
@@ -86,6 +150,9 @@ void initCharts(){
   
   bc5 = new barChart(895, 493, "Sciences", 1, sci);
   bc6 = new barChart(895, 655, "Management", 1, manag);
+  
+  //vizTwoAnimate();
+  
 }
 
 void drawVisualizationTwo() {
@@ -413,6 +480,9 @@ public class barChart{
       bars.add(bM);
       
     }
+    
+    collegeBars.add(bars);
+    //print(collegeBars);
   
     //for (int i=0; i<bars.size() && !bars.get(i).render(); i++);
     
@@ -437,6 +507,7 @@ public class barChartBar{
   College college;
   String abrevName;
   AniSequence s;
+  int drawX, drawY;
   
   barChartBar(int dataPercent, int dataNum, int x, int y, String name, College college, int opacity){
     
@@ -486,10 +557,17 @@ public class barChartBar{
     fill(Color, opacity);
     noStroke();
     
-    if(name.equals("Female") || name.equals("Male"))
-       rect(x-45,y-125,h,w);
-    else
-      rect(x-20,y-125,h,w);
+    if(name.equals("Female") || name.equals("Male")){
+       //rect(x-45,y-125,h,w);
+       drawX = x-45;
+       drawY = y-125;
+    }
+    else{
+      //rect(x-20,y-125,h,w);
+      drawX = x-20;
+      drawY = y-125;
+    }
+      
     
     fill(10);
     textSize(8);
@@ -540,6 +618,20 @@ public class barChartBar{
     }
     
   }
+  
+  ////////////////
+
+boolean render() {
+    if ( n<h ) {
+      n++;
+    }
+    noStroke();
+    fill(Color);
+    rect(drawX, drawY, n, w);
+    return( n<h );
+  }
+
+///////////////////
   
   
   void setColor(){

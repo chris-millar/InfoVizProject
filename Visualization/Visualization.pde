@@ -75,6 +75,10 @@ void draw() {
   
   checkVisualizationTwo();
   drawVisualizationTwo();
+  
+  for(ArrayList<barChartBar> bars : collegeBars){
+    for (int i=0; i<bars.size() && !bars.get(i).render(); i++);
+  }
 }
 
 
