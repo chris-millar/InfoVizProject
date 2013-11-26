@@ -9,8 +9,8 @@ static int mode = 0;
 static int dataMode = 0;
 
 private final int IMG_WIDTH = 15, IMG_HEIGHT = 15;
-PImage selected = loadImage("C:\\Users\\ht7672\\Desktop\\selected.jpg");
-PImage unselected = loadImage("C:\\Users\\ht7672\\Desktop\\unselected.jpg");
+PImage selected = loadImage("C:\\Users\\Huy\\Desktop\\selected.png");
+PImage unselected = loadImage("C:\\Users\\Huy\\Desktop\\unselected.png");
 
 void buildVisualizationTwo() {
   
