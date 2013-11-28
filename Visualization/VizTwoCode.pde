@@ -517,17 +517,17 @@ public class barChartBar{
 
     if(name.equals("Science. Technology and Society") || name.equals("Science Technology and Culture")){
       name = "Science, Technology and Culture";
-      abrevName = "STC";
+      abrevName = "Science, Tech, & Culture";
       text(abrevName, x-80, y-205, 60, 100);
     }
     else if(name.equals("History Technology and Society") || name.equals("History. Technology and Society")){
      name = "History, Technology and Society";
-     abrevName = "HTS";
+     abrevName = "History, Tech, & Society";
      text(abrevName, x-80, y-205, 60, 100);
     }
     else if(name.equals("International Affairs and Modern Languages")||name.equals("International Affair and Modern Languages")){
       name="International Affairs and Modern Languages";
-     abrevName = "INTA and ML";
+     abrevName = "Modern Languages";
      text(abrevName, x-80, y-205, 60, 100);
     }
     else if(!college.Name.equals("Ivan Allen") && !college.Name.equals("Sciences") && !name.equals("Management")&& !name.equals("Architecture")&& !name.equals("International Affairs")){
