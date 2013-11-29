@@ -84,6 +84,29 @@ public class YearBar {
     }
   }
   
+  // brushing only on correct year hovering.
+    public int getXPos()
+  {
+    return xPos;
+  }
+  
+  public int getYPos()
+  {
+    return yPos;
+  }
+  
+  public int getWidth()
+  {
+    return bar_width;
+  }
+  
+  public int getHeight()
+  {
+    return bar_height;
+  }
+  // ...
+  
+  
   public void isHoveredOver() {
     if (isMouseInsideBounds()) {
       hoveredOn = true;

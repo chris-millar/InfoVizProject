@@ -3,8 +3,9 @@ void buildVisualizationOne() {
    vizOne_yAxis = new Axis(1, "yAxis", vizOne_yAxis_x1, vizOne_yAxis_y1, vizOne_yAxis_x2, vizOne_yAxis_y2, Color_AXIS);
    vizOne_xAxis = new Axis(1, "xAxis", vizOne_xAxis_x1, vizOne_xAxis_y1, vizOne_xAxis_x2, vizOne_xAxis_y2, Color_AXIS);
    
-   legend = new Legend(vizOne_xAxis.x2 + vizOne_InnerPaddingX, vizOne_xAxis.y1);
-   //legend = new Legend(vizOne_xAxis.x2 + vizOne_InnerPaddingX, vizOne_Y + vizOne_InnerPaddingY);
+   legend = new Legend(vizOne_xAxis.x2, width, vizOne_xAxis.y1);
+     //legend = new Legend(vizOne_xAxis.x2 + vizOne_LegendPadding, vizOne_xAxis.y1);
+       //legend = new Legend(vizOne_xAxis.x2 + vizOne_InnerPaddingX, vizOne_Y + vizOne_InnerPaddingY);
    
    yearBars.clear();
    YearBar currYearBar;
@@ -47,7 +48,7 @@ public YearBar buildYearBar(int yearIndex) {
   yearBar = new YearBar(BASE_YEAR + yearIndex, totalEnrollment, xPos, yPos, YearBar_WIDTH, barHeight, collegeBars, YearBarLabelBar_HEIGHT, relative_xPos + label_xPading, vizOne_xAxis.y1 + label_yPading, YearBarLabel_WIDTH, YearBarLabel_WIDTH);
   yearBar.setBarColor_Unselected(COLOR_YearBar_Unselected);
   yearBar.setBarColor_HoveredOn(COLOR_YearBar_HoveredOn);
-  yearBar.setBarColor_ClickSelected(COLOR_YearBar_ClickSelected);
+  yearBar.setBarColor_ClickSelected(COLOR_YearBar_HoveredOn);
   //yearBar.setLabelColor(COLOR_YearBarLabel);
   
   return yearBar; 
@@ -140,7 +141,7 @@ void checkVisualizationOne() {
 
 //------------------------ DRAW METHODS -------------------------//
 void drawVisualizationOne() {
-   //vizOne_yAxis.draw();
+   vizOne_yAxis.draw();
    vizOne_xAxis.draw();
    
    legend.draw();

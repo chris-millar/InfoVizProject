@@ -53,6 +53,8 @@ final int STUDENTS_PER_PIXEL = 60; //265 px, each worth 60 students  --> for Viz
 final int POPUP_EDGE_PADDING = 7;
 final int POPUP_VERTICAL_SPACING = 10;
 
+final int ROUNDED_CORNER_VALUE = 10;
+
 int totViz_X;
 int totViz_Y;
 int totViz_width;

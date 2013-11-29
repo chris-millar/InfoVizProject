@@ -5,8 +5,9 @@ ChartDataSet ds1;
 College engi, comp, manag, sci, ivan, arch;
 int year;
 RadioButton r, rOther;
-int mode;
-int dataMode;
+static int mode = 0;
+static int dataMode = 0;
+
 barChart bc1,bc2,bc3,bc4,bc5,bc6;
 ArrayList<ArrayList<barChartBar>> collegeBars;
 
@@ -15,11 +16,11 @@ ArrayList<ArrayList<barChartBar>> collegeBars;
 void buildVisualizationTwo() {
   
   //bars = new ArrayList<barChartBar>();
-  dataMode = 0;
+  dataMode = this.dataMode;
   year = 1999;
   getData();
   drawCP5();
-  mode = 0;
+  mode = this.mode;
   collegeBars = new ArrayList<ArrayList<barChartBar>>();
   initCharts();
   //vizTwoAnimate();
@@ -46,7 +47,8 @@ void drawCP5(){
           .setSpacingColumn(50)
           .addItem("Percent",0)
           .addItem("Number", 1)
-          .activate(0);
+          .setNoneSelectedAllowed(false)
+          .activate(dataMode);
           
   rOther = cp5.addRadioButton("otherButton")
               .setPosition(1180,400)
@@ -59,7 +61,7 @@ void drawCP5(){
               .addItem("Major",0)
               .addItem("Ethnicity", 1)
               .addItem("Gender", 2)
-              .activate(0);
+              .activate(mode);
 
 }
 
@@ -160,9 +162,13 @@ void drawVisualizationTwo() {
   
   initCharts();
   
-  fill(175);
+  //fill(175);
+  //Background for viz 2 legend
+  fill(COLOR_LegendBackground);
+
   noStroke();
-  rect(1165, 325, 170, 150, 3);
+  //rect(1165, 325, 170, 150, 3);
+  rect(1165, 325, 170, 150, ROUNDED_CORNER_VALUE);
   
   
   bc1.draw();
@@ -385,21 +391,55 @@ public class barChart{
     Y.setWeight(1);
   } //end constructor
   
-  
+  // Used to cause brushing only on correct year chosen.
+  public void getBrushing()
+  {
+    int xpos = 0;
+    int ypos = 0;
+    int thisHeight = 0;
+    int thisWidth = 0;
+
+    for(YearBar yearBar : yearBars)
+    {
+      if(yearBar.getYear() == CurrSelectedYear)
+      {
+        xpos = yearBar.getXPos();
+        ypos = yearBar.getYPos();
+        thisHeight = yearBar.getHeight();
+        thisWidth = yearBar.getWidth();
+        break;
+      }
+    } 
+    
+    if (CurrSelectedCollege == null || !CurrSelectedCollege.equals(college.Name)) {
+      fill(150,20);
+    }
+    else //CurrSelectedCollege.equals(college.Name)
+    {
+      if( (mouseX > xpos && mouseX < xpos+thisWidth) && (mouseY > ypos && mouseY < ypos+thisHeight))
+        fill(150,100);
+      else
+        fill(150,20);
+    }
+  }
 
   
   public void draw(){
     
     getData();
     
+    getBrushing();
+    
    // X.draw();
    // Y.draw();
-    if (CurrSelectedCollege == null || !CurrSelectedCollege.equals(college.Name)) {
-      fill(150,20);
-    }
-    else { //(CurrSelectedCollege.equals(college.Name)) {
-      fill(150,100);  
-    }
+   /*
+    //if (CurrSelectedCollege == null || !CurrSelectedCollege.equals(college.Name)) {
+      //fill(150,20);
+    //}
+    //else { //(CurrSelectedCollege.equals(college.Name)) {
+      //fill(150,100);  
+    //}
+    */
 
     noStroke();
     rect(posX-90, posY-140-30, 345, 150, 6);
@@ -410,9 +450,11 @@ public class barChart{
     float y = 150;
     textAlign(CENTER,BOTTOM); 
  
+    //paint college name
     textSize(16);
     text(name,posX+50,posY-143);
-
+    
+    //paint "by percentage/by number"
     textSize(9);
      if(dataMode == 0)
       dMode = "by Percentage of Students";
@@ -492,7 +534,7 @@ public class barChartBar{
   color Color;
   College college;
   String abrevName;
-  AniSequence s;
+  //AniSequence s;
   int drawX, drawY;
   
   barChartBar(int dataPercent, int dataNum, int x, int y, String name, College college, int opacity){
@@ -564,17 +606,17 @@ public class barChartBar{
 
     if(name.equals("Science. Technology and Society") || name.equals("Science Technology and Culture")){
       name = "Science, Technology and Culture";
-      abrevName = "STC";
+      abrevName = "Science, Tech, & Culture";
       text(abrevName, x-80, y-205, 60, 100);
     }
     else if(name.equals("History Technology and Society") || name.equals("History. Technology and Society")){
      name = "History, Technology and Society";
-     abrevName = "HTS";
+     abrevName = "History, Tech, & Society";
      text(abrevName, x-80, y-205, 60, 100);
     }
     else if(name.equals("International Affairs and Modern Languages")||name.equals("International Affair and Modern Languages")){
       name="International Affairs and Modern Languages";
-     abrevName = "INTA and ML";
+     abrevName = "Modern Languages";
      text(abrevName, x-80, y-205, 60, 100);
     }
     else if(!college.Name.equals("Ivan Allen") && !college.Name.equals("Sciences") && !name.equals("Management")&& !name.equals("Architecture")&& !name.equals("International Affairs")){
