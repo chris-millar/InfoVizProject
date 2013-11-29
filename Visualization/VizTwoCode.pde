@@ -19,8 +19,8 @@ void buildVisualizationTwo() {
   getData();
   drawCP5();
   mode = this.mode;
-  selected.resize(IMG_WIDTH, IMG_HEIGHT);
-  unselected.resize(IMG_WIDTH, IMG_HEIGHT);
+  //selected.resize(IMG_WIDTH, IMG_HEIGHT);
+  //unselected.resize(IMG_WIDTH, IMG_HEIGHT);
 }
 
 
