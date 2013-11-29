@@ -8,6 +8,11 @@ RadioButton r, rOther;
 static int mode = 0;
 static int dataMode = 0;
 
+private final int IMG_WIDTH = 15, IMG_HEIGHT = 15;
+PImage selected = loadImage("C:\\Users\\Huy\\Desktop\\selected.png");
+PImage unselected = loadImage("C:\\Users\\Huy\\Desktop\\unselected.png");
+
+
 barChart bc1,bc2,bc3,bc4,bc5,bc6;
 ArrayList<ArrayList<barChartBar>> collegeBars;
 
@@ -21,6 +26,11 @@ void buildVisualizationTwo() {
   getData();
   drawCP5();
   mode = this.mode;
+  
+  //selected.resize(IMG_WIDTH, IMG_HEIGHT); // huy
+  //unselected.resize(IMG_WIDTH, IMG_HEIGHT); // huy
+
+  
   collegeBars = new ArrayList<ArrayList<barChartBar>>();
   initCharts();
   //vizTwoAnimate();
@@ -59,10 +69,15 @@ void drawCP5(){
               .setItemsPerRow(1)
               .setSpacingColumn(50)
               .setSpacingRow(10)
+              //.setSpacingRow(IMG_HEIGHT/2) // huy images
               .addItem("Major",0)
+              //.addItem("", 0) // huy images
               .addItem("Ethnicity", 1)
+              //.addItem("", 1) // huy images
               .addItem("Gender", 2)
+              //.addItem("", 2) // huy images
               .setNoneSelectedAllowed(false)
+              //.setImages(unselected, unselected, selected) //default, theOverImage, activeImage // huy images
               .activate(mode);
 
 }
