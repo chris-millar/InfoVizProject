@@ -8,23 +8,19 @@ RadioButton r, rOther;
 static int mode = 0;
 static int dataMode = 0;
 
-barChart bc1,bc2,bc3,bc4,bc5,bc6;
-ArrayList<ArrayList<barChartBar>> collegeBars;
-
-
+private final int IMG_WIDTH = 15, IMG_HEIGHT = 15;
+PImage selected = loadImage("C:\\Users\\Huy\\Desktop\\selected.png");
+PImage unselected = loadImage("C:\\Users\\Huy\\Desktop\\unselected.png");
 
 void buildVisualizationTwo() {
   
-  //bars = new ArrayList<barChartBar>();
   dataMode = this.dataMode;
   year = 1999;
   getData();
   drawCP5();
   mode = this.mode;
-  collegeBars = new ArrayList<ArrayList<barChartBar>>();
-  initCharts();
-  //vizTwoAnimate();
-  
+  selected.resize(IMG_WIDTH, IMG_HEIGHT);
+  unselected.resize(IMG_WIDTH, IMG_HEIGHT);
 }
 
 
@@ -33,10 +29,9 @@ void checkVisualizationTwo() {
   
 }
 
+/////c///////// Percent, num radio buttons
 
-/////// Percent, num radio buttons
-
-void drawCP5(){
+void drawCP5(){ 
   r = cp5.addRadioButton("viewButton")
           .setPosition(1180,350)
           .setSize(2,2)
@@ -58,26 +53,35 @@ void drawCP5(){
               .setItemWidth(15)
               .setItemsPerRow(1)
               .setSpacingColumn(50)
-              .addItem("Major",0)
-              .addItem("Ethnicity", 1)
-              .addItem("Gender", 2)
+              .setSpacingRow(IMG_HEIGHT/2)
+              //.addItem("Major", 0)
+              .addItem("", 0)
+              //.addItem("Ethnicity", 1)
+              .addItem(" ", 1)
+              //.addItem("Gender", 2)
+              .addItem("  ", 2)
               .setNoneSelectedAllowed(false)
+              .setImages(unselected, unselected, selected) //default, theOverImage, activeImage
               .activate(mode);
-
+//          
+//    cp5.addToggle("toggle")
+//     .setPosition(40,250)
+//     .setSize(50,20)
+//     .setValue(true)
+//     .setMode(ControlP5.SWITCH)
+//     ;
 }
 
 void controlEvent(ControlEvent theEvent) {
   if(theEvent.isFrom(r)) {
-    collegeBars = new ArrayList<ArrayList<barChartBar>>();
     dataMode = int(r.getValue());
-    //getData();
+    getData();
     drawVisualizationTwo();
   }
   
   if(theEvent.isFrom(rOther)) {
-    collegeBars = new ArrayList<ArrayList<barChartBar>>();
     mode = int(rOther.getValue());
-    //getData();
+    getData();
     drawVisualizationTwo();
   }
   
@@ -85,92 +89,33 @@ void controlEvent(ControlEvent theEvent) {
 
 
 //------------------------ DRAW METHODS -------------------------//
-
-
-
-void vizTwoAnimate(){
-  
-//  for(ArrayList<barChartBar> bars : collegeBars){
-//    if(bars.size() == 4){
-//      int tempX = 1;
-//      
-//        fill(bars.get(0).Color, bars.get(0).opacity);
-//        noStroke();
-//        rect(bars.get(0).drawX, bars.get(0).drawY, bars.get
-//      
-//    }
-//    else if (bars.size() == 3){
-//      
-//    }
-//    else if (bars.size() == 2){
-//      
-//    }
-//    else if (bars.size() == 1){
-//      
-//    }
-//    
-//  }
-
-  //print(collegeBars);
-    
-   for(ArrayList<barChartBar> bars : collegeBars){
-     //print("test");
-      for(barChartBar b : bars){
-        //print("test");
-      fill(b.Color, b.opacity);
-      noStroke();
-      int tempH = 1;
-      while(tempH < b.h){
-        rect(b.drawX, b.drawY, tempH, b.w);
-        tempH++;
-      }
-    } 
-  }
-}
-
-//void viz2DrawAni(){
-//  
-//  for (int i=0; i<bars.size && !bars[i].render(); i++);
-//  
-//}
-
-
-
-void initCharts(){
-  
-  //bars = new ArrayList<barChartBar>();
-  //collegeBars = new ArrayList<ArrayList<barChartBar>>();
-  //print(collegeBars);
+void drawVisualizationTwo() {
   
   getData();
   
-  bc1 = new barChart(185, 493, "Engineering", 1, engi);
-  //print(collegeBars);
-  bc2 = new barChart(185, 655, "Computing", 1, comp);
+  barChart bc1 = new barChart(185, 493, "Engineering", 1, engi);
+  barChart bc2 = new barChart(185, 655, "Computing", 1, comp);
   
-  bc3 = new barChart(540, 493, "Architecture", 1, arch);
-  bc4 = new barChart(540, 655, "Ivan Allen", 1, ivan);  
+  barChart bc3 = new barChart(540, 493, "Architecture", 1, arch);
+  barChart bc4 = new barChart(540, 655, "Ivan Allen", 1, ivan);  
   
-  bc5 = new barChart(895, 493, "Sciences", 1, sci);
-  bc6 = new barChart(895, 655, "Management", 1, manag);
+  barChart bc5 = new barChart(895, 493, "Sciences", 1, sci);
+  barChart bc6 = new barChart(895, 655, "Management", 1, manag);  
   
-  //vizTwoAnimate();
-  
-}
-
-void drawVisualizationTwo() {
-  
-  
-  initCharts();
-  
-  //fill(175);
   //Background for viz 2 legend
   fill(COLOR_LegendBackground);
-
   noStroke();
-  //rect(1165, 325, 170, 150, 3);
   rect(1165, 325, 170, 150, ROUNDED_CORNER_VALUE);
   
+  //paint Major/Ethnicity/Gender
+  //hardcoding location for now
+  fill(0);
+  textSize(9);
+  textAlign(CENTER,BOTTOM);
+  int textYPos = 412; 
+  text("MAJOR",1213,textYPos);
+  text("ETHNICITY",1222, textYPos + IMG_HEIGHT + 2);
+  text("GENDER",1215, textYPos + 2*IMG_HEIGHT + 5);
   
   bc1.draw();
   bc2.draw();
@@ -179,16 +124,7 @@ void drawVisualizationTwo() {
   bc5.draw();
   bc6.draw();
   
-  
   cp5.draw();
-  
-  String y = Integer.toString(CurrSelectedYear);
-  y = y.concat(" Breakdown");
-  textSize(25);
-  text(y,500,323);
-  
-  
-  
   
   
 }
@@ -392,7 +328,6 @@ public class barChart{
     Y.setWeight(1);
   } //end constructor
   
-  // Used to cause brushing only on correct year chosen.
   public void getBrushing()
   {
     int xpos = 0;
@@ -409,41 +344,31 @@ public class barChart{
         thisHeight = yearBar.getHeight();
         thisWidth = yearBar.getWidth();
         break;
-      }
+      } 
     } 
-    
+
     if (CurrSelectedCollege == null || !CurrSelectedCollege.equals(college.Name)) {
-      fill(150,20);
+      fill(150,20); 
     }
     else //CurrSelectedCollege.equals(college.Name)
     {
       if( (mouseX > xpos && mouseX < xpos+thisWidth) && (mouseY > ypos && mouseY < ypos+thisHeight))
-        fill(150,100);
+        fill(150,100);  
       else
-        fill(150,20);
+        fill(150,20); 
     }
   }
-
   
-  public void draw(){
-    
+  
+  public void draw()
+  {  
     getData();
     
     getBrushing();
-    
-   // X.draw();
-   // Y.draw();
-   /*
-    //if (CurrSelectedCollege == null || !CurrSelectedCollege.equals(college.Name)) {
-      //fill(150,20);
-    //}
-    //else { //(CurrSelectedCollege.equals(college.Name)) {
-      //fill(150,100);  
-    //}
-    */
 
+    //border around each graph
     noStroke();
-    rect(posX-90, posY-140-30, 345, 150, 6);
+    rect(posX-90, posY-140-30, 330, 150, 6);
   
     fill(80,80,80);
     
@@ -451,20 +376,19 @@ public class barChart{
     float y = 150;
     textAlign(CENTER,BOTTOM); 
  
-    //paint college name
+   //paint college name
     textSize(16);
     text(name,posX+50,posY-143);
-    
+
     //paint "by percentage/by number"
     textSize(9);
      if(dataMode == 0)
-      dMode = "by Percentage of Students";
+      dMode = "by Percentage";
     else if (dataMode ==1)
-      dMode = "by Number of Students";
-    text(dMode, posX+160,posY-145);
+      dMode = "by Number";
+    text(dMode, posX+135,posY-145);
     
-    drawBars();
-    
+    drawBars(); 
   }
   
   
@@ -486,9 +410,7 @@ public class barChart{
       opacity = 200;
     }
     else if(mode==1){   /// 1 == ETHNICITY
-      
-      
-      
+
       barChartBar bA = new barChartBar(getPercent(college.getAsian(), college.TotalCollege),college.getAsian(), barX, barY-10, "Asian", college, opacity);
       barChartBar bB = new barChartBar(getPercent(college.getBlack(), college.TotalCollege),college.getBlack(), barX, barY+15, "Black", college, opacity);
       barChartBar bH = new barChartBar(getPercent(college.getHispanic(), college.TotalCollege),college.getHispanic(), barX, barY+40, "Hispanic", college, opacity);
@@ -509,9 +431,6 @@ public class barChart{
       bars.add(bM);
       
     }
-    
-    collegeBars.add(bars);
-    //print(collegeBars);
   
     //for (int i=0; i<bars.size() && !bars.get(i).render(); i++);
     
@@ -526,7 +445,7 @@ public class barChart{
 
 public class barChartBar{
   int dataPercent, dataNum;
-  int x, y,n, nBack; 
+  int x, y,n; 
   String name;
   color col;
   int w, h;
@@ -536,7 +455,6 @@ public class barChartBar{
   College college;
   String abrevName;
   //AniSequence s;
-  int drawX, drawY;
   
   barChartBar(int dataPercent, int dataNum, int x, int y, String name, College college, int opacity){
     
@@ -549,7 +467,6 @@ public class barChartBar{
     this.opacity = opacity;
     
     n=0;
-    nBack = h;
     
     
     if(name.equals("Archtecture")){
@@ -587,17 +504,10 @@ public class barChartBar{
     fill(Color, opacity);
     noStroke();
     
-    if(name.equals("Female") || name.equals("Male")){
-       //rect(x-45,y-125,h,w);
-       drawX = x-45;
-       drawY = y-125;
-    }
-    else{
-      //rect(x-20,y-125,h,w);
-      drawX = x-20;
-      drawY = y-125;
-    }
-      
+    if(name.equals("Female") || name.equals("Male"))
+       rect(x-45,y-125,h,w);
+    else
+      rect(x-20,y-125,h,w);
     
     fill(10);
     textSize(8);
@@ -648,39 +558,6 @@ public class barChartBar{
     }
     
   }
-  
-  ////////////////
-
-boolean render() {
-    if ( n<h ) {
-      n+=3;
-    }
-    noStroke();
-    fill(Color, opacity);
-    rect(drawX, drawY, n, w);
-    return( n<h );
-  }
-
-///////////////////
-
-  ////////////////
-
-boolean renderBack() {
-    if ( nBack>=0 ) {
-      nBack-=3;
-    }
-    noStroke();
-    fill(255);
-    rect(drawX, drawY, nBack, w);
-    
-    
-    noStroke();
-    fill(Color, opacity);
-    rect(drawX, drawY, nBack, w);
-    return( nBack>=0 );
-  }
-
-///////////////////
   
   
   void setColor(){
