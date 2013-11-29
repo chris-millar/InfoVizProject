@@ -58,6 +58,7 @@ void drawCP5(){
               .setItemWidth(15)
               .setItemsPerRow(1)
               .setSpacingColumn(50)
+              .setSpacingRow(10)
               .addItem("Major",0)
               .addItem("Ethnicity", 1)
               .addItem("Gender", 2)
