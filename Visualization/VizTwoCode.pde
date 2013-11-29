@@ -61,6 +61,7 @@ void drawCP5(){
               .addItem("Major",0)
               .addItem("Ethnicity", 1)
               .addItem("Gender", 2)
+              .setNoneSelectedAllowed(false)
               .activate(mode);
 
 }
