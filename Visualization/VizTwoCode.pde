@@ -179,7 +179,7 @@ void drawVisualizationTwo() {
     by = "by Gender";
   }
   y = y.concat(by);
-  textSize(25);
+  textSize(20);
   textAlign(CENTER);
   text(y,round((float)vizOne_width /2),315);
   
@@ -449,15 +449,18 @@ public class barChart{
     noStroke();
     rect(posX-90, posY-140-30, 345, 150, 6);
   
-    fill(80,80,80);
+    //fill(80,80,80);
+    fill(50);
     
     float x = 30;
     float y = 150;
     textAlign(CENTER,BOTTOM); 
  
     //paint college name
-    textSize(16);
-    text(name,posX+50,posY-143);
+    
+    textSize(18);
+    text(name,posX+80,posY-143);
+    float tw = textWidth(name);
     
     //paint "by percentage/by number"
     textSize(9);
@@ -465,7 +468,7 @@ public class barChart{
       dMode = "by Percentage of Students";
     else if (dataMode ==1)
       dMode = "by Number of Students";
-    text(dMode, posX+160,posY-145);
+    text(dMode, posX+80,posY-133);
     
     
     //drawBars();
@@ -500,10 +503,10 @@ public class barChart{
       
       
       
-      barChartBar bA = new barChartBar(getPercent(college.getAsian(), college.TotalCollege),college.getAsian(), barX, barY-10, "Asian", college, opacity);
-      barChartBar bB = new barChartBar(getPercent(college.getBlack(), college.TotalCollege),college.getBlack(), barX, barY+15, "Black", college, opacity);
-      barChartBar bH = new barChartBar(getPercent(college.getHispanic(), college.TotalCollege),college.getHispanic(), barX, barY+40, "Hispanic", college, opacity);
-      barChartBar bW = new barChartBar(getPercent(college.getWhite(), college.TotalCollege),college.getWhite(), barX, barY+65, "White", college, opacity);
+      barChartBar bA = new barChartBar(getPercent(college.getAsian(), college.TotalCollege),college.getAsian(), barX, barY-5, "Asian", college, opacity);
+      barChartBar bB = new barChartBar(getPercent(college.getBlack(), college.TotalCollege),college.getBlack(), barX, barY+20, "Black", college, opacity);
+      barChartBar bH = new barChartBar(getPercent(college.getHispanic(), college.TotalCollege),college.getHispanic(), barX, barY+45, "Hispanic", college, opacity);
+      barChartBar bW = new barChartBar(getPercent(college.getWhite(), college.TotalCollege),college.getWhite(), barX, barY+70, "White", college, opacity);
       
       bars.add(bA);
       bars.add(bB);

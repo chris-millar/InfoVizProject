@@ -13,18 +13,14 @@ boolean debug = false;
 
 public void setup() {
   
-<<<<<<< HEAD
   
   selected = loadImage("selected.png");
   unselected = loadImage("unselected.png");
-  
-=======
+
 //  if (frame != null) {
 //    frame.setResizable(true);
 //  }
   
-
->>>>>>> NinaChanges
   //frameRate(4);
   initGlobals();
   loadData();
