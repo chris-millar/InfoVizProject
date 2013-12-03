@@ -9,9 +9,10 @@ static int mode = 0;
 static int dataMode = 0;
 
 private final int IMG_WIDTH = 15, IMG_HEIGHT = 15;
-PImage selected = loadImage("C:\\Users\\Huy\\Desktop\\selected.png");
-PImage unselected = loadImage("C:\\Users\\Huy\\Desktop\\unselected.png");
-
+//PImage selected = loadImage("C:\\Users\\Huy\\Desktop\\selected.png");
+//PImage unselected = loadImage("C:\\Users\\Huy\\Desktop\\unselected.png");
+PImage selected = loadImage("data\\selected.png");
+PImage unselected = loadImage("data\\unselected.png");
 
 barChart bc1,bc2,bc3,bc4,bc5,bc6;
 ArrayList<ArrayList<barChartBar>> collegeBars;
@@ -27,8 +28,8 @@ void buildVisualizationTwo() {
   drawCP5();
   mode = this.mode;
   
-  //selected.resize(IMG_WIDTH, IMG_HEIGHT); // huy
-  //unselected.resize(IMG_WIDTH, IMG_HEIGHT); // huy
+  //selected.resize(IMG_WIDTH, IMG_HEIGHT); // huy remove comment to test.
+  //unselected.resize(IMG_WIDTH, IMG_HEIGHT); // huy remove comment to test.
 
   
   collegeBars = new ArrayList<ArrayList<barChartBar>>();
