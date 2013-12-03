@@ -162,15 +162,13 @@ public class YearBar {
       float labelYPos = yPos + InnerBarSpacing - 1;
       //println(enrollment + "\t\t xPos: " + labelXPos + "\t\t yPos: " + labelYPos);
       text(enrollment, vizOne_yAxis.x1 - 5, yPos + InnerBarSpacing - 1);
-      noStroke(); 
-   
-   
-      
+      noStroke();  
     }
     //HOVERED ON Version
     else if (hoveredOn) {
       //Regular Bar Part
-      fill(barColor_HoveredOn, opacity_HoveredOn);
+      fill(250);
+      //fill(barColor_HoveredOn, opacity_HoveredOn); // Viz1 full bar highlight.
       //stroke(#9E843E);
       noStroke();
       rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);
