@@ -11,8 +11,12 @@ static int dataMode = 0;
 private final int IMG_WIDTH = 15, IMG_HEIGHT = 15;
 //PImage selected = loadImage("C:\\Users\\Huy\\Desktop\\selected.png");
 //PImage unselected = loadImage("C:\\Users\\Huy\\Desktop\\unselected.png");
-PImage selected = loadImage("data\\selected.png");
-PImage unselected = loadImage("data\\unselected.png");
+
+String selURL = "http://i.imgur.com/6lYa8K3.gif";
+PImage selected = loadImage(selURL, "png");
+
+String UnselURL = "http://i.imgur.com/Bok7rHI.png";
+PImage unselected = loadImage(UnselURL, "png");
 
 barChart bc1,bc2,bc3,bc4,bc5,bc6;
 ArrayList<ArrayList<barChartBar>> collegeBars;
@@ -28,8 +32,8 @@ void buildVisualizationTwo() {
   drawCP5();
   mode = this.mode;
   
-  //selected.resize(IMG_WIDTH, IMG_HEIGHT); // huy remove comment to test.
-  //unselected.resize(IMG_WIDTH, IMG_HEIGHT); // huy remove comment to test.
+  selected.resize(IMG_WIDTH, IMG_HEIGHT); // huy remove comment to test.
+  unselected.resize(IMG_WIDTH, IMG_HEIGHT); // huy remove comment to test.
 
   
   collegeBars = new ArrayList<ArrayList<barChartBar>>();
@@ -70,15 +74,15 @@ void drawCP5(){
               .setItemsPerRow(1)
               .setSpacingColumn(50)
               .setSpacingRow(10)
-              //.setSpacingRow(IMG_HEIGHT/2) // huy images
-              .addItem("Major",0)
-              //.addItem("", 0) // huy images
-              .addItem("Ethnicity", 1)
-              //.addItem("", 1) // huy images
-              .addItem("Gender", 2)
-              //.addItem("", 2) // huy images
+              .setSpacingRow(IMG_HEIGHT/2) // huy images
+              //.addItem("Major",0)
+              .addItem("X", 0) // huy images
+              //.addItem("Ethnicity", 1)
+              .addItem("Y", 1) // huy images
+              //.addItem("Gender", 2)
+              .addItem("Z", 2) // huy images
               .setNoneSelectedAllowed(false)
-              //.setImages(unselected, unselected, selected) //default, theOverImage, activeImage // huy images
+              .setImages(unselected, unselected, selected) //default, theOverImage, activeImage // huy images
               .activate(mode);
 
 }
@@ -204,7 +208,15 @@ void drawVisualizationTwo() {
   textSize(25);
   text(y,500,323);
   
-  
+    //paint Major/Ethnicity/Gender
+  //hardcoding location for now
+  fill(0);
+  textSize(9);
+  textAlign(CENTER,BOTTOM);
+  int textYPos = 412; 
+  text("MAJOR",1213,textYPos);
+  text("ETHNICITY",1222, textYPos + IMG_HEIGHT + 2);
+  text("GENDER",1215, textYPos + 2*IMG_HEIGHT + 5);
   
   
   
