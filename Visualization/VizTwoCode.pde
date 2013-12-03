@@ -9,14 +9,23 @@ static int mode = 0;
 static int dataMode = 0;
 
 private final int IMG_WIDTH = 15, IMG_HEIGHT = 15;
-//PImage selected = loadImage("C:\\Users\\Huy\\Desktop\\selected.png");
-//PImage unselected = loadImage("C:\\Users\\Huy\\Desktop\\unselected.png");
 
+//Works on my hardrive.
+//PImage selected = loadImage("C:\\Users\\lucas\\Documents\\GitHub\\InfoVizProject\\Visualization\\data\\selected.png");
+//PImage unselected = loadImage("C:\\Users\\lucas\\Documents\\GitHub\\InfoVizProject\\Visualization\\data\\unselected.png");
+
+//String selURL = "";
+PImage selected; // = loadImage("selected.png");
+PImage unselected; //= loadImage("unselected.png");
+
+
+/*
 String selURL = "http://i.imgur.com/6lYa8K3.gif";
 PImage selected = loadImage(selURL, "png");
 
 String UnselURL = "http://i.imgur.com/Bok7rHI.png";
 PImage unselected = loadImage(UnselURL, "png");
+*/
 
 barChart bc1,bc2,bc3,bc4,bc5,bc6;
 ArrayList<ArrayList<barChartBar>> collegeBars;

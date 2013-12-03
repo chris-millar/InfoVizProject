@@ -13,6 +13,10 @@ boolean debug = false;
 
 public void setup() {
   
+  
+  selected = loadImage("selected.png");
+  unselected = loadImage("unselected.png");
+  
   //frameRate(4);
   initGlobals();
   loadData();
