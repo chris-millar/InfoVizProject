@@ -141,7 +141,7 @@ public class YearBar {
       fill(0);
       stroke(0);
       String yearText = new Integer(Year).toString();
-      //textSize(12);
+      textSize(12);
       textAlign(CENTER, TOP);
       
       text(yearText, xlabel, label_yPos);
