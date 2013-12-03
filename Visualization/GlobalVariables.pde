@@ -53,7 +53,7 @@ final int SCREEN_HEIGHT = 650;
 final int STUDENTS_PER_PIXEL = 60; //265 px, each worth 60 students  --> for Viz 1 Y-Axis ONLY
 
 final int POPUP_EDGE_PADDING = 7;
-final int POPUP_VERTICAL_SPACING = 10;
+final int POPUP_VERTICAL_SPACING = 11;//10;
 
 final int ROUNDED_CORNER_VALUE = 10;
 
@@ -178,7 +178,7 @@ final color COLOR_YearBar_HoveredOn = color(231, 221, 142);  //E7DD8E
 final color COLOR_YearBar_ClickSelected = color(153, 121, 35);  //997923
 final color COLOR_YearBarLabel = color(158, 115, 62);
 
-final color COLOR_PopupBubble = color(0); //209  //255,196,64
+final color COLOR_PopupBubble = color(0, 230); //209  //255,196,64
 final color COLOR_DoDText = color(255);
 
 final color COLOR_LegendBackground = color(209);
