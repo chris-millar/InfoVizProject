@@ -9,8 +9,14 @@ static int mode = 0;
 static int dataMode = 0;
 
 private final int IMG_WIDTH = 15, IMG_HEIGHT = 15;
-PImage selected = loadImage("C:\\Users\\Huy\\Desktop\\selected.png");
-PImage unselected = loadImage("C:\\Users\\Huy\\Desktop\\unselected.png");
+//PImage selected = loadImage("C:\\Users\\Huy\\Desktop\\selected.png");
+//PImage unselected = loadImage("C:\\Users\\Huy\\Desktop\\unselected.png");
+
+String selURL = "http://i.imgur.com/6lYa8K3.gif";
+PImage selected = loadImage(selURL, "png");
+
+String UnselURL = "http://i.imgur.com/Bok7rHI.png";
+PImage unselected = loadImage(UnselURL, "png");
 
 void buildVisualizationTwo() {
   
