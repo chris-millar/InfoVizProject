@@ -26,7 +26,6 @@ ArrayList<ArrayList<barChartBar>> collegeBars;
 
 void buildVisualizationTwo() {
   
-  //bars = new ArrayList<barChartBar>();
   dataMode = this.dataMode;
   year = 1999;
   getData();
