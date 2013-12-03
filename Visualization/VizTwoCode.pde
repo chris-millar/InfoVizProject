@@ -7,6 +7,7 @@ int year;
 RadioButton r, rOther;
 static int mode = 0;
 static int dataMode = 0;
+boolean change = true;
 
 private final int IMG_WIDTH = 15, IMG_HEIGHT = 15;
 //PImage selected = loadImage("C:\\Users\\Huy\\Desktop\\selected.png");
@@ -92,69 +93,24 @@ void controlEvent(ControlEvent theEvent) {
     collegeBars = new ArrayList<ArrayList<barChartBar>>();
     dataMode = int(r.getValue());
     //getData();
+    //initCharts();
     drawVisualizationTwo();
+    change = true;
   }
   
   if(theEvent.isFrom(rOther)) {
     collegeBars = new ArrayList<ArrayList<barChartBar>>();
     mode = int(rOther.getValue());
     //getData();
+    //initCharts();
     drawVisualizationTwo();
+    change = true;
   }
   
 }
 
 
 //------------------------ DRAW METHODS -------------------------//
-
-
-
-void vizTwoAnimate(){
-  
-//  for(ArrayList<barChartBar> bars : collegeBars){
-//    if(bars.size() == 4){
-//      int tempX = 1;
-//      
-//        fill(bars.get(0).Color, bars.get(0).opacity);
-//        noStroke();
-//        rect(bars.get(0).drawX, bars.get(0).drawY, bars.get
-//      
-//    }
-//    else if (bars.size() == 3){
-//      
-//    }
-//    else if (bars.size() == 2){
-//      
-//    }
-//    else if (bars.size() == 1){
-//      
-//    }
-//    
-//  }
-
-  //print(collegeBars);
-    
-   for(ArrayList<barChartBar> bars : collegeBars){
-     //print("test");
-      for(barChartBar b : bars){
-        //print("test");
-      fill(b.Color, b.opacity);
-      noStroke();
-      int tempH = 1;
-      while(tempH < b.h){
-        rect(b.drawX, b.drawY, tempH, b.w);
-        tempH++;
-      }
-    } 
-  }
-}
-
-//void viz2DrawAni(){
-//  
-//  for (int i=0; i<bars.size && !bars[i].render(); i++);
-//  
-//}
-
 
 
 void initCharts(){
@@ -180,8 +136,7 @@ void initCharts(){
 }
 
 void drawVisualizationTwo() {
-  
-  
+
   initCharts();
   
   //fill(175);
@@ -204,9 +159,21 @@ void drawVisualizationTwo() {
   cp5.draw();
   
   String y = Integer.toString(CurrSelectedYear);
-  y = y.concat(" Breakdown");
+  y = y.concat(" Breakdown ");
+  String by = "";
+  if(mode == 0){
+    by = "by Major";
+  }
+  else if (mode == 1){
+    by = "by Ethnicity";
+  }
+  else if (mode == 2){
+    by = "by Gender";
+  }
+  y = y.concat(by);
   textSize(25);
-  text(y,500,323);
+  textAlign(CENTER);
+  text(y,round((float)vizOne_width /2),315);
   
     //paint Major/Ethnicity/Gender
   //hardcoding location for now
@@ -492,7 +459,14 @@ public class barChart{
       dMode = "by Number of Students";
     text(dMode, posX+160,posY-145);
     
-    drawBars();
+    
+    //drawBars();
+    
+    
+    if(firstDraw || change){
+      drawBars();
+    }
+    bDraw();
     
   }
   
@@ -540,18 +514,20 @@ public class barChart{
     }
     
     collegeBars.add(bars);
-    //print(collegeBars);
-  
-    //for (int i=0; i<bars.size() && !bars.get(i).render(); i++);
-    
-    for(barChartBar b : bars){
-      //for (int i=0; i<bars.size() && !b.render(); i++);
-     b.draw(); 
-     //b.render();
-    }
     
   }
+  
+  void bDraw(){
+    for(barChartBar b : bars){
+     b.draw(); 
+    }
+  }  
+  
+  
+  
 } ///// End Class bar chart
+
+
 
 public class barChartBar{
   int dataPercent, dataNum;
@@ -638,6 +614,10 @@ public class barChartBar{
       name = "Science, Technology and Culture";
       abrevName = "Science, Tech, & Culture";
       text(abrevName, x-80, y-205, 60, 100);
+    }
+    else if(name.equals("Pre-Architecture")){
+      name = "Pre- Architecture";
+      text(name, x-80, y-205, 60, 100);
     }
     else if(name.equals("History Technology and Society") || name.equals("History. Technology and Society")){
      name = "History, Technology and Society";

@@ -24,6 +24,8 @@ ControlP5 cp5;
 //*** Fonts ***//
 PFont calibri;
 PFont Aharoni_Bold;
+PFont avenir;
+PFont hel;
 
 //*** Event & Interaction Tracers ***//
 public int CurrSelectedYear;
@@ -206,6 +208,8 @@ void initGlobalDataAndVizElements() {
 void initFonts() {
   calibri = loadFont("Calibri-12.vlw");
   Aharoni_Bold = loadFont("Aharoni-Bold-12.vlw"); 
+  avenir = loadFont("Avenir-Light-32.vlw");
+  hel = loadFont("Helvetica-Light-40.vlw");
 }
 
 void initControlP5() {
