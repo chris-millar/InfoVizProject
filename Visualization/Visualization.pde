@@ -13,6 +13,20 @@ boolean debug = false;
 
 public void setup() {
   
+  selected = loadImage("selected.png");
+  unselected = loadImage("unselected.png");
+
+//  if (frame != null) {
+//    frame.setResizable(true);
+//  }
+  
+  selected = loadImage("selected.png");
+  unselected = loadImage("unselected.png");
+  
+  if (frame != null) {
+    frame.setResizable(true);
+  }
+  
   //frameRate(4);
   initGlobals();
   loadData();
@@ -28,6 +42,7 @@ public void setup() {
 public void initScreen() {
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
   //frameRate(30);
+  //size(displayWidth, displayHeight);
 }
 
 public void setInitialEventTracerValuesInsideVisualObjects() {

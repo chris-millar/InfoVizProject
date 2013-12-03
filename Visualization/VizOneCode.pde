@@ -142,9 +142,20 @@ void checkVisualizationOne() {
 //------------------------ DRAW METHODS -------------------------//
 void drawVisualizationOne() {
    vizOne_yAxis.draw();
+   vizOne_yAxis.drawLabel("Students");
    vizOne_xAxis.draw();
    
    legend.draw();
+   
+   int titleX = vizOne_X + round((float)vizOne_width / 2);
+   int titleY = vizOne_Y + vizOne_InnerPaddingY / 2; 
+   
+   textAlign(CENTER, TOP);
+   fill(0);
+   stroke(0);
+   textSize(20);
+   text("University Enrollment by Year", titleX, titleY);
+   textSize(12);
    
    for (YearBar yearBar : yearBars) {
      yearBar.draw();

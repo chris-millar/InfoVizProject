@@ -7,11 +7,26 @@ int year;
 RadioButton r, rOther;
 static int mode = 0;
 static int dataMode = 0;
+boolean change = true;
 
 private final int IMG_WIDTH = 15, IMG_HEIGHT = 15;
-PImage selected = loadImage("C:\\Users\\Huy\\Desktop\\selected.png");
-PImage unselected = loadImage("C:\\Users\\Huy\\Desktop\\unselected.png");
 
+//Works on my hardrive.
+//PImage selected = loadImage("C:\\Users\\lucas\\Documents\\GitHub\\InfoVizProject\\Visualization\\data\\selected.png");
+//PImage unselected = loadImage("C:\\Users\\lucas\\Documents\\GitHub\\InfoVizProject\\Visualization\\data\\unselected.png");
+
+//String selURL = "";
+PImage selected; // = loadImage("selected.png");
+PImage unselected; //= loadImage("unselected.png");
+
+
+/*
+String selURL = "http://i.imgur.com/6lYa8K3.gif";
+PImage selected = loadImage(selURL, "png");
+
+String UnselURL = "http://i.imgur.com/Bok7rHI.png";
+PImage unselected = loadImage(UnselURL, "png");
+*/
 
 barChart bc1,bc2,bc3,bc4,bc5,bc6;
 ArrayList<ArrayList<barChartBar>> collegeBars;
@@ -20,15 +35,14 @@ ArrayList<ArrayList<barChartBar>> collegeBars;
 
 void buildVisualizationTwo() {
   
-  //bars = new ArrayList<barChartBar>();
   dataMode = this.dataMode;
   year = 1999;
   getData();
   drawCP5();
   mode = this.mode;
   
-  //selected.resize(IMG_WIDTH, IMG_HEIGHT); // huy
-  //unselected.resize(IMG_WIDTH, IMG_HEIGHT); // huy
+  selected.resize(IMG_WIDTH, IMG_HEIGHT); // huy remove comment to test.
+  unselected.resize(IMG_WIDTH, IMG_HEIGHT); // huy remove comment to test.
 
   
   collegeBars = new ArrayList<ArrayList<barChartBar>>();
@@ -69,15 +83,15 @@ void drawCP5(){
               .setItemsPerRow(1)
               .setSpacingColumn(50)
               .setSpacingRow(10)
-              //.setSpacingRow(IMG_HEIGHT/2) // huy images
-              .addItem("Major",0)
-              //.addItem("", 0) // huy images
-              .addItem("Ethnicity", 1)
-              //.addItem("", 1) // huy images
-              .addItem("Gender", 2)
-              //.addItem("", 2) // huy images
+              .setSpacingRow(IMG_HEIGHT/2) // huy images
+              //.addItem("Major",0)
+              .addItem("X", 0) // huy images
+              //.addItem("Ethnicity", 1)
+              .addItem("Y", 1) // huy images
+              //.addItem("Gender", 2)
+              .addItem("Z", 2) // huy images
               .setNoneSelectedAllowed(false)
-              //.setImages(unselected, unselected, selected) //default, theOverImage, activeImage // huy images
+              .setImages(unselected, unselected, selected) //default, theOverImage, activeImage // huy images
               .activate(mode);
 
 }
@@ -87,69 +101,24 @@ void controlEvent(ControlEvent theEvent) {
     collegeBars = new ArrayList<ArrayList<barChartBar>>();
     dataMode = int(r.getValue());
     //getData();
+    //initCharts();
     drawVisualizationTwo();
+    change = true;
   }
   
   if(theEvent.isFrom(rOther)) {
     collegeBars = new ArrayList<ArrayList<barChartBar>>();
     mode = int(rOther.getValue());
     //getData();
+    //initCharts();
     drawVisualizationTwo();
+    change = true;
   }
   
 }
 
 
 //------------------------ DRAW METHODS -------------------------//
-
-
-
-void vizTwoAnimate(){
-  
-//  for(ArrayList<barChartBar> bars : collegeBars){
-//    if(bars.size() == 4){
-//      int tempX = 1;
-//      
-//        fill(bars.get(0).Color, bars.get(0).opacity);
-//        noStroke();
-//        rect(bars.get(0).drawX, bars.get(0).drawY, bars.get
-//      
-//    }
-//    else if (bars.size() == 3){
-//      
-//    }
-//    else if (bars.size() == 2){
-//      
-//    }
-//    else if (bars.size() == 1){
-//      
-//    }
-//    
-//  }
-
-  //print(collegeBars);
-    
-   for(ArrayList<barChartBar> bars : collegeBars){
-     //print("test");
-      for(barChartBar b : bars){
-        //print("test");
-      fill(b.Color, b.opacity);
-      noStroke();
-      int tempH = 1;
-      while(tempH < b.h){
-        rect(b.drawX, b.drawY, tempH, b.w);
-        tempH++;
-      }
-    } 
-  }
-}
-
-//void viz2DrawAni(){
-//  
-//  for (int i=0; i<bars.size && !bars[i].render(); i++);
-//  
-//}
-
 
 
 void initCharts(){
@@ -175,8 +144,7 @@ void initCharts(){
 }
 
 void drawVisualizationTwo() {
-  
-  
+
   initCharts();
   
   //fill(175);
@@ -199,11 +167,31 @@ void drawVisualizationTwo() {
   cp5.draw();
   
   String y = Integer.toString(CurrSelectedYear);
-  y = y.concat(" Breakdown");
-  textSize(25);
-  text(y,500,323);
+  y = y.concat(" Breakdown ");
+  String by = "";
+  if(mode == 0){
+    by = "by Major";
+  }
+  else if (mode == 1){
+    by = "by Ethnicity";
+  }
+  else if (mode == 2){
+    by = "by Gender";
+  }
+  y = y.concat(by);
+  textSize(20);
+  textAlign(CENTER);
+  text(y,round((float)vizOne_width /2),315);
   
-  
+    //paint Major/Ethnicity/Gender
+  //hardcoding location for now
+  fill(0);
+  textSize(9);
+  textAlign(CENTER,BOTTOM);
+  int textYPos = 412; 
+  text("MAJOR",1213,textYPos);
+  text("ETHNICITY",1222, textYPos + IMG_HEIGHT + 2);
+  text("GENDER",1215, textYPos + 2*IMG_HEIGHT + 5);
   
   
   
@@ -461,15 +449,18 @@ public class barChart{
     noStroke();
     rect(posX-90, posY-140-30, 345, 150, 6);
   
-    fill(80,80,80);
+    //fill(80,80,80);
+    fill(50);
     
     float x = 30;
     float y = 150;
     textAlign(CENTER,BOTTOM); 
  
     //paint college name
-    textSize(16);
-    text(name,posX+50,posY-143);
+    
+    textSize(18);
+    text(name,posX+80,posY-143);
+    float tw = textWidth(name);
     
     //paint "by percentage/by number"
     textSize(9);
@@ -477,9 +468,16 @@ public class barChart{
       dMode = "by Percentage of Students";
     else if (dataMode ==1)
       dMode = "by Number of Students";
-    text(dMode, posX+160,posY-145);
+    text(dMode, posX+80,posY-133);
     
-    drawBars();
+    
+    //drawBars();
+    
+    
+    if(firstDraw || change){
+      drawBars();
+    }
+    bDraw();
     
   }
   
@@ -505,10 +503,10 @@ public class barChart{
       
       
       
-      barChartBar bA = new barChartBar(getPercent(college.getAsian(), college.TotalCollege),college.getAsian(), barX, barY-10, "Asian", college, opacity);
-      barChartBar bB = new barChartBar(getPercent(college.getBlack(), college.TotalCollege),college.getBlack(), barX, barY+15, "Black", college, opacity);
-      barChartBar bH = new barChartBar(getPercent(college.getHispanic(), college.TotalCollege),college.getHispanic(), barX, barY+40, "Hispanic", college, opacity);
-      barChartBar bW = new barChartBar(getPercent(college.getWhite(), college.TotalCollege),college.getWhite(), barX, barY+65, "White", college, opacity);
+      barChartBar bA = new barChartBar(getPercent(college.getAsian(), college.TotalCollege),college.getAsian(), barX, barY-5, "Asian", college, opacity);
+      barChartBar bB = new barChartBar(getPercent(college.getBlack(), college.TotalCollege),college.getBlack(), barX, barY+20, "Black", college, opacity);
+      barChartBar bH = new barChartBar(getPercent(college.getHispanic(), college.TotalCollege),college.getHispanic(), barX, barY+45, "Hispanic", college, opacity);
+      barChartBar bW = new barChartBar(getPercent(college.getWhite(), college.TotalCollege),college.getWhite(), barX, barY+70, "White", college, opacity);
       
       bars.add(bA);
       bars.add(bB);
@@ -527,18 +525,20 @@ public class barChart{
     }
     
     collegeBars.add(bars);
-    //print(collegeBars);
-  
-    //for (int i=0; i<bars.size() && !bars.get(i).render(); i++);
-    
-    for(barChartBar b : bars){
-      //for (int i=0; i<bars.size() && !b.render(); i++);
-     b.draw(); 
-     //b.render();
-    }
     
   }
+  
+  void bDraw(){
+    for(barChartBar b : bars){
+     b.draw(); 
+    }
+  }  
+  
+  
+  
 } ///// End Class bar chart
+
+
 
 public class barChartBar{
   int dataPercent, dataNum;
@@ -625,6 +625,10 @@ public class barChartBar{
       name = "Science, Technology and Culture";
       abrevName = "Science, Tech, & Culture";
       text(abrevName, x-80, y-205, 60, 100);
+    }
+    else if(name.equals("Pre-Architecture")){
+      name = "Pre- Architecture";
+      text(name, x-80, y-205, 60, 100);
     }
     else if(name.equals("History Technology and Society") || name.equals("History. Technology and Society")){
      name = "History, Technology and Society";

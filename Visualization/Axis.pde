@@ -11,6 +11,8 @@ public class Axis {
   
   int weight;
   
+  final int labelPad = 3;
+  
   
   public Axis(int belongsTo, String Name, int x1, int y1, int x2, int y2, color Color) {
     this.VizBelongsTo = belongsTo;
@@ -39,7 +41,15 @@ public class Axis {
     strokeWeight(weight);
     line(x1, y1, x2, y2);
     
-    strokeWeight(1); 
+    strokeWeight(1);
+  }
+  
+  public void drawLabel(String label) {
+    fill(155);
+    textSize(12);
+    textAlign(CENTER, BOTTOM);
+      
+    text(label, x1, y1 - labelPad);  
   }
   
   public void setWeight(int w){

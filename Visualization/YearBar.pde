@@ -141,7 +141,7 @@ public class YearBar {
       fill(0);
       stroke(0);
       String yearText = new Integer(Year).toString();
-      //textSize(12);
+      textSize(12);
       textAlign(CENTER, TOP);
       
       text(yearText, xlabel, label_yPos);
@@ -168,7 +168,7 @@ public class YearBar {
     else if (hoveredOn) {
       //Regular Bar Part
       fill(250);
-      //fill(barColor_HoveredOn, opacity_HoveredOn);
+      //fill(barColor_HoveredOn, opacity_HoveredOn); // Viz1 full bar highlight.
       //stroke(#9E843E);
       noStroke();
       rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);

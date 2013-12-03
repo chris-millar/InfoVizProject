@@ -24,6 +24,8 @@ ControlP5 cp5;
 //*** Fonts ***//
 PFont calibri;
 PFont Aharoni_Bold;
+PFont avenir;
+PFont hel;
 
 //*** Event & Interaction Tracers ***//
 public int CurrSelectedYear;
@@ -51,7 +53,7 @@ final int SCREEN_HEIGHT = 650;
 final int STUDENTS_PER_PIXEL = 60; //265 px, each worth 60 students  --> for Viz 1 Y-Axis ONLY
 
 final int POPUP_EDGE_PADDING = 7;
-final int POPUP_VERTICAL_SPACING = 10;
+final int POPUP_VERTICAL_SPACING = 11;//10;
 
 final int ROUNDED_CORNER_VALUE = 10;
 
@@ -176,8 +178,8 @@ final color COLOR_YearBar_HoveredOn = color(231, 221, 142);  //E7DD8E
 final color COLOR_YearBar_ClickSelected = color(153, 121, 35);  //997923
 final color COLOR_YearBarLabel = color(158, 115, 62);
 
-final color COLOR_PopupBubble = color(209);
-final color COLOR_DoDText = color(0);
+final color COLOR_PopupBubble = color(0, 230); //209  //255,196,64
+final color COLOR_DoDText = color(255);
 
 final color COLOR_LegendBackground = color(209);
 final color COLOR_LegendText = color(0);
@@ -206,6 +208,8 @@ void initGlobalDataAndVizElements() {
 void initFonts() {
   calibri = loadFont("Calibri-12.vlw");
   Aharoni_Bold = loadFont("Aharoni-Bold-12.vlw"); 
+  avenir = loadFont("Avenir-Light-32.vlw");
+  hel = loadFont("Helvetica-Light-40.vlw");
 }
 
 void initControlP5() {
