@@ -142,6 +142,7 @@ void checkVisualizationOne() {
 //------------------------ DRAW METHODS -------------------------//
 void drawVisualizationOne() {
    vizOne_yAxis.draw();
+   vizOne_yAxis.drawLabel("Students");
    vizOne_xAxis.draw();
    
    legend.draw();
