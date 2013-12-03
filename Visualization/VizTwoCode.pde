@@ -19,8 +19,8 @@ void buildVisualizationTwo() {
   getData();
   drawCP5();
   mode = this.mode;
-  //selected.resize(IMG_WIDTH, IMG_HEIGHT);
-  //unselected.resize(IMG_WIDTH, IMG_HEIGHT);
+  selected.resize(IMG_WIDTH, IMG_HEIGHT);
+  unselected.resize(IMG_WIDTH, IMG_HEIGHT);
 }
 
 
@@ -55,11 +55,11 @@ void drawCP5(){
               .setSpacingColumn(50)
               .setSpacingRow(IMG_HEIGHT/2)
               //.addItem("Major", 0)
-              .addItem("", 0)
+              .addItem("X", 0)
               //.addItem("Ethnicity", 1)
-              .addItem(" ", 1)
+              .addItem("Y", 1)
               //.addItem("Gender", 2)
-              .addItem("  ", 2)
+              .addItem("Z", 2)
               .setNoneSelectedAllowed(false)
               .setImages(unselected, unselected, selected) //default, theOverImage, activeImage
               .activate(mode);
