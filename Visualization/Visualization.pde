@@ -13,15 +13,12 @@ boolean debug = false;
 
 public void setup() {
   
-  selected = loadImage("selected.png");
-  unselected = loadImage("unselected.png");
+  selected = loadImage("buttons/buttonSelected.png");
+  unselected = loadImage("buttons/buttonUnselected.png");
 
 //  if (frame != null) {
 //    frame.setResizable(true);
 //  }
-  
-  selected = loadImage("selected.png");
-  unselected = loadImage("unselected.png");
   
   if (frame != null) {
     frame.setResizable(true);
