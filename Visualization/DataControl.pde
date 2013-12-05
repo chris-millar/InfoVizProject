@@ -11,8 +11,6 @@ public void loadData() {
       
       ArrayList<Major> top3Majors = new ArrayList<Major>();
       
-      //System.out.println("DEBUG: YEAR: " + i + "\t\t" + "ON-LINE: " + j);
-      
       Major FirstMajor = new Major(lineVals[1], Integer.parseInt(lineVals[2]));
       top3Majors.add(FirstMajor);
       

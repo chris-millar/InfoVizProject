@@ -17,7 +17,6 @@ public class CollegeBar
   private int Male, Female;
   
   private color barColor_Unselected;
-  //private color barColor_Selected;
   private color barColor_HoveredOn;
   
   private boolean hoveredOn;
@@ -88,15 +87,6 @@ public class CollegeBar
 
   }
   
-//  boolean render() {
-//    if ( n<bar_height ) {
-//      n+=3;
-//    }
-//    noStroke();
-//    fill(Color, opacity);
-//    rect(x, width-n, bar_width, n);
-//    return( n<h );
-//  }
   
   /*
   * Method that draws the rectangle; hard egdes for now
@@ -105,17 +95,11 @@ public class CollegeBar
   {
     if (hoveredOn) {
       fill(barColor_HoveredOn, opacity_HoveredOn);
-      //noStroke();
       stroke(255);
-      //stroke(barColor_HoveredOn, opacity_Unselected);
       rect(xPos, yPos, bar_width, bar_height);
-      
-      //buildPopupBubble();
-      //popup.draw();
     }
     else {
         fill(barColor_Unselected, opacity_Unselected);
-        //noStroke();
         stroke(255);
         strokeWeight(1.2);
         rect(xPos, yPos, bar_width, bar_height);
@@ -124,7 +108,6 @@ public class CollegeBar
     if(colToDraw != 6){
       String collegeNum = Integer.toString(TotalCollege);
       textAlign(CENTER);
-      //fill(0);
       text(collegeNum, textPlacement, yPos-5);
     }
   }
@@ -174,7 +157,6 @@ public class CollegeBar
     contentSize[2] = maxSize - 2;
     contentSize[7] = maxSize - 2;
     
-    
     ///////////////////////////////////////////
     
     int bubWidth = ceil(maxSize) + 2 * POPUP_EDGE_PADDING;
@@ -182,7 +164,6 @@ public class CollegeBar
     
     popup = new PopupBubble(0, 0, mouseX, mouseY, bubWidth, bubHeight, COLOR_PopupBubble);
     popup.setContent(content);
-    
   }
   
   public void drawDetailsOnDemandIfNeeded() {

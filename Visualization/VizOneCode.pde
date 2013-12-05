@@ -1,52 +1,19 @@
-RadioButton selCollege, college;
-
-
 //------------------------ BUILD METHODS -------------------------//
 void buildVisualizationOne() {
    vizOne_yAxis = new Axis(1, "yAxis", vizOne_yAxis_x1, vizOne_yAxis_y1, vizOne_yAxis_x2, vizOne_yAxis_y2, Color_AXIS);
    vizOne_xAxis = new Axis(1, "xAxis", vizOne_xAxis_x1, vizOne_xAxis_y1, vizOne_xAxis_x2, vizOne_xAxis_y2, Color_AXIS);
    
    legend = new Legend(vizOne_xAxis.x2, width, vizOne_xAxis.y1);
-     //legend = new Legend(vizOne_xAxis.x2 + vizOne_LegendPadding, vizOne_xAxis.y1);
-       //legend = new Legend(vizOne_xAxis.x2 + vizOne_InnerPaddingX, vizOne_Y + vizOne_InnerPaddingY);
-   
+
    yearBars.clear();
    YearBar currYearBar;
    for (int i=0; i < NUM_YEARS; i++) {
      currYearBar = buildYearBar(i);
      yearBars.add(currYearBar);
    }
-   
-   //makeRB();
-   //buildYB();
-        
+      
    setVarInCurrSelectedYearBar(CurrSelectedYear - BASE_YEAR);
-   
 }
-
-
-void makeRB(){
-     selCollege = cp5.addRadioButton("selectCol")
-        .setPosition(rX+8,rY+9)
-        .setSize(2,2)
-        .setColorLabel(0)
-        .setItemHeight(8)
-        .setItemWidth(10)
-        .setItemsPerRow(1)
-        .setSpacingColumn(50)
-        .setSpacingRow(15)
-        .addItem("College of Architecture",0)
-        .addItem("College of Computing",1)
-        .addItem("College of Engineering",2)
-        .addItem("Ivan Allen College", 3)
-        .addItem("College of Management",4)
-        .addItem("College of Sciences", 5)
-        .addItem("All Colleges",6)
-        .setNoneSelectedAllowed(false)
-        .activate(colToDraw);
-}
-
-
 
 
 public YearBar buildYearBar(int yearIndex) {
@@ -63,7 +30,6 @@ public YearBar buildYearBar(int yearIndex) {
   int xPos = vizOne_yAxis.x1 + ((1 + yearIndex) * YearBar_SPACING) + (yearIndex * YearBar_WIDTH);
   int yPos = vizOne_yAxis.y1 + (vizOne_yAxis.getHeight() - (totalEnrollment / STUDENTS_PER_PIXEL)) - InnerBarSpacing;
   int barHeight = vizOne_xAxis.y1 - yPos;
-  //int barHeight = vizOne_xAxis.y1 - yPos + InnerBarSpacing;
   
   int relative_xPos = xPos + InnerBarSpacing;
   int relative_yPos = yPos + InnerBarSpacing;
@@ -71,7 +37,6 @@ public YearBar buildYearBar(int yearIndex) {
   ArrayList<CollegeBar> collegeBars = new ArrayList<CollegeBar>();
   
   if(colToDraw == 6){
-    //Years.get(yearIndex).setCollegeMode(true);
     for (int i=0; i < 6; i++) {
       currCollege = Years.get(yearIndex).get(i);
       currCollegeBar = buildCollegeBar(currCollege, totalEnrollment, relative_xPos, relative_yPos, barHeight);
@@ -92,7 +57,6 @@ public YearBar buildYearBar(int yearIndex) {
   yearBar.setBarColor_Unselected(COLOR_YearBar_Unselected);
   yearBar.setBarColor_HoveredOn(COLOR_YearBar_HoveredOn);
   yearBar.setBarColor_ClickSelected(COLOR_YearBar_HoveredOn);
-  //yearBar.setLabelColor(COLOR_YearBarLabel);
   
   return yearBar; 
 }
@@ -100,10 +64,6 @@ public YearBar buildYearBar(int yearIndex) {
 
 public CollegeBar buildCollegeBar(College college, int totalEnrollmentForYear, int xPos, int yPos, int yearBarHeight) {
   CollegeBar collegeBar;
-  
-  //int barHeight = (yearBarHeight - (2 * InnerBarSpacing)) - (college.getTotalCollege() / STUDENTS_PER_PIXEL);
-  //float barHeight = ((float)college.getTotalCollege() / totalEnrollmentForYear) * (yearBarHeight - (2 * InnerBarSpacing));
-  //float barHeight = round(((float)college.getTotalCollege() / totalEnrollmentForYear) * (yearBarHeight - (2 * InnerBarSpacing)));
   
   float barHeight = round(((float)college.getTotalCollege() / totalEnrollmentForYear) * (yearBarHeight - InnerBarSpacing));
   if(colToDraw == 6){
@@ -165,8 +125,6 @@ void vizOneCheckMouseClicked() {
          yearBar.setClickSelected(true);
          yearBars.get(oldYearIndex).setClickSelected(false);
          
-         //println("CurrSelectedYear: \t" + CurrSelectedYear + "\t--->\t" + yearClicked);
-         
          CurrSelectedYear = yearClicked;
          Event_SelectedYearChange = true;
        } 
@@ -190,7 +148,6 @@ void checkVisualizationOne() {
        collegeBar.isHoveredOver();
      } 
    }
-   
    legend.checkElementsForHoveredOn();
 }
 
@@ -199,13 +156,14 @@ void checkVisualizationOne() {
 //------------------------ DRAW METHODS -------------------------//
 void drawVisualizationOne() {
    vizOne_yAxis.draw();
-   vizOne_yAxis.drawLabel("Students");
+   String[] labelVals = new String[2];
+   labelVals[0] = "University";
+   labelVals[1] = "Enrollment";
+   vizOne_yAxis.drawLabel(labelVals);
    vizOne_xAxis.draw();
    
    
-   
    legend.draw();
-   //cp5.draw();
    
    int titleX = vizOne_X + round((float)vizOne_width / 2);
    int titleY = vizOne_Y + vizOne_InnerPaddingY / 2; 
@@ -214,7 +172,7 @@ void drawVisualizationOne() {
    fill(0);
    stroke(0);
    textSize(20);
-   text("University Enrollment by Year", titleX, titleY);
+   text("GT University Enrollment by Year", titleX, titleY);
    textSize(12);
    
    for (YearBar yearBar : yearBars) {

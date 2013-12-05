@@ -27,7 +27,6 @@ public class YearBar {
   
   private final int radius = 7;
   private final int opacity_Unselected = 125;
-  //private final int opacity_hoveredOn = (int) (opacity_normal + ((float) .25 * opacity_normal));
   private final int opacity_HoveredOn = 150;
   private final int opacity_ClickSelected = 175;
   
@@ -91,7 +90,7 @@ public class YearBar {
   }
   
   // brushing only on correct year hovering.
-    public int getXPos()
+  public int getXPos()
   {
     return xPos;
   }
@@ -110,7 +109,6 @@ public class YearBar {
   {
     return bar_height;
   }
-  // ...
   
   public boolean getCollegeMode() {
     return collegeMode; 
@@ -136,8 +134,6 @@ public class YearBar {
     //SELECTED Version
     if (clickSelected) {
       //Regular Bar Part
-      //fill(barColor_ClickSelected, opacity_ClickSelected);
-      //stroke(#9E843E);
       fill(barColor_HoveredOn, opacity_HoveredOn);
       noStroke();
       rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);
@@ -153,15 +149,12 @@ public class YearBar {
       String yearText = new Integer(Year).toString();
       textSize(12);
       textAlign(CENTER, TOP);
-      
-      text(yearText, xlabel, label_yPos);
-      //text(yearText, label_xPos, label_yPos, label_width, label_height);   
+      text(yearText, xlabel, label_yPos); 
    
       //yAxis smart grid line
       strokeWeight(1);
       stroke(150, 50);
       line(vizOne_yAxis.x1, yPos + InnerBarSpacing - 1, vizOne_xAxis.x2, yPos + InnerBarSpacing - 1);
-      //line(vizOne_yAxis.x1, yPos + InnerBarSpacing, xPos + bar_width - InnerBarSpacing, yPos + InnerBarSpacing);
       
       fill(0);
       stroke(0);
@@ -170,7 +163,6 @@ public class YearBar {
       String enrollment = new Integer(TotalEnrollment).toString();
       float labelXPos = vizOne_yAxis.x1 - textWidth(enrollment) - 5 ;
       float labelYPos = yPos + InnerBarSpacing - 1;
-      //println(enrollment + "\t\t xPos: " + labelXPos + "\t\t yPos: " + labelYPos);
       text(enrollment, vizOne_yAxis.x1 - 5, yPos + InnerBarSpacing - 1);
       noStroke();  
     }
@@ -178,8 +170,6 @@ public class YearBar {
     else if (hoveredOn) {
       //Regular Bar Part
       fill(250);
-      //fill(barColor_HoveredOn, opacity_HoveredOn); // Viz1 full bar highlight.
-      //stroke(#9E843E);
       noStroke();
       rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);
      
@@ -192,16 +182,13 @@ public class YearBar {
       fill(0);
       stroke(0);
       String yearText = new Integer(Year).toString();
-      //textSize(12);
       textAlign(CENTER, TOP);
       text(yearText, xlabel, label_yPos);
-      //text(yearText, label_xPos, label_yPos, label_width, label_height);
     }
     //NORMAL Version
     else {
       //Regular Bar Part
       fill(barColor_Unselected, opacity_Unselected);
-      //stroke(#9E843E);
       noStroke();
       rect(xPos, yPos, bar_width, bar_height, radius, radius, 0, 0);
      
@@ -214,10 +201,8 @@ public class YearBar {
       fill(0);
       stroke(0);
       String yearText = new Integer(Year).toString();
-      //textSize(12);
       textAlign(CENTER, TOP);
       text(yearText, xlabel, label_yPos);
-      //text(yearText, label_xPos, label_yPos, label_width, label_height);
     }
   }
   

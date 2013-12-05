@@ -1,5 +1,3 @@
-
-
 //*************** Global Variables *******************//
 /* 2D ArrayList. Top outerlist holds 15 arraylist each representing a single year.
    innerlist holds 6 College objects */
@@ -12,15 +10,17 @@
 
 boolean firstDraw = true;
 public int rX, rY;
-//public int colToDraw = 6;
+
 
 //*** Data Variables ***//
 public ArrayList<ArrayList<College>> Years;
 public final int NUM_YEARS = 15;
 public final int BASE_YEAR = 1999;
 
+
 //*** Control P5 Stuff ***//
 ControlP5 cp5;
+RadioButton selCollege, college;
 
 
 //*** Fonts ***//
@@ -28,6 +28,7 @@ PFont calibri;
 PFont Aharoni_Bold;
 PFont avenir;
 PFont hel;
+
 
 //*** Event & Interaction Tracers ***//
 public int CurrSelectedYear;
@@ -51,6 +52,7 @@ Legend legend;
 
 ArrayList<YearBar> yearBars;
 
+
 //*** Screen Position Variables ***//
 final int SCREEN_WIDTH = 1350;
 final int SCREEN_HEIGHT = 650;
@@ -67,18 +69,15 @@ int totViz_Y;
 int totViz_width;
 int totViz_height;
 
-
 int vizOne_X;
 int vizOne_Y;
 int vizOne_width;
 int vizOne_height;
 
-
 int vizTwo_X;
 int vizTwo_Y;
 int vizTwo_width;
 int vizTwo_height;
-
 
 int vizOne_InnerPaddingX;
 int vizOne_InnerPaddingY;
@@ -106,16 +105,7 @@ int label_xPading;
 int label_yPading;
 
 
-
-//*** Color Values ***//
-/*
-final color COLOR_ARCHITECTURE = color(200, 0, 0), // red
-            COLOR_IVANALLEN = color(0, 0, 235), // blue
-            COLOR_COMPUTING = color(0, 255, 0), // green
-            COLOR_SCIENCES = color(255, 0, 200), // purple
-            COLOR_MANAGEMENT =  color(0, 255, 255), // cyan
-            COLOR_ENGINEERING = color(255, 135, 0); // orange
-*/            
+//*** Color Values ***//          
 final color COLOR_ARCHITECTURE = color(219,125,51), // 
             COLOR_COMPUTING = color(53,125,174), //
             COLOR_ENGINEERING = color(122,40,32),
@@ -123,25 +113,6 @@ final color COLOR_ARCHITECTURE = color(219,125,51), //
             COLOR_MANAGEMENT =  color(113,137,63),
             COLOR_SCIENCES = color(57,94,139),
             COLOR_ALL_COLLEGES = color(255);
-            
-
-
-
-//            COLOR_ARCHITECTURE = color(153, 173, 145),  //#99AD91
-//            COLOR_COMPUTING =    color(63, 112, 102),
-//            COLOR_ENGINEERING =  color(38, 38, 41), 
-//            COLOR_IVANALLEN =    color(107, 70, 50),
-//            COLOR_MANAGEMENT =   color(194, 94, 6),
-//            COLOR_SCIENCES =     color(133, 126, 132);
-
-/*
-final color COLOR_ARCHITECTURE = color(77, 165, 212),
-            COLOR_IVANALLEN =    color(13, 136, 204),
-            COLOR_COMPUTING =    color(10, 102, 153),
-            COLOR_SCIENCES =     color(28, 59, 76), 
-            COLOR_MANAGEMENT =   color(5, 51, 76),
-            COLOR_ENGINEERING =  color(3, 36, 55);
-*/
     
 final color COLOR_MALE = color(92,119,180), // sky blue
             COLOR_FEMALE = color(214,101,145); // pink
@@ -180,7 +151,6 @@ final color Color_AXIS = color(209);
 
 final color COLOR_YearBar_Unselected = color(250); //#F3E5BE
 final color COLOR_YearBar_HoveredOn = color(231, 221, 142);  //E7DD8E
-//final color COLOR_YearBar_ClickSelected = color(235, 221, 107);  //EBDD6B
 final color COLOR_YearBar_ClickSelected = color(153, 121, 35);  //997923
 final color COLOR_YearBarLabel = color(158, 115, 62);
 
@@ -258,7 +228,6 @@ void initGlobalPositions() {
   vizTwo_width = totViz_width;
   vizTwo_height = totViz_height / 2;
   
-  
   vizOne_InnerPaddingX = 45; //px
   vizOne_InnerPaddingY = 30; //px
   vizOne_LegendPadding = vizOne_InnerPaddingX - 15;
@@ -267,7 +236,6 @@ void initGlobalPositions() {
   vizOne_yAxis_y1 = vizOne_Y + vizOne_InnerPaddingY;
   vizOne_yAxis_x2 = vizOne_yAxis_x1;
   vizOne_yAxis_y2 = vizOne_height - vizOne_InnerPaddingY;
-  
   
   YearBar_SPACING = 20;
   InnerBarSpacing = 7; // 9 + 2
@@ -284,5 +252,4 @@ void initGlobalPositions() {
   vizOne_xAxis_y1 = vizOne_yAxis_y2;
   vizOne_xAxis_x2 = vizOne_xAxis_x1 + ((1 + NUM_YEARS) * YearBar_SPACING) + (NUM_YEARS * YearBar_WIDTH); //vizOne_width - vizOne_InnerPaddingX;
   vizOne_xAxis_y2 = vizOne_xAxis_y1;
-  
 }

@@ -34,17 +34,10 @@ public class PopupBubble {
     calculateOtherValues();
   } 
   
+  
   private void calculateOtherValues() {
     tX1 = xPos;
     tY1 = yPos;
-    
-    /*
-    int triangleDividingLine_length;
-    int triangleTotalBase_length;
-    int triangleIndividualBase_length;
-    
-    int triangleCenterAlignment_distance;
-    */
     
     //Triangle on side=LEFT
     if (true) {  //side == 0
@@ -66,11 +59,11 @@ public class PopupBubble {
         rY = tY1 - triangleCenterAlignment_distance;
       }
       else {
-        
+        //Intentionally left blank
       }
     }
     else {
-    
+      //Intentionally left blank
     }  
   }
   
@@ -87,6 +80,7 @@ public class PopupBubble {
     } 
     
   }
+  
   
   public void draw(int vizId) {
     if (vizId == 1) {
@@ -140,11 +134,6 @@ public class PopupBubble {
           fill(COLOR_DoDText);
           textAlign(CENTER, TOP);
           textSize(textHeight);
-          //textFont(Aharoni_Bold);
-          
-          //int wordWidth = ceil(textWidth(content[i]));
-          //int wordPadding = ceil((float)((rWidth - wordWidth) - (2 * padding)) / 2);
-          //int centeringX = baseX + wordPadding + padding;
           
           int centeringX = baseX + ceil((float)rWidth / 2);
           

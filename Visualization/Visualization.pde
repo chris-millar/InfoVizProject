@@ -30,8 +30,6 @@ public void setup() {
 
 public void initScreen() {
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
-  //frameRate(30);
-  //size(displayWidth, displayHeight);
 }
 
 public void setInitialEventTracerValuesInsideVisualObjects() {
@@ -58,12 +56,7 @@ void draw() {
   }
   
   if (Event_SelectedYearChange) {
-      //println("EVENT -- SelectedYearChange -- recieved\n");
-     
-    
     buildVisualizationTwo();
-    
-    
     Event_SelectedYearChange = false;
     
     if (Event_VizTwoDisplayModeChange) {
@@ -89,13 +82,11 @@ void draw() {
     for (int i=0; i<bars.size() && !bars.get(i).render(); i++);
   }
   
-  
 }
 
 
-
 void updateElementsForBrushing() {
-  //TODO: last thing to do after both visualizations are completed 
+  //Intentionally left blank
 }
 
 

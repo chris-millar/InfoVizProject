@@ -11,7 +11,7 @@ public class Axis {
   
   int weight;
   
-  final int labelPad = 3;
+  final int labelPad = 2;
   
   
   public Axis(int belongsTo, String Name, int x1, int y1, int x2, int y2, color Color) {
@@ -44,12 +44,22 @@ public class Axis {
     strokeWeight(1);
   }
   
-  public void drawLabel(String label) {
+  public void drawLabel(String[] label) {
+    int labelTextSize = 11;
+    
     fill(155);
-    textSize(12);
+    textSize(labelTextSize);
     textAlign(CENTER, BOTTOM);
-      
-    text(label, x1, y1 - labelPad);  
+    
+    if (label.length == 1) {
+       text(label[0], x1, y1 - labelPad);
+    }
+    else if (label.length >= 2) {
+      text(label[0], x1, y1 - labelPad - labelTextSize - labelPad);
+      text(label[1], x1, y1 - labelPad);
+    }
+  
+    textSize(12);  
   }
   
   public void setWeight(int w){

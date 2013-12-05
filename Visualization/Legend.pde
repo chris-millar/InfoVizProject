@@ -17,19 +17,10 @@ public class Legend {
   
   private final int RADIUS = 7;
   
-  /*
-  private final String text_ARCHITECTURE = "College of Architecture";
-  private final String text_COMPUTING = "College of Computing";
-  private final String text_ENGINEERING = "College of Engineering";
-  private final String text_IVANALLEN = "College of Ivan Allen";
-  private final String text_MANAGMENT = "College of Managment";
-  private final String text_SCIENCES = "College of Sciences";
-  */
-  
   private final int NUM_ELEMENTS = 7;
   
   private final String[] collegeTEXT = {"College of Architecture", "College of Computing", "College of Engineering",
-                                        "College of Ivan Allen", "College of Managment", "College of Sciences", "All Colleges"};
+                                        "College of Ivan Allen", "College of Management", "College of Sciences", "All Colleges"};
   
   private final color[] colorBoxColors = {COLOR_ARCHITECTURE, COLOR_COMPUTING, COLOR_ENGINEERING, 
                                          COLOR_IVANALLEN, COLOR_MANAGEMENT, COLOR_SCIENCES, COLOR_ALL_COLLEGES };
@@ -44,8 +35,6 @@ public class Legend {
     elements = new ArrayList<LegendElement>();
     buildLegendElements();
   }
-
-  //int bottomLeftX, int bottomLeftY
 
   
   private void calcLegendPosValues(int leftX, int rightX) {
@@ -66,11 +55,9 @@ public class Legend {
     }
     else {
       rX = leftX + 5;
-      //rX = leftX ;
     }
 
     rY = bottomLeftY - rHeight; 
-    //rY = bottomLeftY - rHeight - 75; 
     
   }
   
@@ -126,11 +113,11 @@ public class Legend {
            Event_VizOneCollegeToDrawChange = true;
          } 
          else {
-           // Do nothing becuase this YearBar was clicked but is already the Currently-Selected-Year
+           // Do nothing becuase this LegendElement was clicked but is already the Currently-Selected-CollegeToDraw
          } 
        }
        else {
-         //Do nothing because this YearBar was not clicked
+         //Do nothing because this LegendElement was not clicked
        }
     }  
   }
@@ -239,7 +226,6 @@ public class LegendElement {
   public void draw() {
       int relativeX = xPos + legend_xPadding/2;
       
-      //println("Legend Element: \t" + 
       
       if (clickSelected) {
         fill(buttonColor_clickSelected);
