@@ -1,6 +1,3 @@
-//import de.looksgood.ani.*;
-//import de.looksgood.ani.easing.*;
-
 import controlP5.*;
 
 // Authors: Nina Flaherty, Chris Millar, Lucas Pessoa, Huy Tran
@@ -54,10 +51,6 @@ void draw() {
   
   background(255);
   
-//  Axis br = new Axis(0, "horizontalLine", 0, 285, 1350, 285, color(0));
-//  br.setWeight(1);
-//  br.setColor(color(210));
-//  br.draw();
   
   if (Event_VizOneCollegeToDrawChange) {
     buildVisualizationOne();

@@ -122,8 +122,6 @@ public class Legend {
            collegeLine.setClickSelected(true);
            elements.get(oldCollegeIdSelected).setClickSelected(false);
            
-           println("CurrSelectedCollegeID: \t" + oldCollegeIdSelected + "\t--->\t" + collegeIdSelected);
-           
            colToDraw = collegeIdSelected;
            Event_VizOneCollegeToDrawChange = true;
          } 
