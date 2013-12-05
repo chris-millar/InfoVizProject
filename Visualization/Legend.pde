@@ -11,6 +11,8 @@ public class Legend {
   private int colorBoxWidth;
   private int colorBoxHeight;
   
+  private ArrayList<LegendElement> elements;
+  
   
   private final int RADIUS = 7;
   
@@ -23,13 +25,13 @@ public class Legend {
   private final String text_SCIENCES = "College of Sciences";
   */
   
-  private final int NUM_ELEMENTS = 6;
+  private final int NUM_ELEMENTS = 7;
   
   private final String[] collegeTEXT = {"College of Architecture", "College of Computing", "College of Engineering",
-                                        "College of Ivan Allen", "College of Managment", "College of Sciences"};
+                                        "College of Ivan Allen", "College of Managment", "College of Sciences", "All Colleges"};
   
   private final color[] colorBoxColors = {COLOR_ARCHITECTURE, COLOR_COMPUTING, COLOR_ENGINEERING, 
-                                         COLOR_IVANALLEN, COLOR_MANAGEMENT, COLOR_SCIENCES };
+                                         COLOR_IVANALLEN, COLOR_MANAGEMENT, COLOR_SCIENCES, COLOR_ALL_COLLEGES };
     
     
   
@@ -37,13 +39,16 @@ public class Legend {
     //this.bottomLeftX = bottomLeftX;
     this.bottomLeftY = bottomLeftY;
     
-    buildLegend(leftX, rightX);
+    calcLegendPosValues(leftX, rightX);
+    
+    elements = new ArrayList<LegendElements>();
+    buildLegendElements();
   }
 
   //int bottomLeftX, int bottomLeftY
 
   
-  private void buildLegend(int leftX, int rightX) {
+  private void calcLegendPosValues(int leftX, int rightX) {
     colorBoxHeight = Legend_TEXTSIZE;
     colorBoxWidth = ceil(1.5 * colorBoxHeight);
     
@@ -74,6 +79,18 @@ public class Legend {
     
   }
   
+  public void buildLegendElements() {
+    int relativeY = rY;
+    int relativeX;
+    for (int i=0; i < NUM_ELEMENTS; i++) {
+      relativeY += Legend_PADDING;
+      relativeX = rX + Legend_PADDING + 15;
+      
+      LegendElement newElement = new LegendElement(relativeX, relativeY, 
+      elements.Add(newElement);
+    }    
+  }
+  
   
   public void draw() {
     fill(COLOR_LegendBackground);
@@ -93,12 +110,14 @@ public class Legend {
       relativeX += colorBoxWidth;
       
       //draw college name
-//      relativeX += Legend_PADDING;
-//      textAlign(LEFT, TOP);
-//      fill(COLOR_LegendText);
-//      stroke(COLOR_LegendText);
-//      textSize(Legend_TEXTSIZE);
-//      text(collegeTEXT[i], relativeX, relativeY);
+      relativeX += Legend_PADDING;
+      textAlign(LEFT, TOP);
+      fill(COLOR_LegendText);
+      stroke(COLOR_LegendText);
+      textSize(Legend_TEXTSIZE);
+      text(collegeTEXT[i], relativeX, relativeY);
+      
+      
       
       relativeY += Legend_TEXTSIZE + 5;
     }
@@ -128,5 +147,50 @@ public class Legend {
     }
     
     return max;
+  }
+}
+
+public class LegendElement {
+  public int xPos, yPos;
+  public int elementWidth, elementHeight;
+  
+  public color legendColor;
+  public String legendText;
+  public int legendID;
+  
+  public boolean hoveredOn;
+  public boolean clickSelected;
+  
+  public final color buttonColor_unselected;
+  public final color buttonColor_hoveredOn;
+  public final color buttonColor_clickSelected;
+  
+  
+  
+  public LegendElement(int xPos, int yPos, int elementWidth, int elementHeight, color legendColor, String legendText, int legendID) {
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.elementWidth = elementWidth;
+    this.elementHeight = elementHeight;
+    this.legendColor = legendColor;
+    this.legendText = legendText;
+    this.legendID = legendID;
+    
+    hoveredOn = false;
+    clickSelected = false;
+  }  
+  
+  
+  public void setHoveredOn(boolean val) {
+    hoveredOn = val; 
+  }
+  
+  public void setClickSelected(boolean val) {
+    clickSelected = val;  
+  }
+  
+  
+  public void draw() {
+    
   }
 }

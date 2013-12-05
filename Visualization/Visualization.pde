@@ -13,8 +13,6 @@ boolean debug = false;
 
 public void setup() {
   
-<<<<<<< HEAD
-  
   selected = loadImage("selected.png");
   unselected = loadImage("unselected.png");
 
@@ -22,7 +20,6 @@ public void setup() {
 //    frame.setResizable(true);
 //  }
   
-=======
   selected = loadImage("selected.png");
   unselected = loadImage("unselected.png");
   
@@ -31,7 +28,6 @@ public void setup() {
   }
   
 
->>>>>>> 872c14ed824a073e8d8a8c779ea6c1f5db95be72
   //frameRate(4);
   initGlobals();
   loadData();
