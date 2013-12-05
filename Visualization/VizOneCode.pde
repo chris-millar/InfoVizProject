@@ -17,21 +17,13 @@ void buildVisualizationOne() {
      yearBars.add(currYearBar);
    }
    
-   makeRB();
+   //makeRB();
    //buildYB();
         
    setVarInCurrSelectedYearBar(CurrSelectedYear - BASE_YEAR);
    
 }
 
-void buildYB(){
-   yearBars.clear();
-   YearBar currYearBar;
-   for (int i=0; i < NUM_YEARS; i++) {
-     currYearBar = buildYearBar(i);
-     yearBars.add(currYearBar);
-   }
-}
 
 void makeRB(){
      selCollege = cp5.addRadioButton("selectCol")
@@ -164,29 +156,31 @@ private void setVarInCurrSelectedYearBar(int curr) {
 //------------------------ CHECK METHODS -------------------------//
 void vizOneCheckMouseClicked() {
   for (YearBar yearBar : yearBars) {
-       boolean wasClicked = yearBar.isMouseInsideBounds();
-       if (wasClicked) {
-         int yearClicked = yearBar.getYear();
-         if (yearClicked != CurrSelectedYear) {
-           int oldYearIndex = CurrSelectedYear - BASE_YEAR;
-           
-           yearBar.setClickSelected(true);
-           yearBars.get(oldYearIndex).setClickSelected(false);
-           
-           println("CurrSelectedYear: \t" + CurrSelectedYear + "\t--->\t" + yearClicked);
-           
-           CurrSelectedYear = yearClicked;
-           Event_SelectedYearChange = true;
-         } 
-         else {
-           // Do nothing becuase this YearBar was clicked but is already the Currently-Selected-Year
-         } 
-       }
+     boolean wasClicked = yearBar.isMouseInsideBounds();
+     if (wasClicked) {
+       int yearClicked = yearBar.getYear();
+       if (yearClicked != CurrSelectedYear) {
+         int oldYearIndex = CurrSelectedYear - BASE_YEAR;
+         
+         yearBar.setClickSelected(true);
+         yearBars.get(oldYearIndex).setClickSelected(false);
+         
+         //println("CurrSelectedYear: \t" + CurrSelectedYear + "\t--->\t" + yearClicked);
+         
+         CurrSelectedYear = yearClicked;
+         Event_SelectedYearChange = true;
+       } 
        else {
-         //Do nothing because this YearBar was not clicked
-       }
-       
+         // Do nothing becuase this YearBar was clicked but is already the Currently-Selected-Year
+       } 
      }
+     else {
+       //Do nothing because this YearBar was not clicked
+     }
+  }
+  
+  legend.checkMouseClicked();   
+     
 }   
 
 void checkVisualizationOne() {
@@ -196,6 +190,8 @@ void checkVisualizationOne() {
        collegeBar.isHoveredOver();
      } 
    }
+   
+   legend.checkElementsForHoveredOn();
 }
 
 
@@ -209,7 +205,7 @@ void drawVisualizationOne() {
    
    
    legend.draw();
-   cp5.draw();
+   //cp5.draw();
    
    int titleX = vizOne_X + round((float)vizOne_width / 2);
    int titleY = vizOne_Y + vizOne_InnerPaddingY / 2; 

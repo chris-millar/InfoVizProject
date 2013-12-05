@@ -12,7 +12,7 @@
 
 boolean firstDraw = true;
 public int rX, rY;
-public int colToDraw = 6;
+//public int colToDraw = 6;
 
 //*** Data Variables ***//
 public ArrayList<ArrayList<College>> Years;
@@ -38,6 +38,9 @@ public boolean Event_SelectedCollegeChange;
 
 public int CurrVizTwoDisplayMode;   // Determines VizTwo Display Mode {0 = Top3Majors, 1 = Gender, 2 = Ethnicity}
 public boolean Event_VizTwoDisplayModeChange;
+
+public int colToDraw;
+public boolean Event_VizOneCollegeToDrawChange;
 
 
 //*** Visualization 1 Visual Elements ***//
@@ -117,8 +120,9 @@ final color COLOR_ARCHITECTURE = color(219,125,51), //
             COLOR_COMPUTING = color(53,125,174), //
             COLOR_ENGINEERING = color(122,40,32),
             COLOR_IVANALLEN = color(93,71,118), //
-           COLOR_MANAGEMENT =  color(113,137,63),
-            COLOR_SCIENCES = color(57,94,139);
+            COLOR_MANAGEMENT =  color(113,137,63),
+            COLOR_SCIENCES = color(57,94,139),
+            COLOR_ALL_COLLEGES = color(255);
             
 
 
@@ -226,7 +230,10 @@ void initEventInteractionTracers_defautValues() {
   Event_VizTwoDisplayModeChange = false;
   
   CurrSelectedCollege = null;
-  
+  Event_VizTwoDisplayModeChange = false;
+
+  colToDraw = 6;
+  Event_VizOneCollegeToDrawChange = false;
 }
 
 

@@ -5,9 +5,9 @@ public class Legend {
   
   private int rWidth, rHeight;
   
-  private final int Legend_PADDING = 8;
+  private final int Legend_yPADDING = 8;
   private final int Legend_TEXTSIZE = 10;
-  private final int INNER_LEGEND_PADDING = 5;
+  private final int Legend_xPADDING = 8; //5
   
   private int colorBoxWidth;
   private int colorBoxHeight;
@@ -37,12 +37,11 @@ public class Legend {
     
   
   public Legend(int leftX, int rightX, int bottomLeftY) {
-    //this.bottomLeftX = bottomLeftX;
     this.bottomLeftY = bottomLeftY;
     
     calcLegendPosValues(leftX, rightX);
     
-    elements = new ArrayList<LegendElements>();
+    elements = new ArrayList<LegendElement>();
     buildLegendElements();
   }
 
@@ -55,8 +54,8 @@ public class Legend {
     
     int maxStringWidth = determineMaxStringPixelSize();
     
-    rWidth = (2 * Legend_PADDING) + colorBoxWidth + Legend_PADDING + maxStringWidth;
-    rHeight = (2 * Legend_PADDING) + (6 * Legend_TEXTSIZE) + (5 * Legend_PADDING);
+    rWidth = (2 * Legend_xPADDING) + colorBoxWidth + Legend_xPADDING + maxStringWidth;
+    rHeight = (2 * Legend_yPADDING) + (NUM_ELEMENTS * Legend_TEXTSIZE) + ((NUM_ELEMENTS-1) * Legend_yPADDING);
     
     int availSpace = rightX - leftX;
     
@@ -66,17 +65,12 @@ public class Legend {
       rX = leftX + dynamicPad;
     }
     else {
-      rX = leftX ;
+      rX = leftX + 5;
+      //rX = leftX ;
     }
-    //rX = bottomLeftX;
-    rY = bottomLeftY - rHeight - 75; 
-    
-    
-    
-      //rY = bottomLeftY;
-   
-   
-   //start here
+
+    rY = bottomLeftY - rHeight; 
+    //rY = bottomLeftY - rHeight - 75; 
     
   }
   
@@ -84,15 +78,18 @@ public class Legend {
     int relativeY = rY;
     int relativeX;
     
-    int elementWidth = rWidth - (2 * INNER_LEGEND_PADDING);
+    int elementWidth = rWidth - Legend_xPADDING; //- (2 * Legend_xPADDING);
     int elementHeight = Legend_TEXTSIZE;
     
     for (int i=0; i < NUM_ELEMENTS; i++) {
-      relativeY += Legend_PADDING;
-      relativeX = rX + Legend_PADDING + 15;
+      relativeY += Legend_yPADDING;
+      relativeX = rX + (Legend_xPADDING/2);
       
-      LegendElement newElement = new LegendElement(relativeX, relativeY, elementWidth, elementHeight, colorBoxColors[i], collegeTEXT[i], i); 
-      elements.Add(newElement);
+      LegendElement newElement = new LegendElement(relativeX, relativeY, elementWidth, elementHeight, colorBoxColors[i], collegeTEXT[i], 
+                                                   i, Legend_xPADDING, Legend_yPADDING, Legend_TEXTSIZE); 
+      elements.add(newElement);
+      
+      relativeY += elementHeight;
     }    
   }
   
@@ -100,49 +97,51 @@ public class Legend {
   public void draw() {
     fill(COLOR_LegendBackground);
     noStroke();
-    rect(rX-2, rY, rWidth+10, rHeight+50, RADIUS);
+    rect(rX, rY, rWidth, rHeight, RADIUS);
     
-    int relativeY = rY;
-    int relativeX;
-    for (int i=0; i < NUM_ELEMENTS; i++) {
-      relativeY += Legend_PADDING;
-      relativeX = rX + Legend_PADDING + 15;
-      
-      //draw color rect
-      fill(colorBoxColors[i]);
-      noStroke();
-      rect(relativeX+105, relativeY, colorBoxWidth+8, colorBoxHeight);
-      relativeX += colorBoxWidth;
-      
-      //draw college name
-      relativeX += Legend_PADDING;
-      textAlign(LEFT, TOP);
-      fill(COLOR_LegendText);
-      stroke(COLOR_LegendText);
-      textSize(Legend_TEXTSIZE);
-      text(collegeTEXT[i], relativeX, relativeY);
-      
-      
-      
-      relativeY += Legend_TEXTSIZE + 5;
+    for (LegendElement line : elements) {
+      line.draw();  
     }
+    
+  }
+  
+  public void checkElementsForHoveredOn() {
+    for (LegendElement line : elements) {
+      line.checkHoveredOn();
+    }  
+  }
+  
+  public void checkMouseClicked() {
+    for (LegendElement collegeLine : elements) {
+       boolean wasClicked = collegeLine.isMouseInsideBounds();
+       if (wasClicked) {
+         int collegeIdSelected = collegeLine.getLegendId();
+         if (collegeIdSelected != colToDraw) {
+           int oldCollegeIdSelected = colToDraw;
+           
+           collegeLine.setClickSelected(true);
+           elements.get(oldCollegeIdSelected).setClickSelected(false);
+           
+           println("CurrSelectedCollegeID: \t" + oldCollegeIdSelected + "\t--->\t" + collegeIdSelected);
+           
+           colToDraw = collegeIdSelected;
+           Event_VizOneCollegeToDrawChange = true;
+         } 
+         else {
+           // Do nothing becuase this YearBar was clicked but is already the Currently-Selected-Year
+         } 
+       }
+       else {
+         //Do nothing because this YearBar was not clicked
+       }
+    }  
   }
   
   
   private int determineMaxStringPixelSize() {
     int max = 0;
-    //int[] curr = new int[6];
     int curr;
-    
-    /*
-    curr[0] = ceil(textWidth(text_ARCHITECTURE));
-    curr[1] = ceil(textWidth(text_COMPUTING));
-    curr[2] = ceil(textWidth(text_ENGINEERING));
-    curr[3] = ceil(textWidth(text_IVANALLEN));
-    curr[4] = ceil(textWidth(text_MANAGMENT));
-    curr[5] = ceil(textWidth(text_SCIENCES));
-    */
-    
+
     for (int i=0; i < 6; i++) {
       textSize(Legend_TEXTSIZE);
       curr = ceil(textWidth(collegeTEXT[i]));
@@ -155,34 +154,60 @@ public class Legend {
   }
 }
 
+
+
 public class LegendElement {
   public int xPos, yPos;
   public int elementWidth, elementHeight;
   
+  public int colorBoxWidth;
+  public int colorBoxHeight;
+  
+  public int legend_xPadding;
+  public int legend_yPadding;
+  public int legend_textSize;
+  
   public color legendColor;
   public String legendText;
-  public int legendID;
+  public int legendId;
   
   public boolean hoveredOn;
   public boolean clickSelected;
   
-  public final color buttonColor_unselected;
-  public final color buttonColor_hoveredOn;
-  public final color buttonColor_clickSelected;
+  public final color buttonColor_unselected = color(64,55,80); //COLOR_LegendBackground;
+  public final color buttonColor_hoveredOn = color(64,55,80); //COLOR_LegendBackground;
+  public final color buttonColor_clickSelected = color(255,255,153);
   
   
   
-  public LegendElement(int xPos, int yPos, int elementWidth, int elementHeight, color legendColor, String legendText, int legendID) {
+  public LegendElement(int xPos, int yPos, int elementWidth, int elementHeight, color legendColor, String legendText, int legendId,
+                       int legend_xPadding, int legend_yPadding, int legend_textSize) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.elementWidth = elementWidth;
     this.elementHeight = elementHeight;
     this.legendColor = legendColor;
     this.legendText = legendText;
-    this.legendID = legendID;
+    this.legendId = legendId;
+    
+    this.legend_xPadding = legend_xPadding;
+    this.legend_yPadding = legend_yPadding;
+    this.legend_textSize = legend_textSize;
+    
+    colorBoxHeight = legend_textSize;
+    colorBoxWidth = ceil(1.5 * colorBoxHeight);
     
     hoveredOn = false;
-    clickSelected = false;
+    if (legendId == colToDraw) {
+      clickSelected = true;    
+    }
+    else {
+      clickSelected = false;
+    }
+  }
+
+  public int getLegendId() {
+    return legendId;
   }  
   
   
@@ -194,8 +219,87 @@ public class LegendElement {
     clickSelected = val;  
   }
   
+  public boolean isMouseInsideBounds() {
+    if  ( ((mouseX > xPos) && (mouseX < (xPos + elementWidth))) && ((mouseY > yPos) && (mouseY < (yPos + elementHeight))) ) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  
+  public void checkHoveredOn() {
+    if (isMouseInsideBounds()) {
+      hoveredOn = true;
+    }
+    else {
+      hoveredOn = false;
+    }     
+  }
+  
   
   public void draw() {
-    
+      int relativeX = xPos + legend_xPadding/2;
+      
+      //println("Legend Element: \t" + 
+      
+      if (clickSelected) {
+        fill(buttonColor_clickSelected);
+        noStroke();
+        rect(xPos, yPos, elementWidth, elementHeight);
+        
+        //draw color rect
+        fill(legendColor);
+        noStroke();
+        rect(relativeX, yPos, colorBoxWidth, colorBoxHeight);
+        relativeX += colorBoxWidth;
+        
+        //draw college name
+        relativeX += legend_xPadding;
+        textAlign(LEFT, TOP);
+        fill(COLOR_LegendText);
+        stroke(COLOR_LegendText);
+        textSize(legend_textSize);
+        text(legendText, relativeX, yPos);          
+      }
+      else if (hoveredOn) {
+        fill(buttonColor_hoveredOn);
+        noStroke();
+        rect(xPos, yPos, elementWidth, elementHeight);
+        
+        //draw color rect
+        fill(legendColor);
+        noStroke();
+        rect(relativeX, yPos, colorBoxWidth, colorBoxHeight);
+        relativeX += colorBoxWidth;
+        
+        //draw college name
+        relativeX += legend_xPadding;
+        textAlign(LEFT, TOP);
+        fill(COLOR_LegendText);
+        stroke(COLOR_LegendText);
+        textSize(legend_textSize);
+        text(legendText, relativeX, yPos);        
+      }
+      else {
+        fill(buttonColor_unselected, 100);
+        noStroke();
+        rect(xPos, yPos, elementWidth, elementHeight);
+        
+        //draw color rect
+        fill(legendColor);
+        noStroke();
+        rect(relativeX, yPos, colorBoxWidth, colorBoxHeight);
+        relativeX += colorBoxWidth;
+        
+        //draw college name
+        relativeX += legend_xPadding;
+        textAlign(LEFT, TOP);
+        fill(COLOR_LegendText);
+        stroke(COLOR_LegendText);
+        textSize(legend_textSize);
+        text(legendText, relativeX, yPos);  
+      }
+      
   }
 }

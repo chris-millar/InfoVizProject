@@ -16,19 +16,10 @@ public void setup() {
   selected = loadImage("selected.png");
   unselected = loadImage("unselected.png");
 
-//  if (frame != null) {
-//    frame.setResizable(true);
-//  }
-  
-  selected = loadImage("selected.png");
-  unselected = loadImage("unselected.png");
-  
   if (frame != null) {
     frame.setResizable(true);
   }
   
-
-  //frameRate(4);
   initGlobals();
   loadData();
   if (debug) { test_Data(); }
@@ -67,6 +58,11 @@ void draw() {
 //  br.setWeight(1);
 //  br.setColor(color(210));
 //  br.draw();
+  
+  if (Event_VizOneCollegeToDrawChange) {
+    buildVisualizationOne();
+    Event_VizOneCollegeToDrawChange = false;  
+  }
   
   if (Event_SelectedYearChange) {
       //println("EVENT -- SelectedYearChange -- recieved\n");
