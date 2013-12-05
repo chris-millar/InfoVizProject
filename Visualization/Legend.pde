@@ -7,6 +7,7 @@ public class Legend {
   
   private final int Legend_PADDING = 8;
   private final int Legend_TEXTSIZE = 10;
+  private final int INNER_LEGEND_PADDING = 5;
   
   private int colorBoxWidth;
   private int colorBoxHeight;
@@ -82,11 +83,15 @@ public class Legend {
   public void buildLegendElements() {
     int relativeY = rY;
     int relativeX;
+    
+    int elementWidth = rWidth - (2 * INNER_LEGEND_PADDING);
+    int elementHeight = Legend_TEXTSIZE;
+    
     for (int i=0; i < NUM_ELEMENTS; i++) {
       relativeY += Legend_PADDING;
       relativeX = rX + Legend_PADDING + 15;
       
-      LegendElement newElement = new LegendElement(relativeX, relativeY, 
+      LegendElement newElement = new LegendElement(relativeX, relativeY, elementWidth, elementHeight, colorBoxColors[i], collegeTEXT[i], i); 
       elements.Add(newElement);
     }    
   }
