@@ -6,6 +6,8 @@ public class CollegeBar
   private int TotalCollege;
   private int TotalUniversity;
   private int percentSize;
+  private int halfBarWidth;
+  private int textPlacement;
   
   private int xPos, yPos;
   private int bar_width, bar_height;
@@ -42,6 +44,9 @@ public class CollegeBar
     
     this.hoveredOn = false;
     
+    halfBarWidth = round(bar_width/2.0);
+    textPlacement = xPos + halfBarWidth;
+    
     n = 0;
   }
   
@@ -76,7 +81,7 @@ public class CollegeBar
     }
     else {
       if (hoveredOn == true && CurrSelectedCollege != null && CurrSelectedCollege.equals(Name)) {
-        CurrSelectedCollege = null; 
+        //CurrSelectedCollege = null; 
       }
       hoveredOn = false;
     }
@@ -114,6 +119,13 @@ public class CollegeBar
         stroke(255);
         strokeWeight(1.2);
         rect(xPos, yPos, bar_width, bar_height);
+    }
+    
+    if(colToDraw != 6){
+      String collegeNum = Integer.toString(TotalCollege);
+      textAlign(CENTER);
+      //fill(0);
+      text(collegeNum, textPlacement, yPos-5);
     }
   }
   

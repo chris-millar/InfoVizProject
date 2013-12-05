@@ -437,7 +437,14 @@ public class barChart{
         else
           fill(150,20);
       }
-      else{
+
+    }
+    shouldBold();
+  }
+  
+  void shouldBold(){
+    if(CurrSelectedCollege != null){
+      if(CurrSelectedCollege.equals(college.Name) && colToDraw != 6){
         fill(150,100);
       }
     }
