@@ -2,7 +2,7 @@ public class Legend {
   private int bottomLeftX;
   private int bottomLeftY;
   
-  private int rX, rY;
+  
   private int rWidth, rHeight;
   
   private final int Legend_PADDING = 8;
@@ -60,10 +60,11 @@ public class Legend {
       rX = leftX + dynamicPad;
     }
     else {
-      rX = leftX + 5;
+      rX = leftX ;
     }
     //rX = bottomLeftX;
-    rY = bottomLeftY - rHeight; 
+    rY = bottomLeftY - rHeight - 75; 
+    
     
     
       //rY = bottomLeftY;
@@ -77,29 +78,29 @@ public class Legend {
   public void draw() {
     fill(COLOR_LegendBackground);
     noStroke();
-    rect(rX, rY, rWidth, rHeight, RADIUS);
+    rect(rX-2, rY, rWidth+10, rHeight+50, RADIUS);
     
     int relativeY = rY;
     int relativeX;
     for (int i=0; i < NUM_ELEMENTS; i++) {
       relativeY += Legend_PADDING;
-      relativeX = rX + Legend_PADDING;
+      relativeX = rX + Legend_PADDING + 15;
       
       //draw color rect
       fill(colorBoxColors[i]);
       noStroke();
-      rect(relativeX, relativeY, colorBoxWidth, colorBoxHeight);
+      rect(relativeX+105, relativeY, colorBoxWidth+8, colorBoxHeight);
       relativeX += colorBoxWidth;
       
       //draw college name
-      relativeX += Legend_PADDING;
-      textAlign(LEFT, TOP);
-      fill(COLOR_LegendText);
-      stroke(COLOR_LegendText);
-      textSize(Legend_TEXTSIZE);
-      text(collegeTEXT[i], relativeX, relativeY);
+//      relativeX += Legend_PADDING;
+//      textAlign(LEFT, TOP);
+//      fill(COLOR_LegendText);
+//      stroke(COLOR_LegendText);
+//      textSize(Legend_TEXTSIZE);
+//      text(collegeTEXT[i], relativeX, relativeY);
       
-      relativeY += Legend_TEXTSIZE;
+      relativeY += Legend_TEXTSIZE + 5;
     }
   }
   

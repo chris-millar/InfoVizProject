@@ -115,6 +115,16 @@ void controlEvent(ControlEvent theEvent) {
     change = true;
   }
   
+  if(theEvent.isFrom(selCollege)) {
+    colToDraw = int(selCollege.getValue());
+    int saveYear = CurrSelectedYear;
+    buildVisualizationOne();
+    CurrSelectedYear = saveYear;
+    initCharts();
+  }
+  
+  
+  
 }
 
 
@@ -421,10 +431,15 @@ public class barChart{
     }
     else //CurrSelectedCollege.equals(college.Name)
     {
-      if( (mouseX > xpos && mouseX < xpos+thisWidth) && (mouseY > ypos && mouseY < ypos+thisHeight))
+      if(colToDraw == 6){
+        if( (mouseX > xpos && mouseX < xpos+thisWidth) && (mouseY > ypos && mouseY < ypos+thisHeight))
+          fill(150,100);
+        else
+          fill(150,20);
+      }
+      else{
         fill(150,100);
-      else
-        fill(150,20);
+      }
     }
   }
 

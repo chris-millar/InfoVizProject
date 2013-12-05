@@ -13,6 +13,8 @@ public class YearBar {
   private int label_width;
   private int label_height;
   
+  private boolean collegeMode;
+  
   private color barColor_Unselected;
   private color barColor_ClickSelected;
   private color barColor_HoveredOn;
@@ -66,6 +68,10 @@ public class YearBar {
     this.labelColor_Unselected = Color; 
   }
   
+  public void setCollegeMode(boolean mode) {
+   collegeMode = mode; 
+  }
+  
   public ArrayList<CollegeBar> getCollegeBars() {
     return CollegeBars; 
   }
@@ -105,6 +111,10 @@ public class YearBar {
     return bar_height;
   }
   // ...
+  
+  public boolean getCollegeMode() {
+    return collegeMode; 
+  }
   
   
   public void isHoveredOver() {

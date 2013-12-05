@@ -24,6 +24,7 @@ public class CollegeBar
   
   private final int opacity_HoveredOn = 255;
   private final int opacity_Unselected = 170;
+  private int n;
   
   public CollegeBar()
   {
@@ -40,6 +41,8 @@ public class CollegeBar
     this.bar_height = theHeight;
     
     this.hoveredOn = false;
+    
+    n = 0;
   }
   
   
@@ -80,6 +83,16 @@ public class CollegeBar
 
   }
   
+//  boolean render() {
+//    if ( n<bar_height ) {
+//      n+=3;
+//    }
+//    noStroke();
+//    fill(Color, opacity);
+//    rect(x, width-n, bar_width, n);
+//    return( n<h );
+//  }
+  
   /*
   * Method that draws the rectangle; hard egdes for now
   */
@@ -96,11 +109,11 @@ public class CollegeBar
       //popup.draw();
     }
     else {
-      fill(barColor_Unselected, opacity_Unselected);
-      //noStroke();
-      stroke(255);
-      strokeWeight(1.2);
-      rect(xPos, yPos, bar_width, bar_height);
+        fill(barColor_Unselected, opacity_Unselected);
+        //noStroke();
+        stroke(255);
+        strokeWeight(1.2);
+        rect(xPos, yPos, bar_width, bar_height);
     }
   }
   

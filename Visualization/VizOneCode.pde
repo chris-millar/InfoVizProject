@@ -1,3 +1,6 @@
+RadioButton selCollege, college;
+
+
 //------------------------ BUILD METHODS -------------------------//
 void buildVisualizationOne() {
    vizOne_yAxis = new Axis(1, "yAxis", vizOne_yAxis_x1, vizOne_yAxis_y1, vizOne_yAxis_x2, vizOne_yAxis_y2, Color_AXIS);
@@ -13,7 +16,45 @@ void buildVisualizationOne() {
      currYearBar = buildYearBar(i);
      yearBars.add(currYearBar);
    }
+   
+   makeRB();
+   //buildYB();
+        
+   setVarInCurrSelectedYearBar(CurrSelectedYear - BASE_YEAR);
+   
 }
+
+void buildYB(){
+   yearBars.clear();
+   YearBar currYearBar;
+   for (int i=0; i < NUM_YEARS; i++) {
+     currYearBar = buildYearBar(i);
+     yearBars.add(currYearBar);
+   }
+}
+
+void makeRB(){
+     selCollege = cp5.addRadioButton("selectCol")
+        .setPosition(rX+8,rY+9)
+        .setSize(2,2)
+        .setColorLabel(0)
+        .setItemHeight(8)
+        .setItemWidth(10)
+        .setItemsPerRow(1)
+        .setSpacingColumn(50)
+        .setSpacingRow(15)
+        .addItem("College of Architecture",0)
+        .addItem("College of Computing",1)
+        .addItem("College of Engineering",2)
+        .addItem("Ivan Allen College", 3)
+        .addItem("College of Management",4)
+        .addItem("College of Sciences", 5)
+        .addItem("All Colleges",6)
+        .setNoneSelectedAllowed(false)
+        .activate(colToDraw);
+}
+
+
 
 
 public YearBar buildYearBar(int yearIndex) {
@@ -37,11 +78,21 @@ public YearBar buildYearBar(int yearIndex) {
   
   ArrayList<CollegeBar> collegeBars = new ArrayList<CollegeBar>();
   
-  for (int i=0; i < 6; i++) {
-    currCollege = Years.get(yearIndex).get(i);
-    currCollegeBar = buildCollegeBar(currCollege, totalEnrollment, relative_xPos, relative_yPos, barHeight);
-    relative_yPos += currCollegeBar.getHeight();
-    collegeBars.add(currCollegeBar); 
+  if(colToDraw == 6){
+    //Years.get(yearIndex).setCollegeMode(true);
+    for (int i=0; i < 6; i++) {
+      currCollege = Years.get(yearIndex).get(i);
+      currCollegeBar = buildCollegeBar(currCollege, totalEnrollment, relative_xPos, relative_yPos, barHeight);
+      relative_yPos += currCollegeBar.getHeight();
+      collegeBars.add(currCollegeBar); 
+    }
+  }
+  else{
+      currCollege = Years.get(yearIndex).get(colToDraw);
+      currCollegeBar = buildCollegeBar(currCollege, totalEnrollment, relative_xPos, relative_yPos, barHeight);
+      collegeBars.add(currCollegeBar);  
+      CurrSelectedCollege = currCollege.getName();
+      Event_SelectedCollegeChange = true;
   }
   
   
@@ -63,7 +114,13 @@ public CollegeBar buildCollegeBar(College college, int totalEnrollmentForYear, i
   //float barHeight = round(((float)college.getTotalCollege() / totalEnrollmentForYear) * (yearBarHeight - (2 * InnerBarSpacing)));
   
   float barHeight = round(((float)college.getTotalCollege() / totalEnrollmentForYear) * (yearBarHeight - InnerBarSpacing));
-  collegeBar = new CollegeBar(college.getName(), xPos, yPos, CollegeBar_WIDTH, (int) barHeight);
+  if(colToDraw == 6){
+    collegeBar = new CollegeBar(college.getName(), xPos, yPos, CollegeBar_WIDTH, (int) barHeight);
+  }
+  else{
+    int posY = int(vizOne_xAxis_y1 - barHeight);
+    collegeBar = new CollegeBar(college.getName(), xPos, posY, CollegeBar_WIDTH, (int) barHeight);
+  }
   collegeBar.setCollegeEnrollment(college.getTotalCollege());
   collegeBar.setUniversityEnrollment(totalEnrollmentForYear);
   
@@ -98,6 +155,10 @@ public color determineCollegeBarColorFromName(String name) {
  }
 }
 
+
+private void setVarInCurrSelectedYearBar(int curr) {
+  yearBars.get(curr).setClickSelected(true); 
+}
 
 
 //------------------------ CHECK METHODS -------------------------//
@@ -145,7 +206,10 @@ void drawVisualizationOne() {
    vizOne_yAxis.drawLabel("Students");
    vizOne_xAxis.draw();
    
+   
+   
    legend.draw();
+   cp5.draw();
    
    int titleX = vizOne_X + round((float)vizOne_width / 2);
    int titleY = vizOne_Y + vizOne_InnerPaddingY / 2; 
@@ -159,11 +223,12 @@ void drawVisualizationOne() {
    
    for (YearBar yearBar : yearBars) {
      yearBar.draw();
-     for (CollegeBar collegeBar : yearBar.getCollegeBars()) {
-       collegeBar.draw();
-     } 
+     
+       for (CollegeBar collegeBar : yearBar.getCollegeBars()) {
+         collegeBar.draw();
+       }
    }
-   
+
    for (YearBar yearBar : yearBars) {
      
      for (CollegeBar collegeBar : yearBar.getCollegeBars()) {
