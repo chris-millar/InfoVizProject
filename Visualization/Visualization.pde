@@ -5,7 +5,6 @@ import controlP5.*;
 // Info Viz Project
 // December-03-2013
 
-boolean debug = false;
 ////////////// Init Methods //////////////////
 
 public void setup() {
@@ -19,7 +18,6 @@ public void setup() {
   
   initGlobals();
   loadData();
-  if (debug) { test_Data(); }
   initScreen();
   
   background(255);
@@ -45,10 +43,7 @@ void mouseClicked() {
 
 
 void draw() {
- 
-  
   background(255);
-  
   
   if (Event_VizOneCollegeToDrawChange) {
     buildVisualizationOne();
@@ -70,8 +65,6 @@ void draw() {
     Event_VizTwoDisplayModeChange = false; 
   }
   
-  updateElementsForBrushing();
-  
   checkVisualizationOne();
   drawVisualizationOne();
   
@@ -82,11 +75,6 @@ void draw() {
     for (int i=0; i<bars.size() && !bars.get(i).render(); i++);
   }
   
-}
-
-
-void updateElementsForBrushing() {
-  //Intentionally left blank
 }
 
 
