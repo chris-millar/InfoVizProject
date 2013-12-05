@@ -69,9 +69,12 @@ void drawCP5(){
           .setItemWidth(15)
           .setItemsPerRow(2)
           .setSpacingColumn(50)
-          .addItem("Percent",0)
-          .addItem("Number", 1)
+          .addItem("A",0)
+          //.addItem("Percent",0)
+          //.addItem("Number", 1)
+          .addItem("B", 1)
           .setNoneSelectedAllowed(false)
+          .setImages(unselected, unselected, selected) //default, theOverImage, activeImage // huy images
           .activate(dataMode);
           
   rOther = cp5.addRadioButton("otherButton")
@@ -85,11 +88,11 @@ void drawCP5(){
               .setSpacingRow(10)
               .setSpacingRow(IMG_HEIGHT/2) // huy images
               //.addItem("Major",0)
-              .addItem("X", 0) // huy images
+              .addItem("X", 0) 
               //.addItem("Ethnicity", 1)
-              .addItem("Y", 1) // huy images
+              .addItem("Y", 1) 
               //.addItem("Gender", 2)
-              .addItem("Z", 2) // huy images
+              .addItem("Z", 2) 
               .setNoneSelectedAllowed(false)
               .setImages(unselected, unselected, selected) //default, theOverImage, activeImage // huy images
               .activate(mode);
@@ -193,8 +196,47 @@ void drawVisualizationTwo() {
   textAlign(CENTER);
   text(y,round((float)vizOne_width /2),315);
   
-    //paint Major/Ethnicity/Gender
-  //hardcoding location for now
+  labelSecLegend();
+}
+
+public void labelSecLegend()
+{
+  //top title
+  fill(0);
+  textSize(9);
+  textAlign(CENTER,BOTTOM);
+  int wordPos = 345; 
+  text("DISPLAY",1250,wordPos);
+  
+  //percentage
+  fill(0);
+  textSize(9);
+  textAlign(CENTER,BOTTOM);
+  int percentPos = 363; 
+  text("PERCENT",1220, percentPos);
+  
+  //number
+  fill(0);
+  textSize(9);
+  textAlign(CENTER,BOTTOM);
+  int numPos = 363; 
+  text("NUMBER",1280, numPos);
+  
+  //make division line in 2nd legend
+  fill(0);
+  textSize(9);
+  textAlign(CENTER,BOTTOM);
+  int linePos = 374; 
+  text("____________________________",1250,linePos);
+  
+  //bottom title
+  fill(0);
+  textSize(9);
+  textAlign(CENTER,BOTTOM);
+  int title2Pos = 393; 
+  text("DEMOGRAPHICS",1250,title2Pos);
+  
+  //paint Major/Ethnicity/Gender
   fill(0);
   textSize(9);
   textAlign(CENTER,BOTTOM);
@@ -202,9 +244,6 @@ void drawVisualizationTwo() {
   text("MAJOR",1213,textYPos);
   text("ETHNICITY",1222, textYPos + IMG_HEIGHT + 2);
   text("GENDER",1215, textYPos + 2*IMG_HEIGHT + 5);
-  
-  
-  
 }
 
 public int getPercent(int enrollment, int colTotal){
