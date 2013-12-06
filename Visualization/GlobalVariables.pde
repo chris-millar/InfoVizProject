@@ -8,6 +8,9 @@
    2013 --> {College_Architecture_2013, College_Computing_2013, College_Engineering_2013, College_IvanAllen_2013, ... College_Science_2013} */
 //*************** Global Variables *******************//
 
+PopupBubble dir1, dir2, dir3;
+
+
 boolean firstDraw = true;
 //public int rX, rY;
 
@@ -183,6 +186,12 @@ void initGlobalDataAndVizElements() {
   
   // Viz-Element Structures
   yearBars = new ArrayList<YearBar>();
+  
+//  dir1 = new PopupBubble(3, 0, int x, int y, int rWidth, int rHeight, color Color);
+//  
+//  dir2 = new PopupBubble(3, 0, int x, int y, int rWidth, int rHeight, color Color);
+//  
+//  dirYear = new PopupBubble(1, 0, int x, int y, int rWidth, int rHeight, color Color);
   
 }
 

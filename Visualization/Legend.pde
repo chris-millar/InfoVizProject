@@ -2,6 +2,8 @@ public class Legend {
   private int bottomLeftX;
   private int bottomLeftY;
   
+  private boolean hov;
+  
   private int rX, rY;
   private int rWidth, rHeight;
   
@@ -105,10 +107,73 @@ public class Legend {
     noStroke();
     rect(rX, rY, rWidth, rHeight, RADIUS);
     
+    isHov();
+    
+    if(hov){
+      fill(150);
+      rect(rX+rWidth-100, 5, 100, 25, RADIUS);
+      
+      fill(0, 140);
+      
+      //year bar
+      triangle(vizOne_xAxis_x1-25+70+5, vizOne_xAxis_y1+25, vizOne_xAxis_x1-25+65+5, vizOne_xAxis_y1+30,vizOne_xAxis_x1-25+75+5, vizOne_xAxis_y1+30);
+      rect(vizOne_xAxis_x1-25, vizOne_xAxis_y1+30, 150, 65, RADIUS);
+      
+      //viz1
+      triangle(rX+(rWidth/2), rY-60+50+5, rX+(rWidth/2)-5, rY-60+50, rX+(rWidth/2)+5, rY-60+50);
+      rect(rX, rY-60, rWidth, 50, RADIUS);
+      
+      //viz2
+      triangle(rX-12+(rWidth/2), rY+170+50+5, rX-12+(rWidth/2)-5, rY+170+50, rX-12+(rWidth/2)+5, rY+170+50);
+      rect(rX-12, rY+170, rWidth, 50, RADIUS);
+      
+      
+      
+      fill(255, 245);
+      textSize(12);
+      textAlign(CENTER);
+      text("Click on any year bar to change the view in the viz below", vizOne_xAxis_x1-25+5, vizOne_xAxis_y1+35, 140, 65);
+      
+      text("Click on any college name to change the view", rX+4, rY-60+7, rWidth-5, 50);
+      
+      text("Select buttons below to change view to the left", rX-12+4, rY+170+7, rWidth-5, 50);
+      
+      
+      
+    }
+    else{
+      fill(220);
+      rect(rX+rWidth-100, 5, 100, 25, RADIUS);
+    }
+    
+    
+    //rect(rX+rWidth-100, 10, 100, 25, RADIUS);
+    fill(0);
+    textSize(12);
+    textAlign(CENTER);
+    text("Directions", rX+rWidth-51, 22);
+    
+//    String directions = "Directions: To change the view you may select on any college name below.";
+//    fill(0);
+//    textSize(9);
+//    textAlign(LEFT);
+//    text(directions, rX, rY-50, 160, 100);
+    
     for (LegendElement line : elements) {
       line.draw();  
     }
     
+  }
+  
+    public void isHov()
+  {
+    if ( ((mouseX > rX+rWidth-100) && (mouseX < ((rX+rWidth-100) + 100)) ) && ((mouseY > 10) && (mouseY < (10 + 25))) ) {
+      hov = true;
+    }
+    else {
+      hov = false;
+    }
+
   }
   
   public void checkElementsForHoveredOn() {
