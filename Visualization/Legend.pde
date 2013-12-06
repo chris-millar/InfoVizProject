@@ -5,9 +5,12 @@ public class Legend {
   
   private int rWidth, rHeight;
   
-  private final int Legend_yPADDING = 8;
+  private final int Legend_yPADDING_small = 4; //8;
+  private final int Legend_yPADDING_big = 10; //8;
   private final int Legend_TEXTSIZE = 10;
   private final int Legend_xPADDING = 8; //5
+  
+  private int elementHeight;
   
   private int colorBoxWidth;
   private int colorBoxHeight;
@@ -43,8 +46,11 @@ public class Legend {
     
     int maxStringWidth = determineMaxStringPixelSize();
     
+    elementHeight = Legend_TEXTSIZE + Legend_yPADDING_big - Legend_yPADDING_small;
+    
     rWidth = (2 * Legend_xPADDING) + colorBoxWidth + Legend_xPADDING + maxStringWidth;
-    rHeight = (2 * Legend_yPADDING) + (NUM_ELEMENTS * Legend_TEXTSIZE) + ((NUM_ELEMENTS-1) * Legend_yPADDING);
+    //rHeight = (2 * Legend_yPADDING_big) + (NUM_ELEMENTS * Legend_TEXTSIZE) + ((NUM_ELEMENTS-1) * Legend_yPADDING_small);
+    rHeight = (2 * Legend_yPADDING_big) + (NUM_ELEMENTS * elementHeight) + ((NUM_ELEMENTS-1) * Legend_yPADDING_small);
     
     int availSpace = rightX - leftX;
     
@@ -66,14 +72,19 @@ public class Legend {
     int relativeX;
     
     int elementWidth = rWidth - Legend_xPADDING; //- (2 * Legend_xPADDING);
-    int elementHeight = Legend_TEXTSIZE;
+    //int elementHeight = Legend_TEXTSIZE;
     
     for (int i=0; i < NUM_ELEMENTS; i++) {
-      relativeY += Legend_yPADDING;
+      if (i == 0) {
+        relativeY += Legend_yPADDING_big;  
+      }
+      else {
+        relativeY += Legend_yPADDING_small;
+      }
       relativeX = rX + (Legend_xPADDING/2);
       
       LegendElement newElement = new LegendElement(relativeX, relativeY, elementWidth, elementHeight, colorBoxColors[i], collegeTEXT[i], 
-                                                   i, Legend_xPADDING, Legend_yPADDING, Legend_TEXTSIZE); 
+                                                   i, Legend_xPADDING, Legend_yPADDING_big, Legend_yPADDING_small, Legend_TEXTSIZE); 
       elements.add(newElement);
       
       relativeY += elementHeight;
@@ -145,11 +156,15 @@ public class LegendElement {
   public int xPos, yPos;
   public int elementWidth, elementHeight;
   
+  public int biggerY;
+  public int biggerHeight;
+  
   public int colorBoxWidth;
   public int colorBoxHeight;
   
   public int legend_xPadding;
-  public int legend_yPadding;
+  public int legend_yPadding_big;
+  public int legend_yPadding_small;
   public int legend_textSize;
   
   public color legendColor;
@@ -159,14 +174,14 @@ public class LegendElement {
   public boolean hoveredOn;
   public boolean clickSelected;
   
-  public final color buttonColor_unselected = color(64,55,80); //COLOR_LegendBackground;
-  public final color buttonColor_hoveredOn = color(64,55,80); //COLOR_LegendBackground;
-  public final color buttonColor_clickSelected = color(255,255,153);
+  public final color buttonColor_unselected = color(200); //color(100); //color(64,55,80); //COLOR_LegendBackground;
+  public final color buttonColor_hoveredOn = color(150); //color(125); //color(64,55,80); //COLOR_LegendBackground;
+  public final color buttonColor_clickSelected = color(219,181,85); //color(255,255,153);
   
   
   
   public LegendElement(int xPos, int yPos, int elementWidth, int elementHeight, color legendColor, String legendText, int legendId,
-                       int legend_xPadding, int legend_yPadding, int legend_textSize) {
+                       int legend_xPadding, int legend_yPadding_big, int legend_yPadding_small, int legend_textSize) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.elementWidth = elementWidth;
@@ -176,8 +191,14 @@ public class LegendElement {
     this.legendId = legendId;
     
     this.legend_xPadding = legend_xPadding;
-    this.legend_yPadding = legend_yPadding;
+    this.legend_yPadding_big = legend_yPadding_big;
+    this.legend_yPadding_small = legend_yPadding_small;
     this.legend_textSize = legend_textSize;
+    
+    biggerY = yPos;
+    biggerHeight = elementHeight;
+    //biggerY = yPos - (legend_yPadding / 2) + 1;
+    //biggerHeight = elementHeight + legend_yPadding - 2;
     
     colorBoxHeight = legend_textSize;
     colorBoxWidth = ceil(1.5 * colorBoxHeight);
@@ -205,7 +226,7 @@ public class LegendElement {
   }
   
   public boolean isMouseInsideBounds() {
-    if  ( ((mouseX > xPos) && (mouseX < (xPos + elementWidth))) && ((mouseY > yPos) && (mouseY < (yPos + elementHeight))) ) {
+    if  ( ((mouseX > xPos) && (mouseX < (xPos + elementWidth))) && ((mouseY > biggerY) && (mouseY < (yPos + biggerHeight))) ) {
       return true;
     }
     else {
@@ -226,16 +247,18 @@ public class LegendElement {
   public void draw() {
       int relativeX = xPos + legend_xPadding/2;
       
+      int centeredY = yPos + (legend_yPadding_big / 2) - (legend_yPadding_small / 2);
       
       if (clickSelected) {
         fill(buttonColor_clickSelected);
         noStroke();
-        rect(xPos, yPos, elementWidth, elementHeight);
+        rect(xPos, biggerY, elementWidth, biggerHeight);
+        //rect(xPos, yPos, elementWidth, elementHeight);
         
         //draw color rect
         fill(legendColor);
         noStroke();
-        rect(relativeX, yPos, colorBoxWidth, colorBoxHeight);
+        rect(relativeX, centeredY, colorBoxWidth, colorBoxHeight);
         relativeX += colorBoxWidth;
         
         //draw college name
@@ -244,17 +267,17 @@ public class LegendElement {
         fill(COLOR_LegendText);
         stroke(COLOR_LegendText);
         textSize(legend_textSize);
-        text(legendText, relativeX, yPos);          
+        text(legendText, relativeX, centeredY);          
       }
       else if (hoveredOn) {
         fill(buttonColor_hoveredOn);
         noStroke();
-        rect(xPos, yPos, elementWidth, elementHeight);
+        rect(xPos, biggerY, elementWidth, biggerHeight);
         
         //draw color rect
         fill(legendColor);
         noStroke();
-        rect(relativeX, yPos, colorBoxWidth, colorBoxHeight);
+        rect(relativeX, centeredY, colorBoxWidth, colorBoxHeight);
         relativeX += colorBoxWidth;
         
         //draw college name
@@ -263,17 +286,17 @@ public class LegendElement {
         fill(COLOR_LegendText);
         stroke(COLOR_LegendText);
         textSize(legend_textSize);
-        text(legendText, relativeX, yPos);        
+        text(legendText, relativeX, centeredY);        
       }
       else {
-        fill(buttonColor_unselected, 100);
+        fill(buttonColor_unselected, 125); //100
         noStroke();
-        rect(xPos, yPos, elementWidth, elementHeight);
+        rect(xPos, biggerY, elementWidth, biggerHeight);
         
         //draw color rect
         fill(legendColor);
         noStroke();
-        rect(relativeX, yPos, colorBoxWidth, colorBoxHeight);
+        rect(relativeX, centeredY, colorBoxWidth, colorBoxHeight);
         relativeX += colorBoxWidth;
         
         //draw college name
@@ -282,7 +305,7 @@ public class LegendElement {
         fill(COLOR_LegendText);
         stroke(COLOR_LegendText);
         textSize(legend_textSize);
-        text(legendText, relativeX, yPos);  
+        text(legendText, relativeX, centeredY);  
       }
       
   }

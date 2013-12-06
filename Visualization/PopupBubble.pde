@@ -84,7 +84,7 @@ public class PopupBubble {
   
   public void draw(int vizId) {
     if (vizId == 1) {
-      fill(backgroundColor);
+      fill(backgroundColor, 230);
       noStroke();
       triangle(tX1, tY1, tX2, tY2, tX3, tY3);
       rect(rX, rY, rWidth, rHeight, radius);

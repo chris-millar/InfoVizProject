@@ -155,10 +155,10 @@ final color COLOR_YearBar_ClickSelected = color(153, 121, 35);  //997923
 final color COLOR_YearBarLabel = color(158, 115, 62);
 
 final color COLOR_PopupBubble = color(0); //209  //255,196,64
-final color COLOR_DoDText = color(255);
+final color COLOR_DoDText = color(230);
 
-final color COLOR_LegendBackground = color(209);
-final color COLOR_LegendText = color(0);
+final color COLOR_LegendBackground = color(210); //color(209);
+final color COLOR_LegendText = color(10);
 
 
 
