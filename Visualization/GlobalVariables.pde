@@ -9,7 +9,7 @@
 //*************** Global Variables *******************//
 
 boolean firstDraw = true;
-public int rX, rY;
+//public int rX, rY;
 
 
 //*** Data Variables ***//
@@ -103,6 +103,11 @@ int CollegeBar_WIDTH;
 
 int label_xPading;
 int label_yPading;
+
+int vizTwo_Menu_X;
+int vizTwo_Menu_Y;
+int vizTwo_Menu_WIDTH;
+int vizTwo_Menu_HEIGHT;
 
 
 //*** Color Values ***//          

@@ -153,7 +153,10 @@ void initCharts(){
   bc6 = new barChart(895, 655, "Management", 1, manag);
   
   //vizTwoAnimate();
-  
+  vizTwo_Menu_X = legend.getPosX();
+  vizTwo_Menu_Y = 325;
+  vizTwo_Menu_WIDTH = legend.getWidth();
+  vizTwo_Menu_HEIGHT = 150;
 }
 
 void drawVisualizationTwo() {
@@ -167,7 +170,8 @@ void drawVisualizationTwo() {
   noStroke();
   //rect(1165, 325, 170, 150, 3);
   rect(1165, 325, 170, 150, ROUNDED_CORNER_VALUE);
-  
+  //rect(legend.getPosX(), 325, legend.getWidth(), 150, ROUNDED_CORNER_VALUE);
+  //rect(vizTwo_Menu_X, vizTwo_Menu_Y, vizTwo_Menu_WIDTH, vizTwo_Menu_HEIGHT, ROUNDED_CORNER_VALUE);
   
   bc1.draw();
   bc2.draw();
@@ -205,6 +209,9 @@ public void labelSecLegend()
   fill(0);
   textSize(9);
   textAlign(CENTER,BOTTOM);
+  //int wordPosY = vizTwo_Menu_Y + 20;
+  //int wordPosX = vizTwo_Menu_X + floor((float) vizTwo_Menu_WIDTH / 2); 
+  //text("DISPLAY",wordPosX,wordPosY);
   int wordPos = 345; 
   text("DISPLAY",1250,wordPos);
   

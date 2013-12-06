@@ -2,7 +2,7 @@ public class Legend {
   private int bottomLeftX;
   private int bottomLeftY;
   
-  
+  private int rX, rY;
   private int rWidth, rHeight;
   
   private final int Legend_yPADDING_small = 4; //8;
@@ -37,6 +37,14 @@ public class Legend {
     
     elements = new ArrayList<LegendElement>();
     buildLegendElements();
+  }
+  
+  public int getPosX() {
+    return rX;  
+  }
+  
+  public int getWidth() {
+    return rWidth;  
   }
 
   
