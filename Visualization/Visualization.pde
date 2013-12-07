@@ -41,6 +41,44 @@ void mouseClicked() {
   vizOneCheckMouseClicked();  
 }
 
+void keyPressed()
+{
+  if(keyCode == RIGHT)
+  {
+    if(CurrSelectedYear != 2013)
+    {
+      int nextYear = CurrSelectedYear + 1;
+      
+      for (YearBar yearBar : yearBars) 
+      {
+        if(yearBar.getYear() == CurrSelectedYear)
+          yearBar.setClickSelected(false);
+        else if(yearBar.getYear() == nextYear)
+           yearBar.setClickSelected(true);          
+     }
+      CurrSelectedYear++;
+      Event_SelectedYearChange = true;
+    }
+ }
+ 
+ if(keyCode == LEFT)
+ {
+    if(CurrSelectedYear != 1999)
+    {
+      int nextYear = CurrSelectedYear - 1;
+      
+      for (YearBar yearBar : yearBars) 
+      {
+        if(yearBar.getYear() == CurrSelectedYear)
+          yearBar.setClickSelected(false);
+        else if(yearBar.getYear() == nextYear)
+           yearBar.setClickSelected(true);          
+      }
+      CurrSelectedYear--;
+      Event_SelectedYearChange = true;
+    }
+ }
+}
 
 void draw() {
   background(255);
